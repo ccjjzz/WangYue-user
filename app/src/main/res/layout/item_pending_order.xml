@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="19dp"
+    android:layout_marginTop="9dp"
+    android:layout_marginEnd="19dp"
+    android:background="@drawable/shape_card_radius_5dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingTop="17dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="下单时间："
+            android:textColor="@color/color999"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待接单"
+            android:textColor="@color/colorPendingOrderStatus"
+            android:textSize="12sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <include layout="@layout/common_dividing_line_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_order_head"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_marginEnd="14dp"
+            android:src="@color/gray" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/item_order_head"
+            android:text="芳香精油套餐"
+            android:textColor="@color/color333"
+            android:textSize="13sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/item_order_title"
+            android:text="(60分钟)"
+            android:textColor="@color/color999"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="数量x1"
+            android:textColor="@color/color999"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_name_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_order_title"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/item_order_head"
+            android:text="吴先生 188****001"
+            android:textColor="@color/color999"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/item_order_head"
+            android:layout_toEndOf="@+id/item_order_head"
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="4dp"
+            android:text="3.6公里"
+            android:textColor="@color/color999"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <include layout="@layout/common_dividing_line_gray" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="17dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_service_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务时间："
+            android:textColor="@color/color333"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_travel_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:text="出行方式："
+            android:textColor="@color/colorBlack2c"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:text="备注："
+            android:textColor="@color/colorBlack2c"
+            android:textSize="12sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <include layout="@layout/common_dividing_line_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="9dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/item_order_btn_accept"
+            android:text="预计收入："
+            android:textColor="@color/color999"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_order_income_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/item_order_income"
+            android:layout_toEndOf="@+id/item_order_income"
+            android:text="¥00.00"
+            android:textColor="@color/colorOrderPrice"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/item_order_btn_refuse"
+            android:layout_width="59dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="17dp"
+            android:layout_toStartOf="@+id/item_order_btn_accept"
+            android:background="@drawable/bg_order_btn_refuse"
+            android:text="拒绝接单"
+            android:textColor="@color/color999"
+            android:textSize="9sp"
+            tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/item_order_btn_accept"
+            android:layout_width="59dp"
+            android:layout_height="22dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_order_btn_acceprt"
+            android:padding="0dp"
+            android:text="接单"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            tools:ignore="SmallSp" />
+    </RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

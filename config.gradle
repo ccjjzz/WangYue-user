@@ -1,0 +1,57 @@
+ext {
+    //Build Gradle Plugin
+    externalAndroidBuildGradlePlugin = 'com.android.tools.build:gradle:4.0.2'
+    externalKotlinGradlePlugin = 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
+    externalKotlinSerialization = 'org.jetbrains.kotlin:kotlin-serialization:1.6.21'
+
+    //Android support Libraries
+    externalCoreKtx = 'androidx.core:core-ktx:1.1.0'
+    externalAppcompat = 'androidx.appcompat:appcompat:1.1.0'
+    externalAndroidMultiDex = 'androidx.multidex:multidex:2.0.1'
+    externalMaterial = 'com.google.android.material:material:1.4.0'
+    externalSwpeRefreshLayout = 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    //Test related third party libraries
+    externalAndroidTestEspressoCore = 'androidx.test.espresso:espresso-core:3.2.0'
+    externalAndroidTestJunit = 'androidx.test.ext:junit:1.1.1'
+    externalJunit = 'junit:junit:4.12'
+
+    //SDK Layer
+    externalRxJava2 = 'io.reactivex.rxjava2:rxjava:2.2.20'
+    externalRxAndroid = 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    externalRetrofit2 = 'com.squareup.retrofit2:retrofit:2.9.0'
+    externalRetrofitAdapter = 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    externalRetrofitConverterGson = 'com.squareup.retrofit2:converter-gson:2.9.0'
+    externalOkHttp3 = 'com.squareup.okhttp3:okhttp:4.9.1'
+    externalOkHttp3Loging = 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    externalKotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
+
+    //Application Layer
+    externalLogger = 'com.orhanobut:logger:2.2.0'
+    externalGlide = 'com.github.bumptech.glide:glide:4.12.0'
+    externalGlideCompiler = 'com.github.bumptech.glide:compiler:4.12.0'
+    externalGlideTransformation = 'jp.wasabeef:glide-transformations:4.0.1'
+    externalGlideOkhttp = 'com.github.bumptech.glide:okhttp3-integration:4.12.0@aar'
+    externalBRVAH = 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    externalBRVAH = 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    externalAutoSize = 'me.jessyan:autosize:1.2.1'
+    externalEasyNavigation = 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
+    externalUltimatebarx = 'com.gitee.zackratos:UltimateBarX:0.8.0'
+    externalBanner = 'com.youth.banner:banner:1.4.9'
+    externalExpandableTextView = 'com.ms-square:expandableTextView:0.1.4'
+    externalPermissionX = 'com.permissionx.guolindev:permissionx:1.4.0'
+    externalWechatPay = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    externalNavigationTabStrip = 'io.github.h07000223:flycoTabLayout:3.0.0'
+    externalLiveEventBus = 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+    externalSmartRefreshLayout = 'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    externalSmartRefreshLayoutHeader = 'com.scwang.smart:refresh-header-classics:2.0.3'
+    externalSmartRefreshLayoutFooter = 'com.scwang.smart:refresh-footer-classics:2.0.3'
+
+    //Android SDK/Tools Version
+    externalCompileSdkVersion = 30
+    externalBuildToolsVersion = '30.0.3'
+    externalMinSdkVersion = 21
+    externalTargetSdkVersion = 30
+    externalVersionCode = 1
+    externalVersionName = "1.0.0"
+}

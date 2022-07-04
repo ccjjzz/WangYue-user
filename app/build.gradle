@@ -1,0 +1,139 @@
+apply plugin: 'com.android.application'
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+apply plugin: 'kotlinx-serialization'
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion externalCompileSdkVersion
+    buildToolsVersion externalBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.jiuyue.user"
+        minSdkVersion externalMinSdkVersion
+        targetSdkVersion externalTargetSdkVersion
+        versionCode externalVersionCode
+        versionName externalVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../app/unbosomed.jks")
+            storePassword "unbosomed"
+            keyAlias "unbosomed"
+            keyPassword "unbosomed"
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        dev {
+            dimension "version"
+            applicationIdSuffix ""
+            versionNameSuffix ""
+        }
+    }
+
+    buildTypes {
+        release {
+            pseudoLocalesEnabled true
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        //打包命名规则
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "atuo-v${variant.versionName}-${productFlavors[0].name}_${releaseTime()}.apk"
+            }
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    allprojects {
+        configurations.all {
+            resolutionStrategy {
+                force "androidx.recyclerview:recyclerview:1.2.1"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar","*.aar"])
+    implementation externalCoreKtx
+    implementation externalAppcompat
+    implementation externalMaterial
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation externalJunit
+    androidTestImplementation externalAndroidTestJunit
+    androidTestImplementation externalAndroidTestEspressoCore
+    implementation externalSwpeRefreshLayout
+    //dex分包
+    implementation externalAndroidMultiDex
+    //rxJava
+    implementation externalRxJava2
+    implementation externalRxAndroid
+    //okhttp3
+    implementation externalOkHttp3
+    implementation externalOkHttp3Loging
+    //retrofit rxjava gson
+    implementation externalRetrofit2
+    implementation externalRetrofitAdapter
+    implementation externalRetrofitConverterGson
+    //logger
+    implementation externalLogger
+    //glide
+    implementation externalGlide
+    kapt externalGlideCompiler
+    implementation externalGlideTransformation
+    //Glide使用OkHttp加载
+    implementation externalGlideOkhttp
+    //BRVAH
+    implementation externalBRVAH
+    //SmartRefreshLayout
+    implementation externalSmartRefreshLayout
+    implementation externalSmartRefreshLayoutHeader
+    implementation externalSmartRefreshLayoutFooter
+
+    //今日头条适配方案
+    implementation externalAutoSize
+    // 底部导航栏
+    implementation externalEasyNavigation
+    //状态栏
+    implementation externalUltimatebarx
+    // banner
+    implementation externalBanner
+    // 文本展开收起
+    implementation externalExpandableTextView
+    //权限申请库
+    implementation externalPermissionX
+    //微信sdk-微信支付
+    implementation externalWechatPay
+    //顶部tab
+    implementation externalNavigationTabStrip
+    //协程
+    implementation externalKotlinCoroutines
+    //事件分发框架, 类似于EventBus
+    implementation externalLiveEventBus
+
+}
+

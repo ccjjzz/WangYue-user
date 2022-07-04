@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#141414</color>
+    <color name="colorPrimaryDark">#141414</color>
+    <color name="colorAccent">#141414</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="translucent">#80000000</color>
+    <color name="pink">#FF1565</color>
+    <color name="brown">#93623E</color>
+    <color name="lightBlack">#141414</color>
+    <color name="gray">#e0e0e0</color>
+    <color name="darkGray">#858585</color>
+    <color name="lightGray">#f6f6f6</color>
+    <color name="red">#F44336</color>
+    <color name="blue">#03A9F4</color>
+    <color name="appBackground">#F5F5F5</color>
+    <color name="mainTabSel">#00D5C4</color>
+    <color name="mainTabUnSel">#666666</color>
+    <color name="mainTabBackground">#FEFEFE</color>
+    <color name="color333">#333333</color>
+    <color name="color999">#999999</color>
+    <color name="colorEee">#EEEEEE</color>
+    <color name="colorBlack2c">#2C2C2C</color>
+    <color name="colorArcGray">#969696</color>
+    <color name="colorTabIndicator">#FF4E55</color>
+    <color name="colorPendingOrderStatus">#00D5C4</color>
+    <color name="colorOrderPrice">#FA0404</color>
+</resources>

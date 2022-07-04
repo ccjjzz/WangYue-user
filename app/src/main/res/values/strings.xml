@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">久约管理版</string>
+    <string name="string_loading_message">加载中</string>
+    <string name="string_network_error_message">未发现可以网络~</string>
+    <string name="string_error_message">加载失败~</string>
+    <string name="string_empty_message">暂无数据~</string>
+    <string name="string_btn_retry">返回重试</string>
+    <string name="string_main_tag1">订单</string>
+    <string name="string_main_tab2">忙时</string>
+    <string name="string_main_tab3">服务</string>
+    <string name="string_main_tab4">消息</string>
+    <string name="string_main_tab5">我的</string>
+    <string name="string_out_app">再按一次退出APP</string>
+    <string name="string_wx_not_installed">您还未安装微信</string>
+    <string name="string_wx_params_error">支付参数错误</string>
+    <string name="string_pay_success">支付成功</string>
+    <string name="string_pay_failed">支付失败</string>
+    <string name="string_pay_cancel_by_user">支付取消</string>
+</resources>
