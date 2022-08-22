@@ -3,6 +3,7 @@ ext {
     externalAndroidBuildGradlePlugin = 'com.android.tools.build:gradle:4.0.2'
     externalKotlinGradlePlugin = 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
     externalKotlinSerialization = 'org.jetbrains.kotlin:kotlin-serialization:1.6.21'
+    externalWallePlugin = 'com.meituan.android.walle:plugin:1.1.7'
 
     //Android support Libraries
     externalCoreKtx = 'androidx.core:core-ktx:1.1.0'
@@ -46,6 +47,19 @@ ext {
     externalSmartRefreshLayout = 'com.scwang.smart:refresh-layout-kernel:2.0.3'
     externalSmartRefreshLayoutHeader = 'com.scwang.smart:refresh-header-classics:2.0.3'
     externalSmartRefreshLayoutFooter = 'com.scwang.smart:refresh-footer-classics:2.0.3'
+    externalOverScroll = 'io.github.everythingme:overscroll-decor-android:1.1.1'
+    externalGold3dMap = 'com.amap.api:3dmap:9.3.1' //高德3d地图
+    externalGoldSearch = 'com.amap.api:search:9.2.0' //高德搜索服务
+
+    externalJpushJcore = 'cn.jiguang.sdk:jcore:3.3.0' //极光推送
+    externalJpush =  'cn.jiguang.sdk:jpush:4.7.2'
+
+    externalXpopup = 'com.github.li-xiaojun:XPopup:2.8.13'
+    externalWalle = 'com.meituan.android.walle:library:1.1.7'
+    externalAddressPicker = 'com.github.gzu-liyujiang.AndroidPicker:AddressPicker:4.1.8'
+    externalWheelPicker = 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.8'
+    externalSwipeDelMenuLayout =  'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+    externalSubScanleImageView =  'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
 
     //Android SDK/Tools Version
     externalCompileSdkVersion = 30

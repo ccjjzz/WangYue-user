@@ -1,0 +1,91 @@
+1、LiveEventBus
+发送消息：
+   LiveEventBus
+            .get<String>("some_key")
+            .post(it.poiName)
+接收消息：
+   LiveEventBus
+            .get("some_key", String::class.java)
+            .observeSticky(this) {
+               ToastUtil.show(it)
+            }
+
+2、XPopup
+new XPopup.Builder(getContext())
+    .isViewMode(true) // 是否切换为View实现，默认是Dialog实现，具体区别看方法说明
+    .hasShadowBg(true) // 是否有半透明的背景，默认为true
+    .shadowBgColor()   //单独给弹窗设置背景阴影色，默认用全局的值
+    .animationDuration() //单独给弹窗设置动画时长，默认走全局的值
+    .hasBlurBg(true) // 是否有高斯模糊的背景，默认为false
+    .isDestroyOnDismiss(true) //是否在消失的时候销毁资源，默认false。如果你的弹窗对象只使用一次，
+                              //非常推荐设置这个，可以杜绝内存泄漏。如果会使用多次，千万不要设置
+    .dismissOnBackPressed(true) // 按返回键是否关闭弹窗，默认为true
+    .dismissOnTouchOutside(true) // 点击外部是否关闭弹窗，默认为true
+    .isClickThrough(false)    //点击弹窗外部时，是否允许点击到下方界面，默认false
+    .notDismissWhenTouchInView(view) //如果点击了传入的View则弹窗不消失，点击弹窗外部的其他地方再消失，
+    .autoFocusEditText(true)    //是否让输入框自动获取焦点，默认为true
+    .autoOpenSoftInput(true) //是否弹窗显示的同时打开输入法，只在包含输入框的弹窗内才有效，默认为false
+    .popupAnimation(PopupAnimation.ScaleAlphaFromCenter) // 设置内置的动画
+    .customAnimator(null) // 设置自定义的动画器
+    .moveUpToKeyboard(false) // 软键盘弹出时，弹窗是否移动到软键盘上面，默认为true
+    .popupPosition(PopupPosition.Right)//手动指定弹窗出现在目标的什么位置，对Attach和Drawer类型弹窗生效
+    .hasStatusBarShadow(false) //是否有状态栏阴影，目前对Drawer弹窗和FullScreen弹窗生效
+    .positionByWindowCenter(false) //默认是false，是否以屏幕中心进行定位，默认是false，
+                                   //为false时根据Material范式进行定位，主要影响Attach系列弹窗
+    .isLightStatusBar(true) //是否是亮色状态栏，默认false;亮色模式下，状态栏图标和文字是黑色
+    .hasStatusBar(true) //是否显示状态栏，默认显示，一般不用设置设置, 当你App强制全屏时需要设置
+    .hasNavigationBar(true) //是否显示导航栏，默认显示，一般不用设置，当你App修改了导航栏颜色的时候需要设置
+    .keepScreenOn(false) //是否保持屏幕常亮，默认false
+    .offsetX(-10) //弹窗在x方向的偏移量
+    .offsetY(-10) //弹窗在y方向的偏移量
+    .maxWidth(10) //设置弹窗的最大宽度，如果重写弹窗的getMaxWidth()，以重写的为准
+    .maxHeight(10) //设置弹窗的最大高度，如果重写弹窗的getMaxHeight()，以重写的为准
+    .popupWidth(10) //设置弹窗的宽度，受最大宽度限制，如果重写弹窗的getPopupHeight()，以重写的为准
+    .popupHeight(10) //设置弹窗的高度，受最大高度限制，如果重写弹窗的getPopupHeight()，以重写的为准
+    .isCenterHorizontal(true)//是否和目标水平居中，比如：默认情况下Attach弹窗依靠着目标的左边或者右边，
+                             //如果isCenterHorizontal为true，则与目标水平居中对齐
+    .isRequestFocus(false)//默认为true，默认情况下弹窗会抢占焦点，目的是为了响应返回按键按下事件；如果为false，则不抢焦点
+    .enableShowWhenAppBackground(true) //默认为false，是否允许弹窗在应用后台的时候也能显示。需要开启悬浮窗权限，一行代码即可实现
+    .customHostLifecycle(lifecycle) //默认情况下XPopup监视Activity的生命周期，对于Fragment实现的UI，
+                                //可以传入Fragment的Lifecycle，从而实现在Fragment销毁时弹窗也自动销毁，省去了手动调用destroy()
+    .enableDrag(true) //是否启用拖拽，默认为true，目前对Bottom和Drawer弹窗有用
+    .isThreeDrag(true) //是否启用三阶拖拽（类似于BottomSheet），默认为false，目前对Bottom弹窗有用。如果enableDrag(false)则无效。
+    .isDarkTheme(true)  //是否启用暗色主题
+    .borderRadius(10)  //为弹窗设置圆角，默认是15，对内置弹窗生效
+    .autoDismiss(false) // 操作完毕后是否自动关闭弹窗，默认为true；比如点击ConfirmPopup的确认按钮，默认自动关闭；如果为false，则不会关闭
+    .setPopupCallback(new SimpleCallback() { //设置显示和隐藏的回调
+        @Override
+        public void onCreated() {
+             // 弹窗内部onCreate执行完调用
+        }
+        @Override
+        public void beforeShow() {
+             super.beforeShow();
+             Log.e("tag", "beforeShow，在每次show之前都会执行，可以用来进行多次的数据更新。");
+        }
+        @Override
+        public void onShow() {
+            // 完全显示的时候执行
+        }
+        @Override
+        public void onDismiss() {
+            // 完全隐藏的时候执行
+        }
+        //如果你自己想拦截返回按键事件，则重写这个方法，返回true即可
+        @Override
+        public boolean onBackPressed() {
+             ToastUtils.showShort("我拦截的返回按键，按返回键XPopup不会关闭了");
+             return true; //默认返回false
+        }
+        //监听软键盘高度变化，高度为0说明软键盘关闭，反之则打开
+        @Override
+        public void onKeyBoardStateChanged(int height) {
+            super.onKeyBoardStateChanged(height);
+            Log.e("tag", "onKeyBoardStateChanged height: " + height);
+        }
+        //监听弹窗拖拽，适用于能拖拽的弹窗
+        @Override
+        public void onDrag(BasePopupView popupView, int value, float percent) {
+        }
+    })
+    .asXXX() //所有的设置项都要写在asXXX()方法调用之前

@@ -22,7 +22,7 @@ import androidx.core.content.FileProvider;
 
 import com.jiuyue.user.App;
 import com.jiuyue.user.R;
-import com.jiuyue.user.recevier.NotificationClickReceiver;
+import com.jiuyue.user.receiver.NotificationClickReceiver;
 import com.jiuyue.user.utils.AppUtils;
 import com.jiuyue.user.utils.ToastUtil;
 
@@ -66,7 +66,7 @@ public class DownloadAppService extends Service {
         if (intent != null) {
             String url = intent.getStringExtra("url");
             notificationManager = (NotificationManager) App.getAppContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 createNotificationChannel(notificationManager);
             }
             builder = getNotificationBuilder();

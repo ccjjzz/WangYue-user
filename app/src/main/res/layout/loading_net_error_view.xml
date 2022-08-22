@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appBackground"
     android:gravity="center"
+    android:minHeight="200dp"
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
@@ -34,9 +34,12 @@
     <Button
         android:id="@+id/btn_retry"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:padding="0dp"
         android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="13sp"
         android:text="@string/string_btn_retry"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </LinearLayout>

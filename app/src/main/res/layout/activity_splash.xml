@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/iv_splash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_welcome"/>
-    <TextView
-        android:id="@+id/count_down_timer"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.jiuyue.user.widget.RoundImageView
+        android:id="@+id/icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/text"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher"
+        app:corner_radius="5dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="@color/black" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="80dp"
+        android:text="— 久约专属 —"
+        android:textColor="@color/color333"
+        android:textSize="12sp" />
 </RelativeLayout>

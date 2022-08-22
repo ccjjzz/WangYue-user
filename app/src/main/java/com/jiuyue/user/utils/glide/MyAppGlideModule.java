@@ -28,7 +28,7 @@ public class MyAppGlideModule extends AppGlideModule {
     public void registerComponents(@NonNull Context context, @NonNull Glide glide,
                                    @NonNull Registry registry) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new ImageDecryptInterceptor())//图片解密拦截器
+//                .addInterceptor(new ImageDecryptInterceptor())//图片解密拦截器
                 .build();
         registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory((Call.Factory) okHttpClient));
     }

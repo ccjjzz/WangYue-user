@@ -12,8 +12,8 @@ import androidx.viewbinding.ViewBinding;
 
 import com.jiuyue.user.R;
 import com.jiuyue.user.base.loading.LoadingController;
-import com.jiuyue.user.net.HttpResponse;
-import com.jiuyue.user.ui.dialog.LoadingDialog;
+import com.jiuyue.user.base.loading.LoadingInterface;
+import com.jiuyue.user.dialog.LoadingDialog;
 import com.jiuyue.user.utils.AppStockManage;
 import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX;
 
@@ -42,7 +42,7 @@ public abstract class BaseActivity<T extends BasePresenter, VB extends ViewBindi
     /**
      * 统一设置白底黑字不侵入页面状态栏
      */
-    private void initStatusBar() {
+    public void initStatusBar() {
         UltimateBarX.statusBarOnly(this)
                 .fitWindow(true)
                 .colorRes(R.color.white)
@@ -56,8 +56,21 @@ public abstract class BaseActivity<T extends BasePresenter, VB extends ViewBindi
      */
     private void initLoadingController() {
         loadingController = new LoadingController.Builder(this, getLoadingTargetView())
-                .setOnErrorRetryClickListener(this::finish)
-                .setOnEmptyTodoClickListener(this::finish)
+                .setOnEmptyTodoClickListener(() -> {
+                    if (initLoadingControllerRetryListener() != null) {
+                        initLoadingControllerRetryListener().onClick();
+                    }
+                })
+                .setOnErrorRetryClickListener(() -> {
+                    if (initLoadingControllerRetryListener() != null) {
+                        initLoadingControllerRetryListener().onClick();
+                    }
+                })
+                .setOnNetworkErrorRetryClickListener(() -> {
+                    if (initLoadingControllerRetryListener() != null) {
+                        initLoadingControllerRetryListener().onClick();
+                    }
+                })
                 .build();
     }
 
@@ -85,29 +98,44 @@ public abstract class BaseActivity<T extends BasePresenter, VB extends ViewBindi
         return rootView;
     }
 
+    //页面状态控制器按钮事件
+    public LoadingInterface.OnClickListener initLoadingControllerRetryListener() {
+        return null;
+    }
+
     @Override
     public void showLoading() {
-        loadingController.showLoading();
+        runOnUiThread(() -> {
+            loadingController.showLoading();
+        });
     }
 
     @Override
     public void hideLoading() {
-        loadingController.dismissLoading();
+        runOnUiThread(() -> {
+            loadingController.dismissLoading();
+        });
     }
 
     @Override
-    public void showError(HttpResponse model) {
-        loadingController.showError();
+    public void showError(String msg, int code) {
+        runOnUiThread(() -> {
+            loadingController.showError();
+        });
     }
 
     @Override
     public void showNetworkError() {
-        loadingController.showNetworkError();
+        runOnUiThread(() -> {
+            loadingController.showNetworkError();
+        });
     }
 
     @Override
     public void showEmpty() {
-        loadingController.showEmpty();
+        runOnUiThread(() -> {
+            loadingController.showEmpty();
+        });
     }
 
     @Override
@@ -116,7 +144,8 @@ public abstract class BaseActivity<T extends BasePresenter, VB extends ViewBindi
             LoadingDialog.Builder loadBuilder = new LoadingDialog.Builder(this)
                     .setMessage(msg)
                     .setCancelable(true)
-                    .setCancelOutside(false);
+                    .setCancelOutside(false)
+                    .setCancelDimAmount(true);
             loadingDialog = loadBuilder.create();
             loadingDialog.show();
         });
@@ -130,6 +159,17 @@ public abstract class BaseActivity<T extends BasePresenter, VB extends ViewBindi
                 loadingDialog.dismiss();
             }
         });
+    }
+
+    /**
+     * 统一设置点击事件
+     * @param listener 当前页面实现View.OnClickListener后，传this
+     * @param views 传需要点击的控件
+     */
+    protected void setViewClick(View.OnClickListener listener, View... views) {
+        for (View view : views) {
+            view.setOnClickListener(listener);
+        }
     }
 
     protected void intentActivity(Class<?> cls) {

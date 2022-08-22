@@ -3,16 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.MineFragment">
+    tools:context=".ui.main.fragment.MineFragment">
 
 
-    <TextView
-        android:layout_marginTop="103dp"
-        android:layout_marginLeft="74dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="辉煌国际广场"
-        android:textColor="#ff2c2c2c"
-        android:textSize="24sp"
-        />
 </FrameLayout>

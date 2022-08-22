@@ -1,10 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <com.next.easynavigation.view.EasyNavigationBar
-        android:id="@+id/navigation_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="fill_parent"
+        android:layout_height="60.0dip"
+        android:layout_gravity="bottom"
+        android:background="@color/mainTabBackground"
+        android:orientation="horizontal"
+        android:paddingTop="4.0dip"
+        android:paddingBottom="4.0dip">
+
+        <RadioButton
+            android:id="@+id/rbtn0"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8.0dip"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:drawableTop="@drawable/main_tab_1"
+            android:gravity="center"
+            android:text="订单"
+            android:textColor="@color/main_tab_color"
+            android:textSize="10.0sp"
+            android:textStyle="normal" />
+
+        <RadioButton
+            android:id="@+id/rbtn1"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8.0dip"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:drawableTop="@drawable/main_tab_2"
+            android:gravity="center"
+            android:text="忙时"
+            android:textColor="@color/main_tab_color"
+            android:textSize="10.0sp"
+            android:textStyle="normal" />
+
+        <RadioButton
+            android:id="@+id/rbtn2"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8.0dip"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:drawableTop="@drawable/main_tab_3"
+            android:gravity="center"
+            android:text="服务"
+            android:textColor="@color/main_tab_color"
+            android:textSize="10.0sp"
+            android:textStyle="normal" />
+
+        <RadioButton
+            android:id="@+id/rbtn3"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8.0dip"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:drawableTop="@drawable/main_tab_4"
+            android:gravity="center"
+            android:text="消息"
+            android:textColor="@color/main_tab_color"
+            android:textSize="10.0sp"
+            android:textStyle="normal" />
+
+        <RadioButton
+            android:id="@+id/rbtn4"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8.0dip"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:drawableTop="@drawable/main_tab_5"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@color/main_tab_color"
+            android:textSize="10.0sp"
+            android:textStyle="normal" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="60.0dip"
+        android:clipChildren="false" />
+</FrameLayout>

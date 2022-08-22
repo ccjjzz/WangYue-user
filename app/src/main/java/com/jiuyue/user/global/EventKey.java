@@ -1,8 +1,8 @@
 package com.jiuyue.user.global;
 
 public class EventKey {
-    public static final int ADDRESS_CHOOSE = 1001;
-    public static final int PAY_SUCCESS = 1002;
+    public static final String AUTH_SUCCESS = "AUTH_SUCCESS";
+
     public static class EventMsg {
         private int code;
         private String content;

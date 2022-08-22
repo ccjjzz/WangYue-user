@@ -1,7 +1,5 @@
 package com.jiuyue.user.base;
 
-import com.jiuyue.user.net.HttpResponse;
-
 public interface BaseView {
     //显示加载页面
     void showLoading();
@@ -10,7 +8,7 @@ public interface BaseView {
     void hideLoading();
 
     //显示错误页面
-    void showError(HttpResponse model);
+    void showError(String msg, int code);
 
     //显示网络错误
     void showNetworkError();

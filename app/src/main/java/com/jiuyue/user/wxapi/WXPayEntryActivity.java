@@ -7,8 +7,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jiuyue.user.global.Constant;
 import com.jiuyue.user.App;
+import com.jiuyue.user.global.Constant;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;

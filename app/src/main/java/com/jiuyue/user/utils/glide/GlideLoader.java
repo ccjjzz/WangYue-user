@@ -1,22 +1,43 @@
 package com.jiuyue.user.utils.glide;
 
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.PointF;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.view.View;
 import android.widget.ImageView;
 
-import com.jiuyue.user.utils.Dp2px;
-import com.jiuyue.user.App;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.ImageViewState;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import com.jiuyue.user.App;
+import com.jiuyue.user.utils.Dp2px;
+import com.jiuyue.user.utils.ScreenUtils;
+import com.jiuyue.user.utils.ToastUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
-
-import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 
 public class GlideLoader {
@@ -126,7 +147,7 @@ public class GlideLoader {
     }
 
     //加载圆角图片 radius圆角角度
-    public static void displayRound(String file, ImageView imageView, int placeholderRes, float radius) {
+    public static void displayRound(String file, ImageView imageView, int placeholderRes, int radius) {
         GlideApp.with(App.getAppContext()).load(file).thumbnail(0.3f)
                 .apply(RequestOptions.bitmapTransform(new GlideRoundedCornersTransform(radius,
                         GlideRoundedCornersTransform.CornerType.ALL)))
@@ -218,5 +239,119 @@ public class GlideLoader {
                 .placeholder(placeholderRes)
                 .error(placeholderRes)
                 .into(imageView);
+    }
+
+
+    /**
+     * 保存网络图片到本地
+     *
+     * @param context
+     * @param url
+     */
+    public static void saveUrlImgToLocal(Context context, String url) {
+        GlideApp.with(context)
+                .downloadOnly()
+                .load(url)
+                .listener(new RequestListener<File>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
+                        ToastUtil.show("下载失败");
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
+                        String dimPath = App.getAppContext().getExternalCacheDir().getAbsolutePath();
+                        File file = new File(dimPath, "share_" + System.currentTimeMillis() + ".png");
+                        Bitmap bitmap = BitmapUtil.getBitmapPath(resource.getAbsolutePath());
+                        boolean isSuccess = BitmapUtil.saveFile(file.getAbsolutePath(), bitmap);
+                        if (isSuccess) {
+                            // 把文件插入到系统图库
+                            try {
+                                MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), file.getName(), null);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            //发送广播通知
+                            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+                            ToastUtil.show("保存地址：" + file.getAbsolutePath());
+                        } else {
+                            ToastUtil.show("保存失败");
+                        }
+                        return false;
+                    }
+                })
+                .preload();
+    }
+
+    /**
+     * 截取指定的View为图片并保存到本地
+     *
+     * @param context
+     * @param view
+     */
+    public static void saveCaptureViewToLocalImg(Context context, View view) {
+        try {
+            String dimPath = App.getAppContext().getExternalCacheDir().getAbsolutePath();
+            File file = new File(dimPath, "Dy_" + System.currentTimeMillis() + ".png");
+//            Bitmap bitmap = BitmapUtil.compressImage(BitmapUtil.captureView(view), view.getWidth(), view.getHeight());
+//            boolean isSuccess = BitmapUtil.saveFile(file.getAbsolutePath(), bitmap);
+            boolean isSuccess = BitmapUtil.saveBitmapByView(file.getAbsolutePath(), view);
+            if (isSuccess) {
+                // 把文件插入到系统图库
+                try {
+                    MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), file.getName(), null);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                //发送广播通知
+                context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+                ToastUtil.show("保存地址：" + file.getAbsolutePath());
+            } else {
+                ToastUtil.show("保存失败");
+            }
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            ToastUtil.show("保存失败");
+        }
+    }
+
+    /**
+     * 显示超长图
+     * 参考：https://www.jb51.net/article/210862.htm#_label4
+     */
+    public static void displayLargeImage(Context context, String url, SubsamplingScaleImageView imageView) {
+        imageView.setQuickScaleEnabled(true);
+        imageView.setMaxScale(15F);
+        imageView.setZoomEnabled(false);
+        imageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CUSTOM);
+        GlideApp.with(context)
+                .downloadOnly()
+                .load(url)
+                .listener(new RequestListener<File>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
+                        ToastUtil.show("图片加载失败");
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
+                        int sWidth = BitmapFactory.decodeFile(resource.getAbsolutePath()).getWidth();
+                        int sHeight = BitmapFactory.decodeFile(resource.getAbsolutePath()).getHeight();
+                        int width = ScreenUtils.getScreenWidth(context);
+                        int height = ScreenUtils.getScreenHeight(context);
+                        if (sHeight >= height && sHeight / sWidth >= 3) {
+                            imageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP);
+                            imageView.setImage(ImageSource.uri(Uri.fromFile(resource)), new ImageViewState(0.5f, new PointF(0f, 0f), 0));
+                        } else {
+                            imageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CUSTOM);
+                            imageView.setImage(ImageSource.uri(Uri.fromFile(resource)));
+                            imageView.setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER_IMMEDIATE);
+                        }
+                        return false;
+                    }
+                })
+                .preload();
     }
 }

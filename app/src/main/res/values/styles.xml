@@ -10,13 +10,15 @@
     <style name="MyAppTheme" parent="AppTheme" />
 
     <style name="StartAppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/ic_welcome</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowDisablePreview">false</item>
         <item name="android:windowTranslucentStatus">false</item>
     </style>
 
+    <!--加载中弹窗样式-->
     <style name="LoadingDialogStyle">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -26,5 +28,55 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--可编辑框统一样式-->
+    <style name="EditTextStyle" parent="TextAppearance.AppCompat">
+        <!-- 默认状态提示颜色和字体-->
+        <item name="android:textColorHint">#BBBBBB</item>
+        <item name="android:textSize">13sp</item>
+        <!-- 下面可以根据需要设置，如果没有将默认使用默认theme的颜色 -->
+        <!-- Label标签的颜色 -->
+        <item name="colorAccent">#F44336</item>
+        <!-- 默认状态状态设置底线颜色 -->
+        <item name="colorControlNormal">#EEEEEE</item>
+        <!-- 选择的底线颜色 -->
+        <item name="colorControlActivated">@color/mainTabSel</item>
+        <item name="android:textCursorDrawable">@drawable/color_cursor</item>
+    </style>
+
+    <!--AndroidPicker库统一配置样式-->
+    <style name="WheelDefault">
+        <item name="wheel_itemTextColor">@color/mainTabSel</item>
+        <item name="wheel_itemTextColorSelected">@color/mainTabSel</item>
+        <item name="wheel_itemTextSize">14sp</item>
+        <item name="wheel_itemTextSizeSelected">16sp</item>
+        <item name="wheel_itemTextBoldSelected">true</item>
+        <item name="wheel_sameWidthEnabled">false</item>
+        <item name="wheel_atmosphericEnabled">true</item>
+        <item name="wheel_curtainEnabled">true</item>
+        <item name="wheel_curtainColor">#ECECEE</item>
+        <item name="wheel_curtainCorner">all</item>
+        <item name="wheel_curvedEnabled">false</item>
+        <item name="wheel_cyclicEnabled">false</item>
+    </style>
+
+    <!-- Dialog样式-->
+    <style name="DialogTheme" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 遮罩层 -->
+        <item name="android:backgroundDimAmount">0.5</item>
     </style>
 </resources>

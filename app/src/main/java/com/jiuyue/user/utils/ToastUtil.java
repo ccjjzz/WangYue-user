@@ -1,5 +1,6 @@
 package com.jiuyue.user.utils;
 
+import android.os.Handler;
 import android.os.Looper;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -27,20 +28,31 @@ public class ToastUtil {
             if (sToast != null) {
                 sToast.cancel();//关闭吐司显示
             }
-            sToast = Toast.makeText(App.getAppContext(), "", Toast.LENGTH_LONG);
+            sToast = Toast.makeText(App.getAppContext(), "", Toast.LENGTH_SHORT);
             LinearLayout layout = (LinearLayout) sToast.getView();
             TextView tv = (TextView) layout.getChildAt(0);
             tv.setGravity(Gravity.CENTER);
             sToast.setText(s);
-            sToast.setGravity(Gravity.CENTER, 0, 0);
+            sToast.setGravity(Gravity.BOTTOM, 0, 250);
             sToast.show();
         } catch (Exception e) {
-            //解决在子线程中调用Toast的异常情况处理
-            if (Looper.myLooper()==null){
-                Looper.prepare();
-            }
-            Toast.makeText(App.getAppContext(), s, Toast.LENGTH_SHORT).show();
-            Looper.loop();
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(App.getAppContext(), s, Toast.LENGTH_SHORT).show();
+                }
+            });
+//            Looper myLooper = Looper.myLooper();
+//            //解决在子线程中调用Toast的异常情况处理
+//            if (myLooper==null){
+//                Looper.prepare();
+//                myLooper = Looper.myLooper();
+//            }
+//            Toast.makeText(App.getAppContext(), s, Toast.LENGTH_SHORT).show();
+//            if (myLooper!=null){
+//                Looper.loop();
+//                myLooper.quit();
+//            }
         }
     }
 

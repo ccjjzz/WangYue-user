@@ -1,21 +1,24 @@
 package com.jiuyue.user;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.util.Log;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.amap.api.maps.MapsInitializer;
+import com.github.gzuliyujiang.dialog.DialogColor;
+import com.github.gzuliyujiang.dialog.DialogConfig;
+import com.jeremyliao.liveeventbus.LiveEventBus;
+import com.jiuyue.user.global.SpKey;
 import com.jiuyue.user.utils.AppSharedPreferences;
+import com.jiuyue.user.utils.AppUtils;
 import com.jiuyue.user.utils.ForegroundUtil;
-import com.jiuyue.user.utils.Md5;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
-import java.util.Objects;
+import cn.jiguang.api.utils.JCollectionAuth;
+import cn.jpush.android.api.JPushInterface;
 
 public class App extends MultiDexApplication {
     /**
@@ -59,13 +62,23 @@ public class App extends MultiDexApplication {
         super.onCreate();
         init();
         initLogger();
+        initLiveEventBus();
+        initPickDialogConfig();
+        initJPush();
     }
 
     private void init() {
         mAppContext = getApplicationContext();
         ForegroundUtil.init(this);
         //获取32位签名信息
-        obtainA32BitSignature();
+        if (BuildConfig.DEBUG) {
+            AppUtils.obtainA32BitSignature(this);
+        }
+        //高德地图隐私合规
+        MapsInitializer.updatePrivacyShow(App.getAppContext(), true, true);
+        MapsInitializer.updatePrivacyAgree(App.getAppContext(), true);
+        //极光隐私合规
+        JCollectionAuth.setAuth(App.getAppContext(), true);
     }
 
     private void initLogger() {
@@ -79,20 +92,31 @@ public class App extends MultiDexApplication {
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
             public boolean isLoggable(int priority, String tag) {
-                return true;
+                return BuildConfig.DEBUG;
             }
         });
     }
 
-    @SuppressLint("PackageManagerGetSignatures")
-    private void obtainA32BitSignature() {
-        android.content.pm.Signature[] sigs = new android.content.pm.Signature[0];
-        try {
-            sigs = getAppContext().getPackageManager().getPackageInfo(getAppContext().getPackageName(), PackageManager.GET_SIGNATURES).signatures;
-            String sign = sigs[0].toCharsString();
-            Log.e("by32Signs", Objects.requireNonNull(Md5.headiest(sigs[0].toByteArray())));
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+    private void initLiveEventBus() {
+        LiveEventBus
+                .config()
+                .autoClear(true)
+                .lifecycleObserverAlwaysActive(true);
+    }
+
+    private void initPickDialogConfig() {
+        DialogConfig.setDialogColor(new DialogColor()
+                .cancelTextColor(0xFF999999)
+                .okTextColor(0xFF00D5C4));
+    }
+
+    private void initJPush() {
+        if (App.getSharePre().getBoolean(SpKey.PRIVACY)) {
+            if (BuildConfig.DEBUG) {
+                JPushInterface.setDebugMode(true);
+            }
+            JPushInterface.init(App.getAppContext());
         }
     }
+
 }

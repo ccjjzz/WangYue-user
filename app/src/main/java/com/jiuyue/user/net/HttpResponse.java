@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public class HttpResponse<T> implements Serializable {
     private int code;
-    private String message;
+    private String msg;
     private T data;
 
     public String getMsg() {
-        return message;
+        return msg;
     }
 
     public void setMsg(String msg) {
-        this.message = msg;
+        this.msg = msg;
     }
 
     public int getCode() {

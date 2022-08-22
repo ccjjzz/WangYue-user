@@ -1,2 +1,13 @@
 include ':app'
 rootProject.name = "WangYue-user"
+
+//城市列表
+include ':citypicker'
+
+// 引入内部组件通信模块 (必要模块)
+include ':tuicore'
+project(':tuicore').projectDir = new File(settingsDir, '/TUIKit/TUICore/tuicore')
+// 引入聊天功能模块 (基础功能模块)
+include ':tuichat'
+project(':tuichat').projectDir = new File(settingsDir, '/TUIKit/TUIChat/tuichat')
+

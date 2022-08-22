@@ -15,6 +15,52 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- JPush自定义权限，用于发送接收广播权限校验（必选）-->
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+
+    <!--高德地图SDK start-->
+    <!--允许访问网络，必选权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--允许获取精确位置，实时导航为必选-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--允许获取粗略位置，实时导航为必选-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--允许获取设备和运营商信息，用于问题排查和网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--允许获取网络状态，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--允许获取wifi网络信息，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--允许获取wifi状态改变，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!--后台获取位置信息，若需后台定位或持续导航则必选-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!--用于申请调用A-GPS模块,卫星定位加速-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!--允许写入扩展存储，用于写入缓存定位数据-->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!--用于用户链接蓝牙时，在导航组件页面的蓝牙连接提醒，建立链接后开发者可选用蓝牙通道进行tts播报-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--用与导航状态中保持屏幕常亮-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--允许写设备缓存，用于问题排查-->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!--允许读设备等信息，用于问题排查-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--定位所需前台服务权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!--高德地图SDK end-->
+
+
+    <!--说明：
+    allowNativeHeapPointerTagging：解决高德地图mapview调用onDestroy()崩溃问题-->
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -25,13 +71,16 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true"
+        android:allowNativeHeapPointerTagging="false"
         tools:replace="android:allowBackup"
-        tools:targetApi="o">
+        tools:targetApi="o"
+        tools:ignore="UnusedAttribute">
+
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.main.SplashActivity"
+            android:exported="true"
             android:screenOrientation="behind"
-            android:theme="@style/StartAppTheme"
-            android:exported="true">
+            android:theme="@style/StartAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,8 +90,8 @@
 
         <!--渠道号-->
         <meta-data
-            android:name="CHANNEL_ID"
-            android:value="a000" />
+            android:name="channel"
+            android:value="huawei" />
 
         <!--今日头条适配方案-->
         <meta-data
@@ -52,12 +101,52 @@
             android:name="design_height_in_dp"
             android:value="640" />
 
+        <!--高德地图-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="0d348e88e477ee92610a19f8fca5414c" />
+
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
 
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+
+
+        <!-- 高德定位服务 -->
+        <service
+            android:name="com.amap.api.location.APSService"
+            android:foregroundServiceType="location" />
+
+        <!--极光推送服务-->
+        <service
+            android:name=".jpush.JPushService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+        <!--极光推送广播-->
+        <receiver
+            android:name=".jpush.JPushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <!--下载服务-->
         <service
             android:name=".service.DownloadAppService"
             android:exported="false">
@@ -76,6 +165,12 @@
                 android:resource="@xml/path" />
         </provider>
 
+        <!--IM会话消息更新监听-->
+        <provider
+            android:name=".tim.conversation.TUIConversationService"
+            android:authorities="${applicationId}.TUIConversation.Init"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

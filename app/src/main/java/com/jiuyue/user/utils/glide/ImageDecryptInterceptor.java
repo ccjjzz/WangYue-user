@@ -39,7 +39,7 @@ public class ImageDecryptInterceptor implements Interceptor {
         byte[] data = os.toByteArray();
         //byte[] newImgData = new byte[1024];
         try {
-            data = TestAesUtils.desEncrypt(data);
+            data = AesUtils.desEncrypt(data);
             MediaType mediaType = Objects.requireNonNull(response.body()).contentType();
             ResponseBody newResponseBody = ResponseBody.create(data, mediaType);
             response = response.newBuilder().body(newResponseBody).build();

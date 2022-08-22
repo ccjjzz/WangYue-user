@@ -1,21 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="marqueeViewStyle">
-        <attr name="mvInterval" format="integer|reference"/>
-        <attr name="mvAnimDuration" format="integer|reference"/>
-        <attr name="mvTextSize" format="dimension|reference"/>
-        <attr name="mvTextColor" format="color|reference"/>
-        <attr name="mvSingleLine" format="boolean"/>
+        <attr name="mvInterval" format="integer|reference" />
+        <attr name="mvAnimDuration" format="integer|reference" />
+        <attr name="mvTextSize" format="dimension|reference" />
+        <attr name="mvTextColor" format="color|reference" />
+        <attr name="mvSingleLine" format="boolean" />
         <attr name="mvGravity">
-            <enum name="left" value="0"/>
-            <enum name="center" value="1"/>
-            <enum name="right" value="2"/>
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
         </attr>
         <attr name="mvDirection">
-            <enum name="bottom_to_top" value="0"/>
-            <enum name="top_to_bottom" value="1"/>
-            <enum name="right_to_left" value="2"/>
-            <enum name="left_to_right" value="3"/>
+            <enum name="bottom_to_top" value="0" />
+            <enum name="top_to_bottom" value="1" />
+            <enum name="right_to_left" value="2" />
+            <enum name="left_to_right" value="3" />
         </attr>
+    </declare-styleable>
+    <!--圆环进度条-->
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color" />
+        <attr name="roundProgressColor" format="color" />
+        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+    <!--圆形图片加载控件-->
+    <declare-styleable name="CircleImageView">
+        <attr name="circle_border_width" format="dimension" />
+        <attr name="circle_border_color" format="color" />
+        <attr name="circle_border_overlay" format="boolean" />
+        <attr name="circle_fill_color" format="color" />
+    </declare-styleable>
+    <!--购物车加减控件-->
+    <declare-styleable name="AmountView">
+        <attr name="tvWidth" format="dimension" />
+        <attr name="tvTextSize" format="dimension" />
+    </declare-styleable>
+    <!--圆角图片-->
+    <declare-styleable name="RoundImageView">
+        <attr name="corner_radius" format="dimension" />
+        <attr name="left_top_corner_radius" format="dimension" />
+        <attr name="right_top_corner_radius" format="dimension" />
+        <attr name="right_bottom_corner_radius" format="dimension" />
+        <attr name="left_bottom_corner_radius" format="dimension" />
     </declare-styleable>
 </resources>

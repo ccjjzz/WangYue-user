@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_mark1"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:src="@drawable/selector_mark_view" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_mark2"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="3dp"
+        android:src="@drawable/selector_mark_view" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_mark3"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="3dp"
+        android:src="@drawable/selector_mark_view" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_mark4"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="3dp"
+        android:src="@drawable/selector_mark_view" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_mark5"
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:layout_marginStart="3dp"
+        android:src="@drawable/selector_mark_view" />
+
+</LinearLayout>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tl="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -44,44 +43,6 @@
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_arrow_down_gray" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="126dp"
-            android:layout_height="19dp"
-            android:background="@drawable/shape_arc"
-            android:gravity="center_vertical"
-            android:hint="请输入..."
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:textSize="11sp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="31dp"
-            android:src="@drawable/ic_search" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/tab_layout_order"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/white"
-        tl:tl_indicator_color="@color/colorTabIndicator"
-        tl:tl_indicator_corner_radius="1.5dp"
-        tl:tl_indicator_height="2dp"
-        tl:tl_indicator_margin_bottom="7dp"
-        tl:tl_indicator_width="18dp"
-        tl:tl_tab_space_equal="true"
-        tl:tl_textBold="BOTH"
-        tl:tl_textSelectColor="@color/color333"
-        tl:tl_textUnselectColor="@color/color333"
-        tl:tl_textsize="12sp" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_order"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </androidx.appcompat.widget.LinearLayoutCompat>

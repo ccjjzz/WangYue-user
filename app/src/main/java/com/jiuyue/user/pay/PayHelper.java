@@ -9,10 +9,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.alipay.sdk.app.PayTask;
-import com.jiuyue.user.global.Constant;
 import com.jiuyue.user.App;
 import com.jiuyue.user.R;
-import com.jiuyue.user.mvp.model.entity.PayCallbackEntity;
+import com.jiuyue.user.entity.PayCallbackEntity;
+import com.jiuyue.user.global.Constant;
 import com.jiuyue.user.utils.ThreadManager;
 import com.jiuyue.user.utils.ToastUtil;
 import com.tencent.mm.opensdk.modelpay.PayReq;

@@ -83,14 +83,14 @@ public static ** valueOf(java.lang.String);
 -keep public class * extends android.view.View{
 *** get*();
 void set*(***);
-public (android.content.Context);
-public (android.content.Context, android.util.AttributeSet);
-public (android.content.Context, android.util.AttributeSet, int);
+public void (android.content.Context);
+public void (android.content.Context, android.util.AttributeSet);
+public void (android.content.Context, android.util.AttributeSet, int);
 }
 
 -keepclasseswithmembers class * {
-public (android.content.Context, android.util.AttributeSet);
-public (android.content.Context, android.util.AttributeSet, int);
+public void (android.content.Context, android.util.AttributeSet);
+public void (android.content.Context, android.util.AttributeSet, int);
 }
 # 保留Parcelable序列化类不被混淆
 -keep class * implements android.os.Parcelable {
@@ -148,8 +148,11 @@ public void *(android.webkit.WebView, java.lang.String);
 #-keep class com.google.gson.stream.** { *; }
 
 # Application classes that will be serialized/deserialized over Gson
--keep class com.jiuyue.user.mvp.model.entity.** { *; }
+-keep class com.jiuyue.user.entity.** { *; }
 -keep class com.jiuyue.user.net.** { *; }
+-keep class com.jiuyue.user.enums.** { *; }
+-keep class com.tencent.qcloud.tuikit.tuichat.bean.message.** { *; }
+
 #-------------------------------------------------------------------------
 
 #---------------------------------2.与js互相调用的类------------------------
@@ -189,5 +192,54 @@ public static ** inflate(...);
 -dontwarn com.nostra13.universalimageloader.**
 -keep class com.nostra13.universalimageloader.** { *; }
 -keep class androidx.viewpager.widget.** { *; }
+
+#LiveEventBus
+-dontwarn com.jeremyliao.liveeventbus.**
+-keep class com.jeremyliao.liveeventbus.** { *; }
+-keep class androidx.lifecycle.** { *; }
+-keep class androidx.arch.core.** { *; }
+
+#高德地图
+#导航 V8.1.0及以后：
+-keep class com.amap.api.navi.**{*;}
+-keep class com.alibaba.idst.nui.* {*;}
+-keep class com.google.**{*;}
+#搜索：
+-keep   class com.amap.api.services.**{*;}
+#3D地图 V5.0.0之后：
+-keep   class com.amap.api.maps.**{*;}
+-keep   class com.autonavi.**{*;}
+-keep   class com.amap.api.trace.**{*;}
+#定位：
+-keep class com.amap.api.location.**{*;}
+-keep class com.amap.api.fence.**{*;}
+-keep class com.autonavi.aps.amapapi.model.**{*;}
+
+
+# banner 的混淆代码
+-keep class com.youth.banner.** {
+    *;
+ }
+
+# xpopup 的混淆代码
+-dontwarn com.lxj.xpopup.widget.**
+-keep class com.lxj.xpopup.widget.**{*;}
+
+# 状态栏混淆
+-keep class com.zackratos.ultimatebarx.ultimatebarx.** { *; }
+-keep public class * extends androidx.fragment.app.Fragment { *; }
+
+#极光推送
+-dontoptimize
+-dontpreverify
+-dontwarn cn.jpush.**
+-keep class cn.jpush.** { *; }
+-keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
+-dontwarn cn.jiguang.**
+-keep class cn.jiguang.** { *; }
+
+#Tencent IM
+-keep class com.tencent.imsdk.** { *; }
+
 #-------------------------------------------------------------------------
 

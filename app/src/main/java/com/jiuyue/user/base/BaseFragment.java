@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 import com.jiuyue.user.base.loading.LoadingController;
-import com.jiuyue.user.net.HttpResponse;
-import com.jiuyue.user.ui.dialog.LoadingDialog;
+import com.jiuyue.user.base.loading.LoadingInterface;
+import com.jiuyue.user.dialog.LoadingDialog;
 
 
 public abstract class BaseFragment<T extends BasePresenter, VB extends ViewBinding> extends Fragment implements BaseView {
@@ -40,7 +40,9 @@ public abstract class BaseFragment<T extends BasePresenter, VB extends ViewBindi
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        initStatusBar();
         initLoadingController();
+        initPager();
         if (getUserVisibleHint()) {
             if (isFirstVisible) {
                 onFragmentFirstVisible();
@@ -83,6 +85,16 @@ public abstract class BaseFragment<T extends BasePresenter, VB extends ViewBindi
             isFragmentVisible = false;
             onFragmentVisibleChange(false);
         }
+    }
+
+    /**
+     * 当fragment 通过事务操作show\hide的时候，不会回调到生命周期方法，但是会通过onHiddenChanged回调可见不可见
+     * @param hidden 不可见
+     */
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        onFragmentVisibleChange(!hidden);
     }
 
     /**
@@ -144,6 +156,20 @@ public abstract class BaseFragment<T extends BasePresenter, VB extends ViewBindi
     //初始化P层
     protected abstract T createPresenter();
 
+    //初始化页面
+    protected void initPager() {
+    }
+
+    //初始化状态栏
+    protected void initStatusBar() {
+    }
+
+    //页面状态控制器按钮事件
+    public LoadingInterface.OnClickListener initLoadingControllerRetryListener() {
+        return null;
+    }
+
+
     public Context getMContext() {
         return mContext;
     }
@@ -154,32 +180,57 @@ public abstract class BaseFragment<T extends BasePresenter, VB extends ViewBindi
     private void initLoadingController() {
         View view = getLoadingTargetView() != null ? getLoadingTargetView() : rootView;
         loadingController = new LoadingController.Builder(mContext, view)
+                .setOnEmptyTodoClickListener(() -> {
+                    if (initLoadingControllerRetryListener() != null) {
+                        initLoadingControllerRetryListener().onClick();
+                    }
+                })
+                .setOnErrorRetryClickListener(() -> {
+                    if (initLoadingControllerRetryListener() != null) {
+                        initLoadingControllerRetryListener().onClick();
+                    }
+                })
+                .setOnNetworkErrorRetryClickListener(() -> {
+                    if (initLoadingControllerRetryListener() != null) {
+                        initLoadingControllerRetryListener().onClick();
+                    }
+                })
                 .build();
     }
 
     @Override
     public void showLoading() {
-        loadingController.showLoading();
+        requireActivity().runOnUiThread(() -> {
+            loadingController.showLoading();
+        });
     }
 
     @Override
     public void hideLoading() {
-        loadingController.dismissLoading();
+        requireActivity().runOnUiThread(() -> {
+            loadingController.dismissLoading();
+        });
     }
 
     @Override
-    public void showError(HttpResponse model) {
-        loadingController.showError();
+    public void showError(String msg, int code) {
+        requireActivity().runOnUiThread(() -> {
+            loadingController.showError();
+        });
     }
 
     @Override
     public void showNetworkError() {
-        loadingController.showNetworkError();
+        requireActivity().runOnUiThread(() -> {
+            loadingController.showNetworkError();
+        });
     }
 
     @Override
     public void showEmpty() {
-        loadingController.showEmpty();
+        requireActivity().runOnUiThread(() -> {
+            loadingController.showEmpty();
+        });
     }
 
     @Override
@@ -205,6 +256,16 @@ public abstract class BaseFragment<T extends BasePresenter, VB extends ViewBindi
         });
     }
 
+    /**
+     * 统一设置点击事件
+     * @param listener 当前页面实现View.OnClickListener后，传this
+     * @param views 传需要点击的控件
+     */
+    protected void setViewClick(View.OnClickListener listener, View... views) {
+        for (View view : views) {
+            view.setOnClickListener(listener);
+        }
+    }
 
     protected void intentActivity(Class<?> cls) {
         Intent intent = new Intent(requireActivity(), cls);

@@ -1,10 +1,10 @@
-<resources>
-    <string name="app_name">久约管理版</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name" tools:ignore="MissingTranslation">久约管理版</string>
     <string name="string_loading_message">加载中</string>
     <string name="string_network_error_message">未发现可以网络~</string>
     <string name="string_error_message">加载失败~</string>
     <string name="string_empty_message">暂无数据~</string>
-    <string name="string_btn_retry">返回重试</string>
+    <string name="string_btn_retry">点我重试</string>
     <string name="string_main_tag1">订单</string>
     <string name="string_main_tab2">忙时</string>
     <string name="string_main_tab3">服务</string>
@@ -16,4 +16,10 @@
     <string name="string_pay_success">支付成功</string>
     <string name="string_pay_failed">支付失败</string>
     <string name="string_pay_cancel_by_user">支付取消</string>
+    <string name="string_login_cobber">合伙人</string>
+    <string name="string_login_technician">技师</string>
+    <string name="string_login_merchant">商户</string>
+    <string name="string_publish_norm">1：视频跟照片不能出现涉黄／诱惑／诱导／抽烟／酗酒／敏感词汇等。\n\n 2：宣传不正常男女关系，营造恶搞效果不良行为。\n\n 3：利用弱势刻意卖惨营销。\n\n 4：禁止危害身心健康，如：（大面积纹身／炫富攀比／卖惨求帮助。）\n\n 5：禁止搬运盗用行为，如：（上传照片跟视频都不是本人，无版权无授权转载责任自负。）\n\n 6：不可在上传照片和视频中故意曝光自己信息（如：电话／地址／二维码／微信／QQ／或各种短视账号联系方式等。）\n\n 7：不允许发布拼接网络图片，粗劣特效，无实质性内容，文字堆砌，多账号发布相同视频，同账号反复发布 相同视频。\n\n 8：不允许虚假作做，卖惨博眼球，骗赞骗关注，标题夸张没有实质性内容，违反公序不良习俗，\n\n 9：不允许通过语言／称呼／装扮／图片／音乐等方式去诱惑诱导消费者。\n\n 10：不可参与违法信息／涉黄／参与赌博／非法集资等违法行为。\n\n 11：不得发布违反国家法律相关信息，不得攻击我国政治制度，法律制度内容等。\n\n</string>
+    <string name="string_add_technician_caption">1.技师下载“久约到家管理版App”并注册时邀请码填写店铺邀请码加入店铺。 \n2.技师下载并注册成功后可在“我的”输入店铺邀请码邀请码加入店铺。 \n3.店主可通过“技师人员”解除与该名技师的绑定关系。</string>
+    <string name="string_add_merchant_caption">1.商家下载“久约到家管理版”成功注册后可在设置 中通过输入代理商邀请码加入店铺\n 2.代理商可以查看店铺数据\n 3.代理商在店铺</string>
 </resources>
