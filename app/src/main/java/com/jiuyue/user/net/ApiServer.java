@@ -3,7 +3,9 @@ package com.jiuyue.user.net;
 
 import com.jiuyue.user.entity.CityListBean;
 import com.jiuyue.user.entity.ConfigEntity;
+import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.NumberEntity;
+import com.jiuyue.user.entity.TechnicianBean;
 import com.jiuyue.user.entity.UserInfoEntity;
 import com.jiuyue.user.entity.TokenEntity;
 
@@ -75,11 +77,21 @@ public interface ApiServer {
     //登录
     @POST("/api/user/login")
     @FormUrlEncoded
-    Observable<HttpResponse<TokenEntity>> login(@Field("mobile") String mobile, @Field("passwd") String passwd);
+    Observable<HttpResponse<TokenEntity>> login(@Field("mobile") String mobile, @Field("smsCode") String smsCode);
 
     //获取隐私号码
     @POST("/api/user/privateNumber")
     @FormUrlEncoded
     Observable<HttpResponse<NumberEntity>> privateNumber(@FieldMap Map<String, Object> map);
+
+    //首页数据
+    @POST("/api/user/index")
+    @FormUrlEncoded
+    Observable<HttpResponse<HomeEntity>> index(@Field("os") String os);
+
+    //技师列表
+    @POST("/api/user/technicianList")
+    @FormUrlEncoded
+    Observable<HttpResponse<TechnicianBean>> technicianList(@FieldMap Map<String, Object> map);
 
 }

@@ -1,6 +1,7 @@
 package com.jiuyue.user.entity;
 
 public class ConfigEntity {
+    private String screenImgUrl;
     private String userProxyUrl;
     private String privacyUrl;
     private String zerenUrl;
@@ -8,9 +9,21 @@ public class ConfigEntity {
     private String customServiceImId;
     private String orderMsgImId;
     private String hideImContactId;
+    private String productDescUrl;
+    private String userGuideUrl;
     private String problemUrl;
     private String wxgzhEwmUrl;
+    private String vipcardUrl;
+    private String orderAgainstGuideUrl;
     private UpdateDTO update;
+
+    public String getScreenImgUrl() {
+        return screenImgUrl == null ? "" : screenImgUrl;
+    }
+
+    public void setScreenImgUrl(String screenImgUrl) {
+        this.screenImgUrl = screenImgUrl;
+    }
 
     public String getUserProxyUrl() {
         return userProxyUrl == null ? "" : userProxyUrl;
@@ -45,7 +58,7 @@ public class ConfigEntity {
     }
 
     public String getCustomServiceImId() {
-        return customServiceImId;
+        return customServiceImId == null ? "" : customServiceImId;
     }
 
     public void setCustomServiceImId(String customServiceImId) {
@@ -53,7 +66,7 @@ public class ConfigEntity {
     }
 
     public String getOrderMsgImId() {
-        return orderMsgImId;
+        return orderMsgImId == null ? "" : orderMsgImId;
     }
 
     public void setOrderMsgImId(String orderMsgImId) {
@@ -61,11 +74,27 @@ public class ConfigEntity {
     }
 
     public String getHideImContactId() {
-        return hideImContactId;
+        return hideImContactId == null ? "" : hideImContactId;
     }
 
     public void setHideImContactId(String hideImContactId) {
         this.hideImContactId = hideImContactId;
+    }
+
+    public String getProductDescUrl() {
+        return productDescUrl == null ? "" : productDescUrl;
+    }
+
+    public void setProductDescUrl(String productDescUrl) {
+        this.productDescUrl = productDescUrl;
+    }
+
+    public String getUserGuideUrl() {
+        return userGuideUrl == null ? "" : userGuideUrl;
+    }
+
+    public void setUserGuideUrl(String userGuideUrl) {
+        this.userGuideUrl = userGuideUrl;
     }
 
     public String getProblemUrl() {
@@ -82,6 +111,22 @@ public class ConfigEntity {
 
     public void setWxgzhEwmUrl(String wxgzhEwmUrl) {
         this.wxgzhEwmUrl = wxgzhEwmUrl;
+    }
+
+    public String getVipcardUrl() {
+        return vipcardUrl == null ? "" : vipcardUrl;
+    }
+
+    public void setVipcardUrl(String vipcardUrl) {
+        this.vipcardUrl = vipcardUrl;
+    }
+
+    public String getOrderAgainstGuideUrl() {
+        return orderAgainstGuideUrl == null ? "" : orderAgainstGuideUrl;
+    }
+
+    public void setOrderAgainstGuideUrl(String orderAgainstGuideUrl) {
+        this.orderAgainstGuideUrl = orderAgainstGuideUrl;
     }
 
     public UpdateDTO getUpdate() {

@@ -22,7 +22,7 @@
             android:button="@null"
             android:drawableTop="@drawable/main_tab_1"
             android:gravity="center"
-            android:text="订单"
+            android:text="首页"
             android:textColor="@color/main_tab_color"
             android:textSize="10.0sp"
             android:textStyle="normal" />
@@ -36,7 +36,7 @@
             android:button="@null"
             android:drawableTop="@drawable/main_tab_2"
             android:gravity="center"
-            android:text="忙时"
+            android:text="技师"
             android:textColor="@color/main_tab_color"
             android:textSize="10.0sp"
             android:textStyle="normal" />
@@ -50,7 +50,7 @@
             android:button="@null"
             android:drawableTop="@drawable/main_tab_3"
             android:gravity="center"
-            android:text="服务"
+            android:text="发现"
             android:textColor="@color/main_tab_color"
             android:textSize="10.0sp"
             android:textStyle="normal" />
@@ -63,20 +63,6 @@
             android:layout_weight="1.0"
             android:button="@null"
             android:drawableTop="@drawable/main_tab_4"
-            android:gravity="center"
-            android:text="消息"
-            android:textColor="@color/main_tab_color"
-            android:textSize="10.0sp"
-            android:textStyle="normal" />
-
-        <RadioButton
-            android:id="@+id/rbtn4"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8.0dip"
-            android:layout_weight="1.0"
-            android:button="@null"
-            android:drawableTop="@drawable/main_tab_5"
             android:gravity="center"
             android:text="我的"
             android:textColor="@color/main_tab_color"

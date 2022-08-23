@@ -13,8 +13,8 @@ public class LoginModel implements LoginContract.Model {
     ApiServer apiServer = ApiRetrofit.getInstance().getApiService();
 
     @Override
-    public void login(String mobile, String passwd, BaseObserver<TokenEntity> observer) {
-        apiServer.login(mobile, passwd)
+    public void login(String mobile, String smsCode, BaseObserver<TokenEntity> observer) {
+        apiServer.login(mobile, smsCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

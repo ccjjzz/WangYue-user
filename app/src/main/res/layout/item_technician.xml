@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:background="@drawable/shape_card_radius_5dp"
+    android:paddingStart="10dp"
+    android:paddingTop="13dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="13dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_iv_avatar"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:background="@color/colorEee"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/stroke_1dp_fd4473_50dp"
+        android:paddingStart="13dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="13dp"
+        android:paddingBottom="3dp"
+        android:text="忙碌中"
+        android:textColor="#FD4473"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/item_iv_avatar"
+        app:layout_constraintStart_toStartOf="@id/item_iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/item_iv_avatar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_cl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/item_iv_avatar"
+        app:layout_constraintTop_toTopOf="@id/item_iv_avatar">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="3dp"
+            android:text="名称"
+            android:textColor="@color/color26"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@id/item_tv_orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_orders"
+            android:drawablePadding="5dp"
+            android:text="最近接单0单"
+            android:textColor="#3C3E3E"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_tv_auth_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_auth"
+            android:drawablePadding="5dp"
+            android:text="实名认证、手机认证、安心服务"
+            android:textColor="#3C3E3E"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_orders" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_tv_depict"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="描述"
+            android:textColor="@color/color9a"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_auth_tips" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="7dp"
+            android:background="@color/colorE9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_tv_depict" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/shape_card_fd4473_4dp"
+        android:orientation="vertical"
+        android:padding="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:text="最早可约"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_card_ffffff_bottom_4dp"
+            android:gravity="center"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:text="今14:31"
+            android:textColor="#F977A7"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/stroke_1dp_9a_3dp"
+        android:paddingStart="2dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="3dp"
+        android:text="标签"
+        android:textColor="@color/color9a"
+        android:textSize="8sp"
+        app:layout_constraintStart_toStartOf="@+id/item_cl"
+        app:layout_constraintTop_toBottomOf="@+id/item_cl" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:drawableStart="@drawable/ic_score_y"
+        android:drawablePadding="4dp"
+        android:text="0.0"
+        android:textColor="@color/color9a"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/item_tv_address"
+        app:layout_constraintTop_toBottomOf="@+id/item_cl" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_address"
+        android:drawablePadding="4dp"
+        android:text="小于1KM"
+        android:textColor="@color/color9a"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_cl" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

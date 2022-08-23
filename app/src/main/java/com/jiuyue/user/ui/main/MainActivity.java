@@ -10,11 +10,10 @@ import com.jiuyue.user.R;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.base.BasePresenter;
 import com.jiuyue.user.databinding.ActivityMainBinding;
-import com.jiuyue.user.ui.main.fragment.BusyTimeFragment;
+import com.jiuyue.user.ui.main.fragment.TechnicianFragment;
 import com.jiuyue.user.ui.main.fragment.MineFragment;
-import com.jiuyue.user.ui.main.fragment.NewsFragment;
-import com.jiuyue.user.ui.main.fragment.OrderFragment;
-import com.jiuyue.user.ui.main.fragment.ServiceFragment;
+import com.jiuyue.user.ui.main.fragment.FindFragment;
+import com.jiuyue.user.ui.main.fragment.HomeFragment;
 import com.jiuyue.user.utils.AppStockManage;
 import com.jiuyue.user.utils.ForegroundUtil;
 import com.jiuyue.user.utils.ToastUtil;
@@ -52,16 +51,14 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
 
     private void initBottomBar() {
         rbMain.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.rbtn0) {//首页
+            if (checkedId == R.id.rbtn0) {
                 mCurrentPagePosition = 0;
-            } else if (checkedId == R.id.rbtn1) {//游戏
+            } else if (checkedId == R.id.rbtn1) {
                 mCurrentPagePosition = 1;
-            } else if (checkedId == R.id.rbtn2) {//VIP
+            } else if (checkedId == R.id.rbtn2) {
                 mCurrentPagePosition = 2;
-            } else if (checkedId == R.id.rbtn3) {//约啪
+            } else if (checkedId == R.id.rbtn3) {
                 mCurrentPagePosition = 3;
-            } else if (checkedId == R.id.rbtn4) {//我的
-                mCurrentPagePosition = 4;
             }
             //根据位置得到对应的Fragment
             Fragment to = fragments.get(mCurrentPagePosition);
@@ -70,11 +67,9 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
             //当前TAB设置选中
             switchTab(mCurrentPagePosition);
         });
-
-        fragments.add(new OrderFragment());
-        fragments.add(new BusyTimeFragment());
-        fragments.add(new ServiceFragment());
-        fragments.add(new NewsFragment());
+        fragments.add(new HomeFragment());
+        fragments.add(new TechnicianFragment());
+        fragments.add(new FindFragment());
         fragments.add(new MineFragment());
         //设置默认选中页面
         rbMain.check(R.id.rbtn0);

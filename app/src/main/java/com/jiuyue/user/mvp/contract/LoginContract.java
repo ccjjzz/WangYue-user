@@ -14,10 +14,10 @@ public interface LoginContract {
     }
 
     interface Model {
-        void login(String mobile, String passwd, BaseObserver<TokenEntity> observer);
+        void login(String mobile, String smsCode, BaseObserver<TokenEntity> observer);
     }
 
     interface Presenter {
-        void login(String mobile, String passwd);
+        void login(String mobile, String smsCode);
     }
 }

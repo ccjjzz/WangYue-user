@@ -31,14 +31,20 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/login_shape.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/login_shape_off.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/main_tab_1.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/main_tab_5.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_check_main.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_code.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_mark_view.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_00d5c4_50dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_bbbbbb_50dp.xml" value="0.1245" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_fd4473_50dp.xml" value="0.13" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_ffffff_bottom_5dp.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_10dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_15dp_shadow.xml" value="0.1245" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_5dp.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1dp_999_50dp.xml" value="0.1245" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1dp_9a_3dp.xml" value="0.13" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1dp_fd4473_50dp.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/web_progress.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_main.xml" value="0.25625" />
@@ -53,9 +59,16 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_confirm.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_loading.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_privacy_pact.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_find.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_mine.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_order.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_technician.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_home_product.xml" value="0.3333333333333333" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_home_technician.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_photo_view.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_technician.xml" value="0.3333333333333333" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/layout_home_head.xml" value="0.2546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_empty_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_error_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_net_error_view.xml" value="0.25625" />
@@ -70,7 +83,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

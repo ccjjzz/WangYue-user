@@ -4,19 +4,32 @@ import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.amap.api.location.AMapLocation
 import com.jiuyue.user.App
 import com.jiuyue.user.R
+import com.jiuyue.user.adapter.HomeProductAdapter
+import com.jiuyue.user.adapter.HomeTechnicianAdapter
+import com.jiuyue.user.adapter.TechnicianAdapter
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
-import com.jiuyue.user.databinding.FragmentOrderBinding
+import com.jiuyue.user.base.loading.LoadingInterface
+import com.jiuyue.user.databinding.ActivityMainBinding
+import com.jiuyue.user.databinding.FragmentHomeBinding
+import com.jiuyue.user.databinding.FragmentTechnicianBinding
 import com.jiuyue.user.entity.CityListBean
+import com.jiuyue.user.entity.TechnicianBean
 import com.jiuyue.user.global.SpKey
+import com.jiuyue.user.mvp.contract.TechnicianContract
 import com.jiuyue.user.mvp.model.CommonModel
+import com.jiuyue.user.mvp.presenter.HomePresenter
+import com.jiuyue.user.mvp.presenter.TechnicianPresenter
 import com.jiuyue.user.net.ResultListener
-import com.jiuyue.user.utils.*
-import com.orhanobut.logger.Logger
+import com.jiuyue.user.utils.LocationHelper
+import com.jiuyue.user.utils.ToastUtil
 import com.permissionx.guolindev.PermissionX
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.zaaach.citypicker.CityPicker
 import com.zaaach.citypicker.adapter.OnPickListener
 import com.zaaach.citypicker.model.City
@@ -25,31 +38,65 @@ import com.zaaach.citypicker.model.LocateState
 import com.zaaach.citypicker.model.LocatedCity
 import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX
 
-
 /**
- *订单
+ * 技师
  */
-class OrderFragment : BaseFragment<BasePresenter, FragmentOrderBinding>() {
-    private val llOrderAddress by lazy {
-        binding.llOrderAddress
+class TechnicianFragment : BaseFragment<TechnicianPresenter, FragmentTechnicianBinding>(),
+    TechnicianContract.IView {
+    private val llAddress by lazy {
+        binding.head.llAddress
     }
-    private val tvOrderAddress by lazy {
-        binding.tvOrderAddress
+    private val tvAddress by lazy {
+        binding.head.tvAddress
     }
 
-    //初始默认的城市
+    //默认城市
     private lateinit var defaultCity: String
     private lateinit var hotCities: MutableList<HotCity>
     private lateinit var allCities: MutableList<City>
 
-    override fun getViewBinding(): FragmentOrderBinding {
-        return FragmentOrderBinding.inflate(layoutInflater)
+    private val mAdapter by lazy {
+        TechnicianAdapter().apply {
+            setOnItemClickListener { adapter, view, position ->
+                // TODO: 技师详情
+            }
+        }
+    }
+    private val refreshLayout by lazy {
+        binding.list.refreshLayout.apply {
+            setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+                override fun onRefresh(refreshLayout: RefreshLayout) {
+                    requestData(refresh = true)
+                }
+
+                override fun onLoadMore(refreshLayout: RefreshLayout) {
+                    requestData(refresh = false)
+                }
+
+            })
+        }
+    }
+    private var pageCount = 1
+    private var isRefresh = true
+
+
+    override fun getViewBinding(): FragmentTechnicianBinding {
+        return FragmentTechnicianBinding.inflate(layoutInflater)
     }
 
-    override fun getLoadingTargetView(): View? = null
+    override fun getLoadingTargetView(): View {
+        return binding.list.refreshLayout
+    }
 
-    override fun createPresenter(): BasePresenter? {
-        return null
+    override fun createPresenter(): TechnicianPresenter {
+        return TechnicianPresenter(this)
+    }
+
+    override fun initLoadingControllerRetryListener(): LoadingInterface.OnClickListener {
+        return LoadingInterface.OnClickListener {
+            showLoading()
+            requestData(true)
+        }
     }
 
     override fun initStatusBar() {
@@ -63,6 +110,37 @@ class OrderFragment : BaseFragment<BasePresenter, FragmentOrderBinding>() {
 
     override fun onFragmentFirstVisible() {
         super.onFragmentFirstVisible()
+        //初始化城市
+        initCity()
+        //初始化列表
+        initData()
+    }
+
+    private fun initData() {
+        //初始化rv
+        binding.list.recyclerView.layoutManager = LinearLayoutManager(mContext)
+        binding.list.recyclerView.adapter = mAdapter
+        //请求页面数据
+        showLoading()
+        requestData(true)
+    }
+
+    private fun requestData(refresh: Boolean) {
+        if (refresh) {
+            pageCount = 1
+            isRefresh = true
+        } else {
+            pageCount++
+            isRefresh = false
+        }
+        mPresenter.technicianList(
+            hashMapOf(
+                Pair("page", pageCount)
+            )
+        )
+    }
+
+    private fun initCity() {
         //显示默认城市
         defaultCity = App.getSharePre().getString(SpKey.DEFAULT_CITY_NAME)
         //获取城市数据,如果缓存没有数据，则从接口获取
@@ -75,20 +153,17 @@ class OrderFragment : BaseFragment<BasePresenter, FragmentOrderBinding>() {
                 showCityPickDialog()
             }
         } else {
-            tvOrderAddress.text = defaultCity
-            //每次重新进app都定位一次,更新经纬度
-            startLocation()
+            tvAddress.text = defaultCity
         }
         //城市点击事件
-        llOrderAddress.setOnClickListener {
+        llAddress.setOnClickListener {
             //显示城市dialog
             showCityPickDialog()
         }
     }
 
-
     private fun showCityPickDialog() {
-        CityPicker.from(this@OrderFragment)
+        CityPicker.from(this)
             .enableAnimation(true)
             .setAnimationStyle(R.style.DefaultCityPickerAnimation)
             .setLocatedCity(null)
@@ -96,7 +171,7 @@ class OrderFragment : BaseFragment<BasePresenter, FragmentOrderBinding>() {
             .setAllCities(allCities)
             .setOnPickListener(object : OnPickListener {
                 override fun onPick(position: Int, data: City) {
-                    tvOrderAddress.text = data.name
+                    tvAddress.text = data.name
                     App.getSharePre().putString(SpKey.DEFAULT_CITY_NAME, data.name)
                     App.getSharePre().putString(SpKey.CITY_CODE, data.code)
                 }
@@ -173,23 +248,22 @@ class OrderFragment : BaseFragment<BasePresenter, FragmentOrderBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LocationHelper.Builder(this@OrderFragment).onCreate()
+        LocationHelper.Builder(this).onCreate()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        LocationHelper.Builder(this@OrderFragment).onDestroy()
+        LocationHelper.Builder(this).onDestroy()
     }
 
     private fun startLocation() {
-        LocationHelper.Builder(this@OrderFragment)
+        LocationHelper.Builder(this)
             .startLocation()
             .setLocationListener(object : ResultListener<AMapLocation> {
                 override fun onSuccess(location: AMapLocation?) {
                     location?.let {
-                        Logger.wtf("location success, address:${it.toStr()}")
                         //更新定位city
-                        CityPicker.from(this@OrderFragment).locateComplete(
+                        CityPicker.from(this@TechnicianFragment).locateComplete(
                             LocatedCity(
                                 it.city,
                                 it.province,
@@ -208,5 +282,36 @@ class OrderFragment : BaseFragment<BasePresenter, FragmentOrderBinding>() {
                 }
             })
 
+    }
+
+    override fun onTechnicianListSuccess(data: TechnicianBean) {
+        val dataBeans = data.list
+        if (dataBeans.size > 0) {
+            if (isRefresh) {
+                mAdapter.setList(dataBeans)
+                refreshLayout.finishRefresh()
+            } else {
+                mAdapter.addData(dataBeans)
+                refreshLayout.finishLoadMore()
+            }
+        } else {
+            if (pageCount == 1) {
+                refreshLayout.finishRefreshWithNoMoreData()
+                refreshLayout.finishLoadMoreWithNoMoreData()
+                mAdapter.setList(null)
+                showEmpty()
+            } else {
+                if (isRefresh) {
+                    refreshLayout.finishRefreshWithNoMoreData()
+                } else {
+                    refreshLayout.finishLoadMoreWithNoMoreData()
+                }
+            }
+        }
+    }
+
+    override fun onTechnicianListError(msg: String?, code: Int) {
+        showError(msg, code)
+        ToastUtil.show(msg)
     }
 }

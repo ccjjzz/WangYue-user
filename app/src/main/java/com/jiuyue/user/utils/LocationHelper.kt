@@ -132,8 +132,7 @@ class LocationHelper {
 
     private fun getLocationService() {
         //判断是否开启服务getSaveResponse
-        val locationManager =
-            getContext()!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager = getContext()!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             Logger.e("用户打开定位服务")
             mLocationClient.startLocation()

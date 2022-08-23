@@ -200,4 +200,26 @@ public class IntentUtils {
             context.startActivity(intent);
         }
     }
+
+    /**
+     * 广告页跳转
+     *
+     * @param type 0=外置浏览器H5 1=内置浏览器H5 2=内部原生项目界面
+     */
+    public static void startBannerPageLike(Context context, int type, String url, int productId) {
+        if (!FastClickHelper.isFastClick()) {
+            switch (type) {
+                case 0:
+                    openBrowser(context, url);
+                    break;
+                case 1:
+                    startWebActivity(context, url, "");
+                    break;
+                case 2:
+                    // TODO: 2022/8/23 跳转项目
+                    break;
+            }
+        }
+    }
+
 }

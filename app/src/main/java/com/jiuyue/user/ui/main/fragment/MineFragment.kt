@@ -4,10 +4,14 @@ import android.view.View
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.databinding.ActivityMainBinding
+import com.jiuyue.user.databinding.FragmentMineBinding
 
-class MineFragment : BaseFragment<BasePresenter, ActivityMainBinding>() {
-    override fun getViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
+/**
+ * 我的
+ */
+class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>() {
+    override fun getViewBinding(): FragmentMineBinding {
+        return FragmentMineBinding.inflate(layoutInflater)
     }
 
     override fun getLoadingTargetView(): View? {

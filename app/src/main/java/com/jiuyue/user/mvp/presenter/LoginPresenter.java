@@ -18,8 +18,8 @@ public class LoginPresenter extends IBasePresenter<LoginContract.IView> implemen
     }
 
     @Override
-    public void login(String mobile, String passwd) {
-        mModel.login(mobile, passwd, new BaseObserver<TokenEntity>() {
+    public void login(String mobile, String smsCode) {
+        mModel.login(mobile, smsCode, new BaseObserver<TokenEntity>() {
             @Override
             public void onSuccess(HttpResponse<TokenEntity> data) {
                 mView.onLoginSuccess(data.getData());

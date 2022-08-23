@@ -1,5 +1,7 @@
 package com.jiuyue.user.net;
 
+import android.content.Intent;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.jiuyue.user.App;
@@ -78,7 +80,10 @@ public abstract class BaseObserver<T> implements Observer<HttpResponse<T>> {
                 //重置缓存未登录状态
                 App.getSharePre().putBoolean(SpKey.IS_LOGIN, false);
                 //回到登录页面，并且结束掉其他的页面
-                IntentUtils.startActivity(App.getAppContext(), LoginActivity.class);
+                Intent intent = new Intent();
+                intent.setClass(App.getAppContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                App.getAppContext().startActivity(intent);
                 AppStockManage.getInstance().finishAllActivity(LoginActivity.class);
             }else {
                 onError(tHttpResponse.getMsg(), tHttpResponse.getCode());

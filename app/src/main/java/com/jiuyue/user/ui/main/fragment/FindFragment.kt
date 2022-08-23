@@ -4,10 +4,14 @@ import android.view.View
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.databinding.ActivityMainBinding
+import com.jiuyue.user.databinding.FragmentFindBinding
 
-class ServiceFragment : BaseFragment<BasePresenter, ActivityMainBinding>() {
-    override fun getViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
+/**
+ * 发现
+ */
+class FindFragment : BaseFragment<BasePresenter, FragmentFindBinding>() {
+    override fun getViewBinding(): FragmentFindBinding {
+        return FragmentFindBinding.inflate(layoutInflater)
     }
 
     override fun getLoadingTargetView(): View? {

@@ -38,7 +38,7 @@ ext {
     externalAutoSize = 'me.jessyan:autosize:1.2.1'
     externalEasyNavigation = 'com.github.Vincent7Wong:EasyNavigation:2.0.5'
     externalUltimatebarx = 'com.gitee.zackratos:UltimateBarX:0.8.0'
-    externalBanner = 'com.youth.banner:banner:1.4.9'
+    externalBanner = 'io.github.youth5201314:banner:2.2.2'
     externalExpandableTextView = 'com.ms-square:expandableTextView:0.1.4'
     externalPermissionX = 'com.permissionx.guolindev:permissionx:1.4.0'
     externalWechatPay = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'

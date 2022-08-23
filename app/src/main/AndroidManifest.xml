@@ -104,10 +104,46 @@
         <!--高德地图-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="0d348e88e477ee92610a19f8fca5414c" />
+            android:value="35ea809d2bfb3cc547640ae485efff2a" />
 
         <activity
             android:name=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+        <activity
+            android:name=".ui.web.WebActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+        <activity
+            android:name=".ui.web.WebDataActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+       <activity
+            android:name=".ui.common.PhotoViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+       <activity
+            android:name=".ui.common.VideoPlayerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+        <activity
+            android:name=".tim.TUIC2CChatActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
