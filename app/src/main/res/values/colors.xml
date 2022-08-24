@@ -7,7 +7,7 @@
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="translucent">#80000000</color>
-    <color name="appBackground">#F5F5F5</color>
+    <color name="appBackground">#F7F7F7</color>
     <color name="mainTabSel">#FC3A6A</color>
     <color name="mainTabUnSel">#666666</color>
     <color name="mainTabBackground">#FEFEFE</color>
@@ -25,5 +25,7 @@
     <color name="color9a">#9A9A9A</color>
     <color name="color26">#262626</color>
     <color name="colorE9">#E9E9E9</color>
-    <color name="colorProduct">#FD4473</color>
+    <color name="color80">#808080</color>
+    <color name="colorPrice">#FD4473</color>
+    <color name="colorTabIndicator">#E72831</color>
 </resources>

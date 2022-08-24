@@ -1,11 +1,8 @@
 package com.jiuyue.user.mvp.presenter;
 
 import com.jiuyue.user.base.IBasePresenter;
-import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.TechnicianBean;
-import com.jiuyue.user.mvp.contract.HomeContract;
 import com.jiuyue.user.mvp.contract.TechnicianContract;
-import com.jiuyue.user.mvp.model.HomeModel;
 import com.jiuyue.user.mvp.model.TechnicianModel;
 import com.jiuyue.user.net.BaseObserver;
 import com.jiuyue.user.net.HttpResponse;

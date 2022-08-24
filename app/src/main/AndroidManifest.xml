@@ -154,6 +154,12 @@
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
 
+        <activity
+            android:name=".ui.home.ProductDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
+
 
 
         <!-- 高德定位服务 -->

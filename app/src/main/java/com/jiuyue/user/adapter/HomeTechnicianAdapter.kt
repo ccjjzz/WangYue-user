@@ -14,7 +14,12 @@ class HomeTechnicianAdapter :
         holder: BaseVBViewHolder<ItemHomeTechnicianBinding>,
         item: TechnicianEntity
     ) {
-        GlideLoader.displayRound(item.avator, holder.bd.itemIvAvatar, Dp2px.dp2px(6))
+        GlideLoader.displayRound(
+            item.avator,
+            holder.bd.itemIvAvatar,
+            R.drawable.default_user_icon,
+            Dp2px.dp2px(6)
+        )
         holder.bd.itemTvName.text = item.certName
         holder.bd.itemTvOrders.text = "已接单${item.orderNum}"
         when (item.tag.isEmpty()) {

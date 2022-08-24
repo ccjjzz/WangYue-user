@@ -16,7 +16,12 @@ class TechnicianAdapter :
         holder: BaseVBViewHolder<ItemTechnicianBinding>,
         item: TechnicianEntity
     ) {
-        GlideLoader.displayRound(item.avator, holder.bd.itemIvAvatar, Dp2px.dp2px(5))
+        GlideLoader.displayRound(
+            item.avator,
+            holder.bd.itemIvAvatar,
+            R.drawable.default_user_icon,
+            Dp2px.dp2px(5)
+        )
         holder.bd.itemTvName.text = item.certName
         holder.bd.itemTvOrders.text = "最近接单${item.orderNum}单"
         holder.bd.itemTvDepict.text = item.description

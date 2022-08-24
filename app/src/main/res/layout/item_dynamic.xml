@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorFe"
+    android:layout_marginTop="10dp"
+    android:paddingStart="19dp"
+    android:paddingTop="13dp"
+    android:paddingEnd="19dp"
+    android:paddingBottom="13dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_item_dynamic_avatar"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:background="@color/colorEee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="名称"
+        android:textColor="@color/color26"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_item_dynamic_avatar"
+        app:layout_constraintTop_toTopOf="@+id/iv_item_dynamic_avatar" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_item_dynamic_status"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="2dp"
+        android:src="@drawable/selector_tech_service"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_item_dynamic_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_dynamic_name"
+        app:layout_constraintTop_toTopOf="@id/tv_item_dynamic_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:text="不可服务"
+        android:textColor="@color/tech_service_color"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_item_dynamic_status"
+        app:layout_constraintStart_toEndOf="@+id/iv_item_dynamic_status"
+        app:layout_constraintTop_toTopOf="@+id/iv_item_dynamic_status" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1分钟前"
+        android:textColor="@color/colorBbb"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_item_dynamic_avatar"
+        app:layout_constraintStart_toStartOf="@+id/tv_item_dynamic_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="标题"
+        android:textColor="@color/color333"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_item_dynamic_avatar" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="0dp"
+        android:paddingBottom="@dimen/dp_10"
+        android:src="@drawable/ic_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_item_dynamic_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/tv_item_dynamic_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_dynamic_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:drawableStart="@drawable/ic_address_gray"
+        android:drawablePadding="4dp"
+        android:text="0"
+        android:textColor="@color/color666"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_item_dynamic_list" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,7 @@
 package com.jiuyue.user.global;
 
 public class EventKey {
-    public static final String AUTH_SUCCESS = "AUTH_SUCCESS";
+    public static final String UPDATE_PRODUCT_LIST = "UPDATE_PRODUCT_LIST";
 
     public static class EventMsg {
         private int code;

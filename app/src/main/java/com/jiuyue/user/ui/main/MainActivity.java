@@ -72,7 +72,7 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
         fragments.add(new FindFragment());
         fragments.add(new MineFragment());
         //设置默认选中页面
-        rbMain.check(R.id.rbtn0);
+        setCurrentTab(0);
     }
 
     /**
@@ -114,6 +114,29 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
             } else {
                 rbMain.getChildAt(i).setSelected(false);
             }
+        }
+    }
+
+    /**
+     * 切换tab页面
+     *
+     * @param position 切换的位置
+     */
+    public void setCurrentTab(int position) {
+        //设置默认选中页面
+        switch (position) {
+            case 0:
+                rbMain.check(R.id.rbtn0);
+                break;
+            case 1:
+                rbMain.check(R.id.rbtn1);
+                break;
+            case 2:
+                rbMain.check(R.id.rbtn2);
+                break;
+            case 3:
+                rbMain.check(R.id.rbtn3);
+                break;
         }
     }
 

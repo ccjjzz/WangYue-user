@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.jiuyue.user.global.IntentKey;
+import com.jiuyue.user.ui.home.ProductDetailActivity;
 import com.jiuyue.user.ui.main.MainActivity;
 import com.jiuyue.user.ui.common.PhotoViewActivity;
 import com.jiuyue.user.ui.common.VideoPlayerActivity;
@@ -191,12 +192,13 @@ public class IntentUtils {
      *
      * @param photoList 图片集合
      */
-    public static void startPhotoViewActivity(Context context, ArrayList<String> photoList) {
+    public static void startPhotoViewActivity(Context context, ArrayList<String> photoList, int position) {
         if (!FastClickHelper.isFastClick()) {
             Intent intent = new Intent();
             intent.setClass(context, PhotoViewActivity.class);
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             intent.putStringArrayListExtra(IntentKey.PHOTO_LIST, photoList);
+            intent.putExtra(IntentKey.PHOTO_POSITION, position);
             context.startActivity(intent);
         }
     }
@@ -207,18 +209,30 @@ public class IntentUtils {
      * @param type 0=外置浏览器H5 1=内置浏览器H5 2=内部原生项目界面
      */
     public static void startBannerPageLike(Context context, int type, String url, int productId) {
+        switch (type) {
+            case 0:
+                openBrowser(context, url);
+                break;
+            case 1:
+                startWebActivity(context, url, "");
+                break;
+            case 2:
+                // TODO: 2022/8/23 跳转项目
+                break;
+        }
+    }
+
+    /**
+     * 跳转图片浏览界面
+     *
+     * @param productId 套餐id
+     */
+    public static void startProductDetailActivity(Context context, int productId) {
         if (!FastClickHelper.isFastClick()) {
-            switch (type) {
-                case 0:
-                    openBrowser(context, url);
-                    break;
-                case 1:
-                    startWebActivity(context, url, "");
-                    break;
-                case 2:
-                    // TODO: 2022/8/23 跳转项目
-                    break;
-            }
+            Intent intent = new Intent();
+            intent.setClass(context, ProductDetailActivity.class);
+            intent.putExtra(IntentKey.PRODUCT_ID, productId);
+            context.startActivity(intent);
         }
     }
 

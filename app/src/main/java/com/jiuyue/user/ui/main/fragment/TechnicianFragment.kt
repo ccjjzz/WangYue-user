@@ -8,21 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.amap.api.location.AMapLocation
 import com.jiuyue.user.App
 import com.jiuyue.user.R
-import com.jiuyue.user.adapter.HomeProductAdapter
-import com.jiuyue.user.adapter.HomeTechnicianAdapter
 import com.jiuyue.user.adapter.TechnicianAdapter
 import com.jiuyue.user.base.BaseFragment
-import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.base.loading.LoadingInterface
-import com.jiuyue.user.databinding.ActivityMainBinding
-import com.jiuyue.user.databinding.FragmentHomeBinding
 import com.jiuyue.user.databinding.FragmentTechnicianBinding
 import com.jiuyue.user.entity.CityListBean
 import com.jiuyue.user.entity.TechnicianBean
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.contract.TechnicianContract
 import com.jiuyue.user.mvp.model.CommonModel
-import com.jiuyue.user.mvp.presenter.HomePresenter
 import com.jiuyue.user.mvp.presenter.TechnicianPresenter
 import com.jiuyue.user.net.ResultListener
 import com.jiuyue.user.utils.LocationHelper
@@ -290,6 +284,9 @@ class TechnicianFragment : BaseFragment<TechnicianPresenter, FragmentTechnicianB
             if (isRefresh) {
                 mAdapter.setList(dataBeans)
                 refreshLayout.finishRefresh()
+                if (mAdapter.data.size<10){
+                    refreshLayout.finishLoadMoreWithNoMoreData()
+                }
             } else {
                 mAdapter.addData(dataBeans)
                 refreshLayout.finishLoadMore()

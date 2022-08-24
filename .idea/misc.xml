@@ -28,6 +28,7 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/color_cursor.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/comment_shape.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/lable_shape.xml" value="0.1165" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/login_shape.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/login_shape_off.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/main_tab_1.xml" value="0.1" />
@@ -35,10 +36,14 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_check_main.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_code.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_mark_view.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_tech_service.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_00d5c4_50dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_bbbbbb_50dp.xml" value="0.1245" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_translucent_50dp.xml" value="0.1165" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_fd4473_50dp.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_ffffff_bottom_5dp.xml" value="0.13" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_mind.xml" value="0.13" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_mind_banner.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_10dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_15dp_shadow.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_5dp.xml" value="0.13" />
@@ -49,25 +54,30 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_main.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_photo_view.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_product_detail.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_splash.xml" value="0.12" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_video_player.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_web.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_dividing_line_gray.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_recycle_view.xml" value="0.25625" />
-        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_refresh_recycle.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_refresh_recycle.xml" value="0.12" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_title_recycle.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_confirm.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_loading.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_privacy_pact.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_find.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_mine.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_mine.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_order.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_technician.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic.xml" value="0.3333333333333333" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic_img.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic_profile.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_home_product.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_home_technician.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_photo_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_technician.xml" value="0.3333333333333333" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/layout_detail_title.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/layout_home_head.xml" value="0.2546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_empty_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_error_view.xml" value="0.25625" />

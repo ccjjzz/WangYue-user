@@ -40,12 +40,14 @@ public class PhotoViewActivity extends BaseActivity<BasePresenter, ActivityPhoto
 
     @Override
     protected void init() {
+        int position = getIntent().getIntExtra(IntentKey.PHOTO_POSITION,0);
         List<String> list = getIntent().getStringArrayListExtra(IntentKey.PHOTO_LIST);
         ViewPagerLayoutManager mLayoutManager = new ViewPagerLayoutManager(this, OrientationHelper.HORIZONTAL);
         PhotoAdapter mAdapter = new PhotoAdapter();
         binding.recyclerView.setLayoutManager(mLayoutManager);
         binding.recyclerView.setAdapter(mAdapter);
         mAdapter.setList(list);
+        binding.recyclerView.scrollToPosition(position);
 
         binding.ivBack.setOnClickListener(v->{
             finish();

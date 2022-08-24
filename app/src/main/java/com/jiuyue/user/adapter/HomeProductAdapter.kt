@@ -17,7 +17,12 @@ class HomeProductAdapter :
         holder: BaseVBViewHolder<ItemHomeProductBinding>,
         item: ProductEntity
     ) {
-        GlideLoader.displayRound(item.picture, holder.bd.itemIvAvatar, Dp2px.dp2px(5))
+        GlideLoader.displayRound(
+            item.picture,
+            holder.bd.itemIvAvatar,
+            R.drawable.default_user_icon,
+            Dp2px.dp2px(5)
+        )
         holder.bd.itemTvName.text = item.name
         holder.bd.itemTvPrice.text = item.price.toString()
         holder.bd.itemTvDuration.text = "${item.serviceTimeMins}分钟"

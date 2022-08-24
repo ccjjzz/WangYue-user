@@ -8,6 +8,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amap.api.location.AMapLocation
+import com.jeremyliao.liveeventbus.LiveEventBus
 import com.jiuyue.user.App
 import com.jiuyue.user.R
 import com.jiuyue.user.adapter.HomeProductAdapter
@@ -18,11 +19,14 @@ import com.jiuyue.user.databinding.FragmentHomeBinding
 import com.jiuyue.user.entity.BannerEntity
 import com.jiuyue.user.entity.CityListBean
 import com.jiuyue.user.entity.HomeEntity
+import com.jiuyue.user.entity.ProductEntity
+import com.jiuyue.user.global.EventKey
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.contract.HomeContract
 import com.jiuyue.user.mvp.model.CommonModel
 import com.jiuyue.user.mvp.presenter.HomePresenter
 import com.jiuyue.user.net.ResultListener
+import com.jiuyue.user.ui.main.MainActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.LocationHelper
 import com.jiuyue.user.utils.ToastUtil
@@ -32,6 +36,7 @@ import com.permissionx.guolindev.PermissionX
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.listener.OnBannerListener
 import com.zaaach.citypicker.CityPicker
 import com.zaaach.citypicker.adapter.OnPickListener
 import com.zaaach.citypicker.model.City
@@ -68,8 +73,9 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
 
     private val mAdapterProduct by lazy {
         HomeProductAdapter().apply {
-            setOnItemClickListener { adapter, view, position ->
-                // TODO: 套餐详情
+            setOnItemClickListener { _, _, position ->
+                //套餐详情
+                IntentUtils.startProductDetailActivity(mContext, data[position].id)
             }
         }
     }
@@ -107,7 +113,7 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
         requestData()
     }
 
-    private fun requestData(){
+    private fun requestData() {
         showLoading()
         mPresenter.index()
     }
@@ -279,13 +285,13 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
                     GlideLoader.display(data.imgUrl, holder.imageView)
                 }
             })
-                .setOnBannerListener { data, _ ->
-                    val item = data as BannerEntity
+                .setOnBannerListener { item, _ ->
+                    val data = item as BannerEntity
                     IntentUtils.startBannerPageLike(
                         mContext,
-                        item.type,
-                        item.clickUrl,
-                        item.productId
+                        data.type,
+                        data.clickUrl,
+                        data.productId
                     )
                 }
                 .addBannerLifecycleObserver(this) //添加生命周期观察者
@@ -317,7 +323,8 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
             }
             mAdapterTechnician.setList(technicians)
             binding.tvHomeMoreTechnician.setOnClickListener {
-                // TODO: 查看更多
+                val activity = requireActivity() as MainActivity
+                activity.setCurrentTab(1)
             }
         }
         //推荐套餐
@@ -333,9 +340,11 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
                 adapter = mAdapterProduct
             }
             mAdapterProduct.setList(products)
-            binding.tvHomeMoreProduct.setOnClickListener {
-                // TODO: 查看更多
-            }
+
+            //通知我的页面推荐套餐列表刷新
+            LiveEventBus
+                .get<List<ProductEntity>>(EventKey.UPDATE_PRODUCT_LIST)
+                .post(products)
         }
     }
 

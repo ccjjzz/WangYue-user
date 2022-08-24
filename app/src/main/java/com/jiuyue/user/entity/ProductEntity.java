@@ -1,7 +1,9 @@
 package com.jiuyue.user.entity;
 
+import java.util.List;
+
 public class ProductEntity {
-    private String id;
+    private int id;
     private String picture;
     private String name;
     private double price;
@@ -9,12 +11,21 @@ public class ProductEntity {
     private int serviceTimeMins;
     private int buyCount;
     private String introduction;
+    private String videoUrl;
+    private int videoSecond;
+    private String banners;
+    private int collectStatus;
+    private String pictureLong;
+    private String canBuyTime;
+    private List<ProductEntity> refProducts;
+    private VipCardEntity vipCard;
 
-    public String getId() {
-        return id == null ? "" : id;
+
+    public int getId() {
+        return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -73,4 +84,70 @@ public class ProductEntity {
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
     }
+
+    public String getVideoUrl() {
+        return videoUrl == null ? "" : videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public int getVideoSecond() {
+        return videoSecond;
+    }
+
+    public void setVideoSecond(int videoSecond) {
+        this.videoSecond = videoSecond;
+    }
+
+    public String getBanners() {
+        return banners == null ? "" : banners;
+    }
+
+    public void setBanners(String banners) {
+        this.banners = banners;
+    }
+
+    public int getCollectStatus() {
+        return collectStatus;
+    }
+
+    public void setCollectStatus(int collectStatus) {
+        this.collectStatus = collectStatus;
+    }
+
+    public String getPictureLong() {
+        return pictureLong == null ? "" : pictureLong;
+    }
+
+    public void setPictureLong(String pictureLong) {
+        this.pictureLong = pictureLong;
+    }
+
+    public String getCanBuyTime() {
+        return canBuyTime == null ? "" : canBuyTime;
+    }
+
+    public void setCanBuyTime(String canBuyTime) {
+        this.canBuyTime = canBuyTime;
+    }
+
+    public List<ProductEntity> getRefProducts() {
+        return refProducts;
+    }
+
+    public void setRefProducts(List<ProductEntity> refProducts) {
+        this.refProducts = refProducts;
+    }
+
+    public VipCardEntity getVipCard() {
+        return vipCard;
+    }
+
+    public void setVipCard(VipCardEntity vipCard) {
+        this.vipCard = vipCard;
+    }
+
+
 }

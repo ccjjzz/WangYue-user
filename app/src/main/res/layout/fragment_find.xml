@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragment.MineFragment">
+    android:orientation="vertical">
 
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        tl:tl_indicator_color="@color/colorTabIndicator"
+        tl:tl_indicator_corner_radius="1.5dp"
+        tl:tl_indicator_height="2dp"
+        tl:tl_indicator_margin_bottom="7dp"
+        tl:tl_indicator_width="20dp"
+        tl:tl_tab_space_equal="true"
+        tl:tl_textBold="SELECT"
+        tl:tl_textSelectColor="@color/color333"
+        tl:tl_textUnselectColor="@color/color999"
+        tl:tl_textsize="14sp" />
 
-</FrameLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</androidx.appcompat.widget.LinearLayoutCompat>

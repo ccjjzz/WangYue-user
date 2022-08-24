@@ -3,8 +3,10 @@ package com.jiuyue.user.net;
 
 import com.jiuyue.user.entity.CityListBean;
 import com.jiuyue.user.entity.ConfigEntity;
+import com.jiuyue.user.entity.DynamicBean;
 import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.NumberEntity;
+import com.jiuyue.user.entity.ProductEntity;
 import com.jiuyue.user.entity.TechnicianBean;
 import com.jiuyue.user.entity.UserInfoEntity;
 import com.jiuyue.user.entity.TokenEntity;
@@ -93,5 +95,15 @@ public interface ApiServer {
     @POST("/api/user/technicianList")
     @FormUrlEncoded
     Observable<HttpResponse<TechnicianBean>> technicianList(@FieldMap Map<String, Object> map);
+
+    //发现TAB数据
+    @POST("/api/user/dynamicList")
+    @FormUrlEncoded
+    Observable<HttpResponse<DynamicBean>> dynamicList(@Field("tabId") int tabId, @Field("page") int page);
+
+    //项目套餐详情
+    @POST("/api/user/productInfo")
+    @FormUrlEncoded
+    Observable<HttpResponse<ProductEntity>> productInfo(@Field("productId") int productId);
 
 }

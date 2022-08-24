@@ -1,8 +1,6 @@
 package com.jiuyue.user.mvp.model;
 
-import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.TechnicianBean;
-import com.jiuyue.user.mvp.contract.HomeContract;
 import com.jiuyue.user.mvp.contract.TechnicianContract;
 import com.jiuyue.user.net.ApiRetrofit;
 import com.jiuyue.user.net.ApiServer;
