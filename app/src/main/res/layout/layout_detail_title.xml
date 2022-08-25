@@ -34,7 +34,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="11dp"
         android:background="@drawable/shape_btn_translucent_50dp"
-        android:src="@drawable/ic_score_n"
+        android:src="@drawable/ic_collect_n"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/iv_share"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/shape_btn_translucent_50dp"
-        android:src="@drawable/ic_score_n"
+        android:src="@drawable/ic_share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

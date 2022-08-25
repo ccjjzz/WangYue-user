@@ -24,6 +24,7 @@
         <entry key="..\:/WorkSpace/WangYue-teacher/app/src/main/res/layout/loading_net_error_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-teacher/app/src/main/res/layout/loading_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-teacher/app/src/main/res/layout/marquee_scroll_content.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/TUIKit/TUIChat/tuichat/src/main/res/drawable/ic_play_icon.xml" value="0.1005" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/bg_splash.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/color_cursor.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/comment_shape.xml" value="0.1" />
@@ -39,6 +40,7 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_tech_service.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_00d5c4_50dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_bbbbbb_50dp.xml" value="0.1245" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_fd4473_50dp.xml" value="0.1005" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_translucent_50dp.xml" value="0.1165" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_fd4473_50dp.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_ffffff_bottom_5dp.xml" value="0.13" />
@@ -69,7 +71,10 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_mine.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_order.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_product_desc.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_reserve_desc.xml" value="0.2546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_technician.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_web.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic_img.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic_profile.xml" value="0.25625" />
