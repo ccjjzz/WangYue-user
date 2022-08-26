@@ -6,7 +6,8 @@ import com.jiuyue.user.adapter.DynamicAdapter
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.CommonRefreshRecycleBinding
-import com.jiuyue.user.entity.DynamicBean
+import com.jiuyue.user.entity.DynamicEntity
+import com.jiuyue.user.entity.ListBean
 import com.jiuyue.user.mvp.contract.DynamicContract
 import com.jiuyue.user.mvp.presenter.DynamicPresenter
 import com.jiuyue.user.utils.ToastUtil
@@ -90,7 +91,7 @@ class DynamicFragment(private var mTabId: Int) :
     }
 
 
-    override fun onDynamicListSuccess(data: DynamicBean) {
+    override fun onDynamicListSuccess(data: ListBean<DynamicEntity>) {
         val dataBeans = data.list
         if (dataBeans.size > 0) {
             if (isRefresh) {

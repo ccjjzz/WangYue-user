@@ -1,15 +1,12 @@
 package com.jiuyue.user.utils
 
-import android.app.Activity
 import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.appbar.AppBarLayout
 import com.jiuyue.user.R
-import com.orhanobut.logger.Logger
 import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX
 
 object ScrollHelper {

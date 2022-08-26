@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_card_radius_5dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingStart="19dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="19dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_busy_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今天"
+        android:textColor="@color/color333"
+        android:textSize="13sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_busy_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="周一"
+        android:textColor="@color/color333"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/item_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/login_shape" />
+</androidx.appcompat.widget.LinearLayoutCompat>

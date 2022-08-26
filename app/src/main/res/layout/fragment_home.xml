@@ -42,46 +42,49 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.jiuyue.user.widget.CenterTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/ic_home_center_1"
                         android:drawablePadding="3dp"
+                        android:gravity="center"
                         android:text="超时秒退"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.jiuyue.user.widget.CenterTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/ic_home_center_2"
                         android:drawablePadding="3dp"
+                        android:gravity="center"
                         android:text="持证上岗"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.jiuyue.user.widget.CenterTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/ic_home_center_3"
                         android:drawablePadding="3dp"
+                        android:gravity="center"
                         android:text="爽约包赔"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.jiuyue.user.widget.CenterTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/ic_home_center_4"
                         android:drawablePadding="3dp"
+                        android:gravity="center"
                         android:text="全场保障"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

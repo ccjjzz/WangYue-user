@@ -13,7 +13,8 @@ import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.FragmentTechnicianBinding
 import com.jiuyue.user.entity.CityListBean
-import com.jiuyue.user.entity.TechnicianBean
+import com.jiuyue.user.entity.ListBean
+import com.jiuyue.user.entity.TechnicianEntity
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.contract.TechnicianContract
 import com.jiuyue.user.mvp.model.CommonModel
@@ -278,7 +279,7 @@ class TechnicianFragment : BaseFragment<TechnicianPresenter, FragmentTechnicianB
 
     }
 
-    override fun onTechnicianListSuccess(data: TechnicianBean) {
+    override fun onTechnicianListSuccess(data: ListBean<TechnicianEntity>) {
         val dataBeans = data.list
         if (dataBeans.size > 0) {
             if (isRefresh) {

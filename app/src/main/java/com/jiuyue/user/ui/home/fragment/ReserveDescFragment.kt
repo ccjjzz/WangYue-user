@@ -3,8 +3,10 @@ package com.jiuyue.user.ui.home.fragment
 import android.content.Intent
 import android.net.Uri
 import android.net.http.SslError
+import android.view.LayoutInflater
 import android.view.View
 import android.webkit.*
+import com.jiuyue.user.R
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.databinding.FragmentReserveDescBinding
@@ -28,8 +30,8 @@ class ReserveDescFragment : BaseFragment<BasePresenter, FragmentReserveDescBindi
 
     override fun onFragmentVisibleChange(isVisible: Boolean) {
         super.onFragmentVisibleChange(isVisible)
-        if (!isVisible){
-            binding.scrollView.scrollTo(0,0)
+        if (!isVisible) {
+            binding.scrollView.scrollTo(0, 0)
         }
     }
 

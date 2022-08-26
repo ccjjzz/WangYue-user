@@ -9,29 +9,26 @@
         android:id="@+id/video_view_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:visibility="gone">
 
         <ImageView
             android:id="@+id/content_image_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_gravity="center" />
 
         <com.tencent.qcloud.tuikit.tuichat.component.video.UIKitVideoView
             android:id="@+id/video_play_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:visibility="gone" />
 
         <ImageView
             android:id="@+id/pause_button_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:clickable="true"
             android:src="@drawable/ic_pause_center"
@@ -41,8 +38,6 @@
             android:id="@+id/message_sending_pb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:indeterminateTint="@color/white"

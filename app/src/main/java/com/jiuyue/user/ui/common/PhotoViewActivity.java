@@ -4,12 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.OrientationHelper;
 
 import com.jiuyue.user.R;
+import com.jiuyue.user.adapter.base.BaseBindingAdapter;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.base.BasePresenter;
 import com.jiuyue.user.databinding.ActivityPhotoViewBinding;
 import com.jiuyue.user.databinding.ItemPhotoViewBinding;
 import com.jiuyue.user.global.IntentKey;
-import com.jiuyue.user.adapter.base.BaseBindingAdapter;
 import com.jiuyue.user.utils.glide.GlideLoader;
 import com.tencent.qcloud.tuikit.tuichat.component.imagevideoscan.ViewPagerLayoutManager;
 import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX;

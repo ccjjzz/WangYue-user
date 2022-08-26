@@ -2,7 +2,6 @@ package com.jiuyue.user.mvp.contract;
 
 import com.jiuyue.user.base.BaseView;
 import com.jiuyue.user.entity.HomeEntity;
-import com.jiuyue.user.entity.TokenEntity;
 import com.jiuyue.user.net.BaseObserver;
 
 

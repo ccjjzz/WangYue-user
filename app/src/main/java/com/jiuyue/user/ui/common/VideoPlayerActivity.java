@@ -114,7 +114,6 @@ public class VideoPlayerActivity extends BaseActivity<BasePresenter, ActivityVid
     private void loadVideoView() {
         snapImageView.setVisibility(View.VISIBLE);
         GlideEngine.loadImage(snapImageView, imagePath);
-        updateVideoViewSize();
         File dir = new File(getFilesDir().getAbsolutePath() + "/" + "video" + "/" + "download");
         if (!dir.exists()) {
             dir.mkdirs();
@@ -154,7 +153,13 @@ public class VideoPlayerActivity extends BaseActivity<BasePresenter, ActivityVid
     }
 
     private void playVideo() {
-        Uri videoUri = processVideoMessage();
+        android.media.MediaMetadataRetriever mmr = new android.media.MediaMetadataRetriever();
+        mmr.setDataSource(videoPath);
+        String width = mmr.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);//宽
+        String height = mmr.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);//高
+        updateVideoView(Integer.parseInt(width),Integer.parseInt(height));
+
+        Uri videoUri = Uri.parse(videoPath);
 
         playControlLayout.setVisibility(View.VISIBLE);
         pauseCenterView.setVisibility(View.VISIBLE);
@@ -357,10 +362,6 @@ public class VideoPlayerActivity extends BaseActivity<BasePresenter, ActivityVid
                 durationHandler.postDelayed(updateSeekBarTime, 100);
             }
         }
-    }
-
-    private Uri processVideoMessage() {
-        return Uri.parse(videoPath);
     }
 
     private void updateVideoView(int videoWidth, int videoHeight) {

@@ -8,7 +8,6 @@ import com.jiuyue.user.R
 import com.jiuyue.user.adapter.HomeProductAdapter
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
-import com.jiuyue.user.databinding.ActivityMainBinding
 import com.jiuyue.user.databinding.FragmentMineBinding
 import com.jiuyue.user.entity.ProductEntity
 import com.jiuyue.user.entity.UserInfoEntity

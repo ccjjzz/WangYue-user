@@ -1,7 +1,8 @@
 package com.jiuyue.user.mvp.presenter;
 
 import com.jiuyue.user.base.IBasePresenter;
-import com.jiuyue.user.entity.TechnicianBean;
+import com.jiuyue.user.entity.ListBean;
+import com.jiuyue.user.entity.TechnicianEntity;
 import com.jiuyue.user.mvp.contract.TechnicianContract;
 import com.jiuyue.user.mvp.model.TechnicianModel;
 import com.jiuyue.user.net.BaseObserver;
@@ -21,9 +22,9 @@ public class TechnicianPresenter extends IBasePresenter<TechnicianContract.IView
 
     @Override
     public void technicianList(HashMap<String, Object> map) {
-        mModel.technicianList(map, new BaseObserver<TechnicianBean>(mView) {
+        mModel.technicianList(map, new BaseObserver<ListBean<TechnicianEntity>>(mView) {
             @Override
-            public void onSuccess(HttpResponse<TechnicianBean> data) {
+            public void onSuccess(HttpResponse<ListBean<TechnicianEntity>> data) {
                 mView.onTechnicianListSuccess(data.getData());
             }
 

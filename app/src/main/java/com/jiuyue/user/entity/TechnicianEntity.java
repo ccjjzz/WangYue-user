@@ -1,6 +1,8 @@
 package com.jiuyue.user.entity;
 
-public class TechnicianEntity {
+import java.io.Serializable;
+
+public class TechnicianEntity implements Serializable {
     private int id;
     private String avator;
     private String certName;

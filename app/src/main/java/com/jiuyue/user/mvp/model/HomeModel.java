@@ -1,9 +1,7 @@
 package com.jiuyue.user.mvp.model;
 
 import com.jiuyue.user.entity.HomeEntity;
-import com.jiuyue.user.entity.TokenEntity;
 import com.jiuyue.user.mvp.contract.HomeContract;
-import com.jiuyue.user.mvp.contract.LoginContract;
 import com.jiuyue.user.net.ApiRetrofit;
 import com.jiuyue.user.net.ApiServer;
 import com.jiuyue.user.net.BaseObserver;

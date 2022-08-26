@@ -5,12 +5,12 @@ import android.content.Intent
 import android.net.Uri
 import com.jiuyue.user.App
 import com.jiuyue.user.R
+import com.jiuyue.user.dialog.TopMsgPopup
+import com.jiuyue.user.dialog.XPopupCallbackImpl
 import com.jiuyue.user.entity.NumberEntity
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.model.CommonModel
 import com.jiuyue.user.net.ResultListener
-import com.jiuyue.user.dialog.TopMsgPopup
-import com.jiuyue.user.dialog.XPopupCallbackImpl
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.interfaces.OnCancelListener

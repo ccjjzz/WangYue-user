@@ -10,10 +10,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.base.BasePresenter;
 import com.jiuyue.user.databinding.CommonRecycleViewBinding;
-import com.jiuyue.user.utils.CropParams;
-import com.jiuyue.user.utils.CropPhotoContract;
-import com.jiuyue.user.utils.SelectPhotoContract;
-import com.jiuyue.user.utils.TakePhotoContract;
 import com.permissionx.guolindev.PermissionX;
 import com.tencent.qcloud.tuicore.util.FileUtil;
 

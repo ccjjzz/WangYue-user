@@ -36,7 +36,6 @@ import com.permissionx.guolindev.PermissionX
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
-import com.youth.banner.listener.OnBannerListener
 import com.zaaach.citypicker.CityPicker
 import com.zaaach.citypicker.adapter.OnPickListener
 import com.zaaach.citypicker.model.City
@@ -44,7 +43,6 @@ import com.zaaach.citypicker.model.HotCity
 import com.zaaach.citypicker.model.LocateState
 import com.zaaach.citypicker.model.LocatedCity
 import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 
 /**

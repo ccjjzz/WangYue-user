@@ -11,7 +11,6 @@ import com.jiuyue.user.entity.DynamicEntity
 import com.jiuyue.user.utils.Dp2px
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
-import java.util.ArrayList
 
 class DynamicAdapter(private val mContext: Context) :
     BaseBindingAdapter<DynamicEntity, ItemDynamicBinding>(0) {

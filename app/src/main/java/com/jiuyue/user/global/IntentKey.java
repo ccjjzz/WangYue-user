@@ -11,6 +11,9 @@ public class IntentKey {
     public static final String PHOTO_POSITION = "INTENT_PHOTO_POSITION";
 
     /*****************************业务*******************************/
-    public static final String PRODUCT_ID = "INTENT_PRODUCT_ID";
+    public static final String PRODUCT_ID = "PRODUCT_ID";
+    public static final String CHOOSE_CITY_BRAN = "CHOOSE_CITY_BRAN";
+    public static final String CHOOSE_TECHNICIAN_BRAN = "CHOOSE_TECHNICIAN_BRAN";
+    public static final String PLACE_ORDER_REQ = "PLACE_ORDER_REQ";
 
 }

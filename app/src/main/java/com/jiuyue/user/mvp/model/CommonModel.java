@@ -2,7 +2,9 @@ package com.jiuyue.user.mvp.model;
 
 import com.jiuyue.user.entity.CityListBean;
 import com.jiuyue.user.entity.ConfigEntity;
+import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.NumberEntity;
+import com.jiuyue.user.entity.ReserveTimeEntity;
 import com.jiuyue.user.entity.UserInfoEntity;
 import com.jiuyue.user.net.ApiRetrofit;
 import com.jiuyue.user.net.ApiServer;
@@ -11,6 +13,7 @@ import com.jiuyue.user.net.HttpResponse;
 import com.jiuyue.user.net.ResultListener;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -156,6 +159,36 @@ public class CommonModel {
                 .subscribe(new BaseObserver<NumberEntity>() {
                     @Override
                     public void onSuccess(HttpResponse<NumberEntity> data) {
+                        resultListener.onSuccess(data.getData());
+                    }
+
+                    @Override
+                    public void onError(String msg, int code) {
+                        resultListener.onError(msg, code);
+                    }
+
+                    @Override
+                    public void complete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+                });
+    }
+
+    /**
+     * 获取隐私号码
+     */
+    public void technicianServiceTimeList(int techId, ResultListener<List<ReserveTimeEntity>> resultListener) {
+        apiServer.technicianServiceTimeList(techId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<List<ReserveTimeEntity>>() {
+                    @Override
+                    public void onSuccess(HttpResponse<List<ReserveTimeEntity>> data) {
                         resultListener.onSuccess(data.getData());
                     }
 

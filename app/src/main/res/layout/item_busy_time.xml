@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_container"
+    android:layout_width="match_parent"
+    android:layout_height="25dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:background="@drawable/stroke_1dp_bbb_50dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_busy_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="00:00"
+        android:textColor="@color/color333"
+        android:textSize="12sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/iv_item_busy_label"
+        android:layout_width="30dp"
+        android:gravity="center_vertical"
+        android:layout_height="20dp"
+        android:background="@drawable/shape_right_top_999_50dp"
+        android:text="已满"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"/>
+</RelativeLayout>

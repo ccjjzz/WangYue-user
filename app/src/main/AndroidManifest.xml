@@ -160,6 +160,18 @@
             android:launchMode="standard"
             android:screenOrientation="behind" />
 
+        <activity
+            android:name=".ui.home.SelectTechnicianActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
+
+        <activity
+            android:name=".ui.home.PlaceOrderActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
+
 
 
         <!-- 高德定位服务 -->

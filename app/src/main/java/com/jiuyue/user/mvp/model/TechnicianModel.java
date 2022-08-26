@@ -1,6 +1,7 @@
 package com.jiuyue.user.mvp.model;
 
-import com.jiuyue.user.entity.TechnicianBean;
+import com.jiuyue.user.entity.ListBean;
+import com.jiuyue.user.entity.TechnicianEntity;
 import com.jiuyue.user.mvp.contract.TechnicianContract;
 import com.jiuyue.user.net.ApiRetrofit;
 import com.jiuyue.user.net.ApiServer;
@@ -15,7 +16,7 @@ public class TechnicianModel implements TechnicianContract.Model {
     ApiServer apiServer = ApiRetrofit.getInstance().getApiService();
 
     @Override
-    public void technicianList(HashMap<String, Object> map, BaseObserver<TechnicianBean> observer) {
+    public void technicianList(HashMap<String, Object> map, BaseObserver<ListBean<TechnicianEntity>> observer) {
         apiServer.technicianList(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

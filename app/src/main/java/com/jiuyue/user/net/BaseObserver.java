@@ -9,7 +9,6 @@ import com.jiuyue.user.base.BaseView;
 import com.jiuyue.user.global.SpKey;
 import com.jiuyue.user.ui.login.LoginActivity;
 import com.jiuyue.user.utils.AppStockManage;
-import com.jiuyue.user.utils.IntentUtils;
 import com.jiuyue.user.utils.NetWorkUtil;
 import com.jiuyue.user.utils.ToastUtil;
 
