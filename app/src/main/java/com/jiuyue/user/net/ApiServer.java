@@ -135,7 +135,7 @@ public interface ApiServer {
     //删除用户地址
     @POST("/api/user/delAddress")
     @FormUrlEncoded
-    Observable<HttpResponse<Object>> delAddress(@Field("addressId") String addressId);
+    Observable<HttpResponse<Object>> delAddress(@Field("addressId") int addressId);
 
     //新增/修改用户地址
     @POST("/api/user/saveAddress")

@@ -1,14 +1,14 @@
 package com.jiuyue.user.entity;
 
 public class TrafficEntity {
-    private String trafficFee;
+    private double trafficFee;
     private String remark;
 
-    public String getTrafficFee() {
-        return trafficFee == null ? "" : trafficFee;
+    public double getTrafficFee() {
+        return trafficFee;
     }
 
-    public void setTrafficFee(String trafficFee) {
+    public void setTrafficFee(double trafficFee) {
         this.trafficFee = trafficFee;
     }
 

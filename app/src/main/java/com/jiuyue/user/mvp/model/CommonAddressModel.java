@@ -21,7 +21,7 @@ public class CommonAddressModel implements CommonAddressContract.Model {
     }
 
     @Override
-    public void DelAddress(String addressId, BaseObserver<Object> observer) {
+    public void DelAddress(int addressId, BaseObserver<Object> observer) {
         apiServer.delAddress(addressId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

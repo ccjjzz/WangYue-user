@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
             android:layout_marginTop="9dp"
-            android:text="北京市  北京市  朝阳区"
+            android:text="花园路甲220号花园路"
             android:textColor="#ff292621"
             android:textSize="13sp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="9dp"
-            android:text="花园路甲220号花园路 甲25号写字楼230室"
+            android:text="230"
             android:textColor="#ff292621"
             android:textSize="13sp"
             app:layout_constraintLeft_toRightOf="@id/common_item_address"
@@ -137,6 +137,31 @@
             app:layout_constraintRight_toLeftOf="@id/common_item_compile"
             app:layout_constraintTop_toBottomOf="@id/common_item_view" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/common_item_choose_y"
+            android:layout_width="17dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="invisible"
+            android:src="@drawable/ic_address_choose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/common_item_choose_n"
+            android:layout_width="48dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:background="@drawable/stroke_1dp_999_50dp"
+            android:text="使用"
+            android:textColor="@color/color999"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

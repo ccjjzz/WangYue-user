@@ -19,6 +19,7 @@ public class PlaceOrderReq implements Serializable {
     public String serviceTitle;
     public String techAvatar;
     public String certName;
+    public double buyPrice;
 
 
 }

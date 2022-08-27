@@ -16,6 +16,7 @@ import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.ui.mine.address.CommonAddressActivity
 import com.jiuyue.user.ui.mine.FollowCommodityActivity
 import com.jiuyue.user.ui.mine.FollowTechnicianActivity
+import com.jiuyue.user.ui.mine.setting.SettingActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
 
@@ -48,7 +49,8 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             this,
             binding.clMineCollect,
             binding.clMineFollow,
-            binding.tvMineAddress
+            binding.tvMineAddress,
+            binding.ivMineSetting
         )
         //接受订单详情操作通知
         LiveEventBus
@@ -87,13 +89,13 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             }
             binding.clMineFollow -> {
                 IntentUtils.startActivity(mContext, FollowTechnicianActivity::class.java)
-
             }
             binding.tvMineAddress -> {
                 IntentUtils.startActivity(mContext, CommonAddressActivity::class.java)
-
             }
-
+            binding.ivMineSetting->{
+                IntentUtils.startActivity(mContext, SettingActivity::class.java)
+            }
         }
     }
 }

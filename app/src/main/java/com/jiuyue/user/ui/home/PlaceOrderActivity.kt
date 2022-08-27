@@ -17,6 +17,7 @@ import com.jiuyue.user.mvp.model.ProductModel
 import com.jiuyue.user.mvp.presenter.PlaceOrderPresenter
 import com.jiuyue.user.net.BaseObserver
 import com.jiuyue.user.net.HttpResponse
+import com.jiuyue.user.ui.mine.address.CommonAddressActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.KeyboardUtils.hideKeyBoard
 import com.jiuyue.user.utils.KeyboardUtils.showKeyBoard
@@ -34,6 +35,7 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
     private lateinit var placeOrderReq: PlaceOrderReq
     private lateinit var productData: ProductEntity
     private lateinit var chooseTechnician: ActivityResultLauncher<Intent>
+    private lateinit var chooseAddress: ActivityResultLauncher<Intent>
 
     override fun getViewBinding(): ActivityPlaceOrderBinding {
         return ActivityPlaceOrderBinding.inflate(layoutInflater)
@@ -50,17 +52,24 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
             productData = it.getSerializable(IntentKey.PRODUCT_BEAN) as ProductEntity
         }
         OverScrollDecoratorHelper.setUpOverScroll(binding.scrollView)
+
+        //初始化服务信息
         placeOrderReq.let {
             binding.tvServiceTime.text = it.serviceTitle
             binding.tvServiceTechName.text = it.certName
             GlideLoader.display(it.techAvatar, binding.ivServiceTechAvatar)
         }
+
+        //初始化套餐信息
         productData.let {
             val banners = it.banners.split(",".toRegex()).toMutableList()
             GlideLoader.display(banners[0], binding.ivProductAvatar)
             binding.tvProductName.text = it.name
             binding.tvProductNum.text = placeOrderReq?.productNum.toString()
             binding.tvProductPrice.text = "¥ ${it.price}"
+            //支付金额
+            placeOrderReq.buyPrice = it.price
+            binding.tvBuyPrice.text = placeOrderReq.buyPrice.toString()
         }
 
         //注册选择技师
@@ -75,7 +84,23 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
                 placeOrderReq.techAvatar = data.avator
                 placeOrderReq.certName = data.certName
                 //获取技师优惠券
-                getCoupon(placeOrderReq.techId,productData.id,1,1)
+                getCoupon(placeOrderReq.techId, productData.id, 1, 1)
+            }
+        }
+
+        //注册选择地址
+        chooseAddress = registerForActivityResult(
+            StartActivityContract<AddressListBean.ListDTO>(IntentKey.CHOOSE_ADDRESS_BRAN)
+        ) { data ->
+            if (data != null) {
+                binding.tvName.visibility = View.VISIBLE
+                binding.tvTel.visibility = View.VISIBLE
+                binding.tvAddress.text = data.address
+                binding.tvName.text = data.userName
+                binding.tvTel.text = data.mobile
+                placeOrderReq.addressId = data.id
+                //获取默认出行方式
+                getTrafficType()
             }
         }
 
@@ -92,9 +117,13 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
             binding.btnBuy,
         )
         //获取技师优惠券
-        getCoupon(placeOrderReq.techId,productData.id,1,1)
+        if (placeOrderReq.techDiscountId == 0) {
+            getCoupon(placeOrderReq.techId, productData.id, 1, 1)
+        }
         //获取平台优惠券
-        getCoupon(placeOrderReq.techId,productData.id,1,2)
+        if (placeOrderReq.platDiscountId == 0) {
+            getCoupon(placeOrderReq.techId, productData.id, 1, 2)
+        }
     }
 
     private fun getTrafficType() {
@@ -143,7 +172,7 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
                                 )
                             )
                         }
-                    }else{
+                    } else {
                         if (discountType == 1) { //技师
                             binding.tvCouponZs.text = "无可用"
                             binding.tvCouponZs.setTextColor(
@@ -152,7 +181,6 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
                                     R.color.color999
                                 )
                             )
-                            placeOrderReq.techDiscountId = 0
                         } else if (discountType == 2) { //平台
                             binding.tvCouponPt.text = "无可用"
                             binding.tvCouponPt.setTextColor(
@@ -161,7 +189,6 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
                                     R.color.color999
                                 )
                             )
-                            placeOrderReq.platDiscountId = 0
                         }
                     }
                 }
@@ -177,7 +204,7 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
 
     override fun onOrderProductSuccess(data: OrderInfoEntity) {
         ToastUtil.show("下单成功")
-        IntentUtils.startOrderDetailsActivity(this,data.orderNo)
+        IntentUtils.startOrderDetailsActivity(this, data.orderNo)
         finish()
     }
 
@@ -188,6 +215,10 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
     override fun onOrderTrafficSetSuccess(data: TrafficEntity) {
         binding.tvTrafficRemark.text = data.remark
         binding.tvTrafficFee.text = "¥ ${data.trafficFee}"
+
+        //支付金额
+        placeOrderReq.buyPrice = placeOrderReq.buyPrice.minus(data.trafficFee)
+        binding.tvBuyPrice.text = placeOrderReq.buyPrice.toString()
     }
 
     override fun onOrderTrafficSetError(msg: String?, code: Int) {
@@ -198,7 +229,11 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
         when (v) {
             binding.clAddress -> {
                 //选择地址
-
+                chooseAddress.launch(
+                    Intent().setClass(this, CommonAddressActivity::class.java)
+                        .putExtra(IntentKey.ADDRESS_ID, placeOrderReq.addressId)
+                        .putExtra(IntentKey.PAGER_TYPE, 1)
+                )
             }
             binding.tvServiceTechName -> {
                 //选择服务人员
@@ -237,8 +272,8 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
                 hideKeyBoard(binding.etRemark, this)
             }
             binding.btnBuy -> {
-                if (placeOrderReq.addressId==-1){
-                    XPopupHelper.showBubbleTips(this,"请先选择地址",binding.tvAddress)
+                if (placeOrderReq.addressId == -1) {
+                    XPopupHelper.showBubbleTips(this, "请先选择地址", binding.tvAddress)
                     return
                 }
                 //下单

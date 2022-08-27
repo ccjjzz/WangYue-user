@@ -1,5 +1,6 @@
 package com.jiuyue.user.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class AddressListBean {
@@ -14,7 +15,7 @@ public class AddressListBean {
         this.list = list;
     }
 
-    public static class ListDTO {
+    public static class ListDTO implements Serializable {
         private int id;
         private int userId;
         private String userName;
@@ -27,6 +28,8 @@ public class AddressListBean {
         private double addressLatitude;
         private double addressLongitude;
         private int isDefault;
+        private boolean isChoose;
+        private boolean isShowChoose;
 
         public int getId() {
             return id;
@@ -122,6 +125,22 @@ public class AddressListBean {
 
         public void setIsDefault(int isDefault) {
             this.isDefault = isDefault;
+        }
+
+        public boolean isChoose() {
+            return isChoose;
+        }
+
+        public void setChoose(boolean choose) {
+            isChoose = choose;
+        }
+
+        public boolean isShowChoose() {
+            return isShowChoose;
+        }
+
+        public void setShowChoose(boolean showChoose) {
+            isShowChoose = showChoose;
         }
     }
 }

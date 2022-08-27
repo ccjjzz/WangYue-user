@@ -20,11 +20,11 @@ public interface CommonAddressContract {
     interface Model{
         void AddressList(String os, BaseObserver<AddressListBean> observer);
 
-        void DelAddress(String addressId, BaseObserver<Object> observer);
+        void DelAddress(int addressId, BaseObserver<Object> observer);
     }
     interface Presenter{
         void AddressList(String os);
 
-        void DelAddress(String addressId);
+        void DelAddress(int addressId);
     }
 }

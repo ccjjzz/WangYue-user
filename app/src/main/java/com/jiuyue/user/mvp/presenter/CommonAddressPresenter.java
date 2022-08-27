@@ -47,7 +47,7 @@ public class CommonAddressPresenter extends IBasePresenter<CommonAddressContract
     }
 
     @Override
-    public void DelAddress(String addressId) {
+    public void DelAddress(int addressId) {
         model.DelAddress(addressId, new BaseObserver<Object>() {
             @Override
             public void onSuccess(HttpResponse<Object> data) {
