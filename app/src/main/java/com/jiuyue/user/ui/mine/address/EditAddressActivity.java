@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.R;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.databinding.ActivityEditAddressBinding;
@@ -17,6 +18,7 @@ import com.jiuyue.user.global.IntentKey;
 import com.jiuyue.user.mvp.contract.EditAddressContract;
 import com.jiuyue.user.mvp.presenter.EditAddressPresenter;
 import com.jiuyue.user.ui.common.InputTipsActivity;
+import com.jiuyue.user.utils.AppStockManage;
 import com.jiuyue.user.utils.IntentUtils;
 import com.jiuyue.user.utils.StartActivityContract;
 import com.jiuyue.user.utils.ToastUtil;
@@ -72,7 +74,18 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter, Acti
                     }
 
                 });
+        //编辑
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id", 1);
+        String address1 = intent.getStringExtra("address");
+        String userName1 = intent.getStringExtra("userName");
+        String mobile1 = intent.getStringExtra("mobile");
+        String addressHouse1 = intent.getStringExtra("addressHouse");
 
+        addAddress.setText(address1);
+        addPhone.setText(mobile1);
+        addName.setText(userName1);
+        addHouseNumber.setText(addressHouse1);
         setViewClick(this,
                 binding.editPreservation,
                 binding.editBack);
@@ -81,6 +94,8 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter, Acti
     @Override
     public void onEditAddressSuccess(Object data) {
         ToastUtil.show("保存成功");
+        LiveEventBus.get("Refresh",String.class).post(null);
+        finish();
     }
 
     @Override
@@ -96,6 +111,7 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter, Acti
         if (isDefault == 1) {
             addAddress.setText(list.get(0).getAddress());
         }
+
     }
 
     @Override
@@ -116,7 +132,7 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter, Acti
                 String phone = addPhone.getText().toString();
                 String houseNumber = addHouseNumber.getText().toString();
                 mPresenter.EditAddress(0, name, "男士", phone, address, houseNumber, addressCityCode, addressCity, addressLatitude, addressLongitude);
-//                mPresenter.EditAddress(0,name,"男士",phone,"北京市东城区阿文汤包(南小街店)",houseNumber,"10010","北京",40.052834,116.303013);
+
                 break;
         }
     }
