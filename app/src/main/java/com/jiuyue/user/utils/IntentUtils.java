@@ -13,6 +13,7 @@ import com.jiuyue.user.ui.common.PhotoViewActivity;
 import com.jiuyue.user.ui.common.VideoPlayerActivity;
 import com.jiuyue.user.ui.home.ProductDetailActivity;
 import com.jiuyue.user.ui.main.MainActivity;
+import com.jiuyue.user.ui.mine.order.OrderDetailsActivity;
 import com.jiuyue.user.ui.web.WebActivity;
 import com.jiuyue.user.ui.web.WebDataActivity;
 
@@ -223,7 +224,7 @@ public class IntentUtils {
     }
 
     /**
-     * 跳转图片浏览界面
+     * 跳转套餐详情
      *
      * @param productId 套餐id
      */
@@ -236,4 +237,17 @@ public class IntentUtils {
         }
     }
 
+    /**
+     * 跳转订单详情
+     *
+     * @param orderId 订单id
+     */
+    public static void startOrderDetailsActivity(Context context, String orderId) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, OrderDetailsActivity.class);
+            intent.putExtra(IntentKey.ORDER_ID, orderId);
+            context.startActivity(intent);
+        }
+    }
 }

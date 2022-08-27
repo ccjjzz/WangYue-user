@@ -395,7 +395,7 @@
                             android:drawablePadding="23dp"
                             android:gravity="center"
                             android:text="今天0:00"
-                            android:textColor="@color/color333"
+                            android:textColor="@color/colorPrice"
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_product_yysj"
                             app:layout_constraintEnd_toEndOf="parent"

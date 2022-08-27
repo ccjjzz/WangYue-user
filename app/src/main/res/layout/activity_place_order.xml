@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jiuyue.user.widget.TitleView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -88,13 +81,66 @@
                 app:layout_constraintTop_toBottomOf="@+id/cl_address" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_service_tech"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:drawableStart="@drawable/ic_service_personnel"
+                    android:drawablePadding="2dp"
+                    android:text="服务人员"
+                    android:textColor="@color/color333"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_service_tech_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginEnd="19dp"
+                    android:drawableEnd="@drawable/ic_right_gray"
+                    android:drawablePadding="7dp"
+                    android:text="姓名"
+                    android:textColor="@color/colorPrice"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.jiuyue.user.widget.CircleImageView
+                    android:id="@+id/iv_service_tech_avatar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_service_tech_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/colorEee"
+                app:layout_constraintTop_toBottomOf="@+id/cl_service_tech" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_service_time"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="9dp"
                 android:background="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_line">
+                app:layout_constraintTop_toBottomOf="@id/line1">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -125,72 +171,20 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/line1"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/colorEee"
-                app:layout_constraintTop_toBottomOf="@+id/cl_service_time" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_service_tech"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line1">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:drawableStart="@drawable/ic_service_personnel"
-                    android:drawablePadding="2dp"
-                    android:text="服务人员"
-                    android:textColor="@color/color333"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_service_tech_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginEnd="19dp"
-                    android:drawableEnd="@drawable/ic_right_gray"
-                    android:drawablePadding="7dp"
-                    android:text="姓名"
-                    android:textColor="@color/color999"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.jiuyue.user.widget.CircleImageView
-                    android:id="@+id/iv_service_tech_avatar"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_service_tech_name"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_product"
                 android:layout_width="match_parent"
                 android:layout_height="67dp"
                 android:layout_marginTop="9dp"
                 android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/cl_service_tech">
+                app:layout_constraintTop_toBottomOf="@id/cl_service_time">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_product_avatar"
                     android:layout_width="47dp"
                     android:layout_height="47dp"
                     android:layout_marginStart="19dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/default_user_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -477,6 +471,13 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <com.jiuyue.user.widget.TitleView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_buy"

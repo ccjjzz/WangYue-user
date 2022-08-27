@@ -8,12 +8,16 @@ import com.jiuyue.user.entity.DynamicEntity;
 import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.NumberEntity;
+import com.jiuyue.user.entity.OrderInfoEntity;
 import com.jiuyue.user.entity.ProductEntity;
 import com.jiuyue.user.entity.ReserveTimeEntity;
 import com.jiuyue.user.entity.TechnicianEntity;
 import com.jiuyue.user.entity.TokenEntity;
+import com.jiuyue.user.entity.TrafficEntity;
 import com.jiuyue.user.entity.UserInfoEntity;
+import com.jiuyue.user.entity.req.PlaceOrderReq;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +26,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -122,5 +127,14 @@ public interface ApiServer {
     @POST("/api/user/technicianServiceTimeList")
     @FormUrlEncoded
     Observable<HttpResponse<List<ReserveTimeEntity>>> technicianServiceTimeList(@Field("techId") int techId);
+
+    //获取出行方式
+    @POST("/api/user/orderTrafficSet")
+    @FormUrlEncoded
+    Observable<HttpResponse<TrafficEntity>> orderTrafficSet(@FieldMap HashMap<String,Object> map);
+
+    //用户下单
+    @POST("/api/user/orderProduct")
+    Observable<HttpResponse<OrderInfoEntity>> orderProduct(@Body PlaceOrderReq req);
 
 }

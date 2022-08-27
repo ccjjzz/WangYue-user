@@ -1,6 +1,8 @@
 package com.jiuyue.user.entity;
 
-public class VipCardEntity {
+import java.io.Serializable;
+
+public class VipCardEntity implements Serializable {
     private int id;
     private String vipCardName;
     private String price;

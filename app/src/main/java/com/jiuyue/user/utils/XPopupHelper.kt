@@ -2,9 +2,12 @@ package com.jiuyue.user.utils
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
+import android.view.View
 import com.jiuyue.user.App
 import com.jiuyue.user.R
+import com.jiuyue.user.dialog.BubbleTipsPopup
 import com.jiuyue.user.dialog.TopMsgPopup
 import com.jiuyue.user.dialog.XPopupCallbackImpl
 import com.jiuyue.user.entity.NumberEntity
@@ -16,6 +19,8 @@ import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.interfaces.OnCancelListener
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.lxj.xpopup.interfaces.OnSelectListener
+import com.lxj.xpopup.util.XPopupUtils
+
 
 object XPopupHelper {
 
@@ -167,4 +172,28 @@ object XPopupHelper {
             .asCenterList("", data, onSelectListener)
             .show()
     }
+
+    /**
+     * 气泡提示
+     */
+    fun showBubbleTips(mContext: Context, msg: String, atView: View) {
+        XPopup.Builder(mContext)
+            .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+            .atView(atView)
+            .hasStatusBarShadow(false)
+            .hasBlurBg(false)
+            .hasShadowBg(false) // 去掉半透明背景
+            .isClickThrough(true)//是否点击穿透
+            .isTouchThrough(true)
+            .dismissOnBackPressed(false)
+            .dismissOnTouchOutside(false)
+            .asCustom(
+                BubbleTipsPopup(mContext, msg)
+                    .setArrowWidth(XPopupUtils.dp2px(mContext, 5f))
+                    .setArrowHeight(XPopupUtils.dp2px(mContext, 6f))
+                    .setArrowRadius(XPopupUtils.dp2px(mContext, 3f))
+            )
+            .show()
+    }
+
 }

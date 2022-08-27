@@ -72,6 +72,8 @@ class ProductDetailActivity : BaseActivity<ProductPresenter, ActivityProductDeta
                 binding.ivProductTechnicianAvatoar.visibility = View.VISIBLE
                 GlideLoader.display(data.avator, binding.ivProductTechnicianAvatoar)
                 binding.tvProductTechnician.text = data.certName
+                binding.tvProductAppointment.text = "选择预约时间"
+                binding.tvProductZj.visibility = View.GONE
                 placeOrderReq.techId = data.id
                 placeOrderReq.techAvatar = data.avator
                 placeOrderReq.certName = data.certName
@@ -298,8 +300,10 @@ class ProductDetailActivity : BaseActivity<ProductPresenter, ActivityProductDeta
                     XPopup.Builder(this)
                         .asCustom(ChooseReserveTimePopup(this, placeOrderReq.techId) { data ->
                             Logger.wtf(Gson().toJson(data))
-                            binding.tvProductAppointment.text = "${data.dateTitle}(${data.weekDay})${data.times[0].time}"
-                            placeOrderReq.serviceTitle = binding.tvProductAppointment.text.toString()
+                            binding.tvProductAppointment.text =
+                                "${data.dateTitle}(${data.weekDay})${data.times[0].time}"
+                            placeOrderReq.serviceTitle =
+                                binding.tvProductAppointment.text.toString()
                             placeOrderReq.serviceDate = data.date
                             placeOrderReq.serviceTime = data.times[0].time
                         })
@@ -309,12 +313,23 @@ class ProductDetailActivity : BaseActivity<ProductPresenter, ActivityProductDeta
             //立即预约
             binding.btnProductBuy -> {
                 dataBean?.let {
+                    if (placeOrderReq.certName == null) {
+                        XPopupHelper.showBubbleTips(this, "请选择技师", binding.tvProductTechnician)
+                        return
+                    }
+                    if (placeOrderReq.serviceTitle == null) {
+                        XPopupHelper.showBubbleTips(this, "请选择预约时间", binding.tvProductAppointment)
+                        return
+                    }
                     placeOrderReq.productId = it.id
                     placeOrderReq.productNum = 1
                     placeOrderReq.vipCardId = 0
-                    IntentUtils.startActivity(this,PlaceOrderActivity::class.java, bundleOf(
-                        Pair(IntentKey.PLACE_ORDER_REQ,placeOrderReq)
-                    ))
+                    IntentUtils.startActivity(
+                        this, PlaceOrderActivity::class.java, bundleOf(
+                            Pair(IntentKey.PLACE_ORDER_REQ, placeOrderReq),
+                            Pair(IntentKey.PRODUCT_BEAN, dataBean)
+                        )
+                    )
                 }
             }
         }

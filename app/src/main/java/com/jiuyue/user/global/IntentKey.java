@@ -15,5 +15,7 @@ public class IntentKey {
     public static final String CHOOSE_CITY_BRAN = "CHOOSE_CITY_BRAN";
     public static final String CHOOSE_TECHNICIAN_BRAN = "CHOOSE_TECHNICIAN_BRAN";
     public static final String PLACE_ORDER_REQ = "PLACE_ORDER_REQ";
+    public static final String PRODUCT_BEAN = "PRODUCT_BEAN";
+    public static final String ORDER_ID = "ORDER_ID";
 
 }

@@ -1,8 +1,9 @@
 package com.jiuyue.user.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ProductEntity {
+public class ProductEntity implements Serializable {
     private int id;
     private String picture;
     private String name;

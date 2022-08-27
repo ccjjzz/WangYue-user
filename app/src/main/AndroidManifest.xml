@@ -64,6 +64,7 @@
     <application
         android:name=".App"
         android:allowBackup="false"
+        android:allowNativeHeapPointerTagging="false"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -71,10 +72,9 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true"
-        android:allowNativeHeapPointerTagging="false"
+        tools:ignore="UnusedAttribute"
         tools:replace="android:allowBackup"
-        tools:targetApi="o"
-        tools:ignore="UnusedAttribute">
+        tools:targetApi="o">
 
         <activity
             android:name=".ui.main.SplashActivity"
@@ -130,13 +130,13 @@
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
 
-       <activity
+        <activity
             android:name=".ui.common.PhotoViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
 
-       <activity
+        <activity
             android:name=".ui.common.VideoPlayerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
@@ -152,7 +152,8 @@
             android:name=".ui.login.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
-            android:screenOrientation="behind" />
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <activity
             android:name=".ui.home.ProductDetailActivity"
@@ -170,8 +171,15 @@
             android:name=".ui.home.PlaceOrderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
-            android:screenOrientation="behind" />
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
+        <activity
+            android:name=".ui.mine.order.OrderDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
 
         <!-- 高德定位服务 -->
