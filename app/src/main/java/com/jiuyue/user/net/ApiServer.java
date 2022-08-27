@@ -1,15 +1,19 @@
 package com.jiuyue.user.net;
 
 
+import com.jiuyue.user.entity.AddressListBean;
+import com.jiuyue.user.entity.CityBean;
 import com.jiuyue.user.entity.CityListBean;
 import com.jiuyue.user.entity.ConfigEntity;
 import com.jiuyue.user.entity.DynamicBean;
+import com.jiuyue.user.entity.FollowCommoditBean;
 import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.NumberEntity;
 import com.jiuyue.user.entity.ProductEntity;
 import com.jiuyue.user.entity.TechnicianBean;
 import com.jiuyue.user.entity.UserInfoEntity;
 import com.jiuyue.user.entity.TokenEntity;
+import com.jiuyue.user.entity.FollowTechnicianBean;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +23,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -105,5 +108,35 @@ public interface ApiServer {
     @POST("/api/user/productInfo")
     @FormUrlEncoded
     Observable<HttpResponse<ProductEntity>> productInfo(@Field("productId") int productId);
+
+    //收藏套餐列表
+    @POST("/api/user/collectProductList")
+    @FormUrlEncoded
+    Observable<HttpResponse<FollowCommoditBean>> collectProductList(@Field("os") String os);
+
+    //关注技师列表
+    @POST("/api/user/followTechnicianList")
+    @FormUrlEncoded
+    Observable<HttpResponse<FollowTechnicianBean>> followTechnicianList(@Field("os") String os);
+
+    //用户地址列表
+    @POST("/api/user/addressList")
+    @FormUrlEncoded
+    Observable<HttpResponse<AddressListBean>> addressList(@Field("os") String os);
+
+    //删除用户地址
+    @POST("/api/user/delAddress")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> delAddress(@Field("addressId") String addressId);
+
+    //新增/修改用户地址
+    @POST("/api/user/saveAddress")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> saveAddress(@Field("addressId") int addressId,@Field("userName") String userName,
+                                                 @Field("genderName") String genderName,@Field("mobile") String mobile,
+                                                 @Field("address") String address,@Field("addressHouse") String addressHouse,
+                                                 @Field("addressCityCode") String addressCityCode,@Field("addressCity") String addressCity,
+                                                 @Field("addressLatitude") double addressLatitude,@Field("addressLongitude") double addressLongitude);
+
 
 }

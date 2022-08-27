@@ -1,9 +1,8 @@
 package com.jiuyue.user.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class CityBean {
+public class AddressListBean {
 
     private List<ListDTO> list;
 
@@ -15,15 +14,18 @@ public class CityBean {
         this.list = list;
     }
 
-    public static class ListDTO implements Serializable {
+    public static class ListDTO {
         private int id;
-        private int techId;
+        private int userId;
+        private String userName;
+        private String genderName;
+        private String mobile;
         private String addressCityCode;
         private String addressCity;
         private String address;
+        private String addressHouse;
         private double addressLatitude;
         private double addressLongitude;
-        private int radius;
         private int isDefault;
 
         public int getId() {
@@ -34,12 +36,36 @@ public class CityBean {
             this.id = id;
         }
 
-        public int getTechId() {
-            return techId;
+        public int getUserId() {
+            return userId;
         }
 
-        public void setTechId(int techId) {
-            this.techId = techId;
+        public void setUserId(int userId) {
+            this.userId = userId;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
+
+        public String getGenderName() {
+            return genderName;
+        }
+
+        public void setGenderName(String genderName) {
+            this.genderName = genderName;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
         }
 
         public String getAddressCityCode() {
@@ -66,6 +92,14 @@ public class CityBean {
             this.address = address;
         }
 
+        public String getAddressHouse() {
+            return addressHouse;
+        }
+
+        public void setAddressHouse(String addressHouse) {
+            this.addressHouse = addressHouse;
+        }
+
         public double getAddressLatitude() {
             return addressLatitude;
         }
@@ -80,14 +114,6 @@ public class CityBean {
 
         public void setAddressLongitude(double addressLongitude) {
             this.addressLongitude = addressLongitude;
-        }
-
-        public int getRadius() {
-            return radius;
-        }
-
-        public void setRadius(int radius) {
-            this.radius = radius;
         }
 
         public int getIsDefault() {

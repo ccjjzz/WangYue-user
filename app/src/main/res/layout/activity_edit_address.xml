@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_con"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.jiuyue.user.widget.TitleView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/edit_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="29dp"
+            android:text="联系人"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:background="#00ffffff"
+            android:hint="请输入您的姓名"
+            android:textColor="#ffbbbbbb"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/edit_contacts"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/edit_box"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:button="@drawable/selector_check_main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/edit_contacts"
+            app:layout_constraintTop_toBottomOf="@id/edit_contacts" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="先生"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/edit_box"
+            app:layout_constraintTop_toBottomOf="@id/edit_contacts" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/edit_box1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:button="@drawable/selector_check_main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/edit_box"
+            app:layout_constraintTop_toBottomOf="@id/edit_contacts" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="女士"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/edit_box1"
+            app:layout_constraintTop_toBottomOf="@id/edit_contacts" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_con1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/edit_con">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="14dp"
+            android:text="手机号"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="16dp"
+            android:background="#00ffffff"
+            android:hint="请输入手机号"
+            android:textColor="#ff333333"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/phone_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/edit_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="15dp"
+            android:text="温馨提示：请确保当前手机号可以联系到您哟～"
+            android:textColor="#ffff8400"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phone_text" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/edit_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edit_tips">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/edit_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="16dp"
+                android:text="服务地址"
+                android:textColor="#ff333333"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/edit_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="17dp"
+                android:background="#00ffffff"
+                android:text="请选择服务地址"
+                android:textColor="#ffbbbbbb"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toRightOf="@id/edit_service"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="19dp"
+                android:src="@drawable/ic_arrow_right_black"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/edit_house"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="16dp"
+            android:text="门牌号"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_back" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_house_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="17dp"
+            android:background="#00ffffff"
+            android:hint="请输入门牌号"
+            android:textColor="#ffbbbbbb"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/edit_house"
+            app:layout_constraintTop_toBottomOf="@id/edit_back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/edit_preservation"
+        android:layout_width="265dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="91dp"
+        android:background="@drawable/edit_bg_shape"
+        android:gravity="center"
+        android:text="保存并使用"
+        android:textColor="#ffffffff"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_con1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
