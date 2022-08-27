@@ -160,6 +160,31 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind" />
+        <activity
+            android:name=".ui.main.activity.FollowCommodityActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".ui.main.activity.FollowTechnicianActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".ui.main.activity.CommonAddressActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".ui.main.activity.EditAddressActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".ui.common.InputTipsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind" />
 
         <activity
             android:name=".ui.home.SelectTechnicianActivity"

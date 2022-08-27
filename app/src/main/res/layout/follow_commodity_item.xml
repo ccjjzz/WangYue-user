@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/follow_item_img"
+            android:layout_width="83dp"
+            android:layout_height="83dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:src="@color/colorEee"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/follow_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="17dp"
+            android:text="中式推拿"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toRightOf="@id/follow_item_img"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/follow_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="17dp"
+            android:text="218.00"
+            android:textColor="#fffd4473"
+            android:textSize="17sp"
+            app:layout_constraintLeft_toRightOf="@id/follow_item_img"
+            app:layout_constraintTop_toBottomOf="@id/follow_item_title" />
+
+        <ImageView
+            android:id="@+id/follow_item_clock"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_collect_clock"
+            app:layout_constraintLeft_toRightOf="@id/follow_item_img"
+            app:layout_constraintTop_toBottomOf="@id/follow_item_price" />
+
+        <TextView
+            android:id="@+id/follow_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="8dp"
+            android:text="70分钟"
+            android:textColor="#ff3d3d3d"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/follow_item_clock"
+            app:layout_constraintTop_toBottomOf="@id/follow_item_price" />
+
+        <TextView
+            android:id="@+id/follow_item_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="17dp"
+            android:text="已售17056单"
+            android:textColor="#ff9a9a9a"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageView
+            android:layout_width="6dp"
+            android:layout_height="11dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/ic_arrow_right_black"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/follow_item_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

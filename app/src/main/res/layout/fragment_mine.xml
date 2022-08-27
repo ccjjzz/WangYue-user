@@ -50,29 +50,38 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_collect"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_mine_collect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
-                android:layout_marginBottom="11dp"
-                android:text="关注商品"
-                android:textColor="@color/color26"
-                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_collect_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:text="0"
-                android:textColor="@color/color26"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_mine_collect"
-                app:layout_constraintEnd_toEndOf="@id/tv_mine_collect"
-                app:layout_constraintStart_toStartOf="@+id/tv_mine_collect" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_mine_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="11dp"
+                    android:text="关注商品"
+                    android:textColor="@color/color26"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_mine_collect_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:text="0"
+                    android:textColor="@color/color26"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_mine_collect"
+                    app:layout_constraintEnd_toEndOf="@id/tv_mine_collect"
+                    app:layout_constraintStart_toStartOf="@+id/tv_mine_collect" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="1dp"
@@ -83,29 +92,38 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_follow"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_mine_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="88dp"
-                android:layout_marginBottom="11dp"
-                android:text="关注理疗师"
-                android:textColor="@color/color26"
-                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_follow_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:text="0"
-                android:textColor="@color/color26"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_mine_follow"
-                app:layout_constraintEnd_toEndOf="@id/tv_mine_follow"
-                app:layout_constraintStart_toStartOf="@+id/tv_mine_follow" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_mine_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="11dp"
+                    android:text="关注理疗师"
+                    android:textColor="@color/color26"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_mine_follow_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:text="0"
+                    android:textColor="@color/color26"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_mine_follow"
+                    app:layout_constraintEnd_toEndOf="@id/tv_mine_follow"
+                    app:layout_constraintStart_toStartOf="@+id/tv_mine_follow" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -303,8 +321,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="14dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/shape_card_radius_5dp"
             android:overScrollMode="never"
             android:scrollbars="none"

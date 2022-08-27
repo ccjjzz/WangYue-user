@@ -1,10 +1,13 @@
 package com.jiuyue.user.net;
 
 
+import com.jiuyue.user.entity.AddressListBean;
+import com.jiuyue.user.entity.CityBean;
 import com.jiuyue.user.entity.CityListBean;
 import com.jiuyue.user.entity.ConfigEntity;
 import com.jiuyue.user.entity.CouponEntity;
 import com.jiuyue.user.entity.DynamicEntity;
+import com.jiuyue.user.entity.FollowCommoditBean;
 import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.NumberEntity;
@@ -16,6 +19,7 @@ import com.jiuyue.user.entity.TokenEntity;
 import com.jiuyue.user.entity.TrafficEntity;
 import com.jiuyue.user.entity.UserInfoEntity;
 import com.jiuyue.user.entity.req.PlaceOrderReq;
+import com.jiuyue.user.entity.FollowTechnicianBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -112,6 +116,36 @@ public interface ApiServer {
     @POST("/api/user/productInfo")
     @FormUrlEncoded
     Observable<HttpResponse<ProductEntity>> productInfo(@Field("productId") int productId);
+
+    //收藏套餐列表
+    @POST("/api/user/collectProductList")
+    @FormUrlEncoded
+    Observable<HttpResponse<FollowCommoditBean>> collectProductList(@Field("os") String os);
+
+    //关注技师列表
+    @POST("/api/user/followTechnicianList")
+    @FormUrlEncoded
+    Observable<HttpResponse<FollowTechnicianBean>> followTechnicianList(@Field("os") String os);
+
+    //用户地址列表
+    @POST("/api/user/addressList")
+    @FormUrlEncoded
+    Observable<HttpResponse<AddressListBean>> addressList(@Field("os") String os);
+
+    //删除用户地址
+    @POST("/api/user/delAddress")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> delAddress(@Field("addressId") String addressId);
+
+    //新增/修改用户地址
+    @POST("/api/user/saveAddress")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> saveAddress(@Field("addressId") int addressId,@Field("userName") String userName,
+                                                 @Field("genderName") String genderName,@Field("mobile") String mobile,
+                                                 @Field("address") String address,@Field("addressHouse") String addressHouse,
+                                                 @Field("addressCityCode") String addressCityCode,@Field("addressCity") String addressCity,
+                                                 @Field("addressLatitude") double addressLatitude,@Field("addressLongitude") double addressLongitude);
+
 
     //获取优惠券
     @POST("/api/user/discountList")
