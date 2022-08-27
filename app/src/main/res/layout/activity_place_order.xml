@@ -431,7 +431,6 @@
                     android:focusableInTouchMode="true"
                     android:hint="如有特殊情况,请在此输入描述说明..."
                     android:maxLength="100"
-                    android:textColor="@color/colorBbb"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
