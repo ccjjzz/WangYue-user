@@ -3,6 +3,7 @@ package com.jiuyue.user.ui.mine.address;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
+import android.content.Intent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.R;
 import com.jiuyue.user.adapter.CommonAddressAdapter;
 import com.jiuyue.user.base.BaseActivity;
@@ -50,6 +52,11 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
 
     @Override
     protected void init() {
+
+        LiveEventBus.get("Refresh", String.class).observeSticky(this, s -> {
+            mPresenter.AddressList("android");
+        });
+
         binding.title.setTitle("服务地址");
         commonRv = binding.commonRecycler;
         addressId = getIntent().getIntExtra(IntentKey.ADDRESS_ID, -1);
@@ -63,6 +70,8 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
         mPresenter.AddressList("android");
         setViewClick(this,
                 binding.addAddress);
+
+
     }
 
     @Override
@@ -94,7 +103,7 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
         }
 
         //删除地址列表
-        mAdapter.addChildClickViewIds(R.id.common_item_delete, R.id.common_item_choose_n);
+        mAdapter.addChildClickViewIds(R.id.common_item_delete,R.id.common_item_compile, R.id.common_item_choose_n);
         mAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
@@ -123,6 +132,23 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
                         setResult(Activity.RESULT_OK, resultIntent);
                         finish();
                     },500);
+                }else if (view.getId() == R.id.common_item_compile){
+                    String commonAddress = mAdapter.getData().get(position).getAddress();
+                    String commonUserName = mAdapter.getData().get(position).getUserName();
+                    String commonMobile = mAdapter.getData().get(position).getMobile();
+                    String commonAddressHouse = mAdapter.getData().get(position).getAddressHouse();
+                    int id = mAdapter.getData().get(position).getId();
+
+
+                    Intent intent = new Intent(CommonAddressActivity.this, EditAddressActivity.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("address",commonAddress);
+                    intent.putExtra("userName",commonUserName);
+                    intent.putExtra("mobile",commonMobile);
+                    intent.putExtra("addressHouse",commonAddressHouse);
+
+                    startActivity(intent);
+
                 }
             }
         });
