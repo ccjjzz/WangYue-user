@@ -1,6 +1,5 @@
 package com.jiuyue.user.ui.main.fragment
 
-import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -14,9 +13,9 @@ import com.jiuyue.user.entity.ProductEntity
 import com.jiuyue.user.entity.UserInfoEntity
 import com.jiuyue.user.global.EventKey
 import com.jiuyue.user.global.SpKey
-import com.jiuyue.user.ui.main.activity.CommonAddressActivity
-import com.jiuyue.user.ui.main.activity.FollowCommodityActivity
-import com.jiuyue.user.ui.main.activity.FollowTechnicianActivity
+import com.jiuyue.user.ui.mine.address.CommonAddressActivity
+import com.jiuyue.user.ui.mine.FollowCommodityActivity
+import com.jiuyue.user.ui.mine.FollowTechnicianActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
 

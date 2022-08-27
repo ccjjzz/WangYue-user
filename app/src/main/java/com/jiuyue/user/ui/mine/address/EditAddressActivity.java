@@ -1,4 +1,4 @@
-package com.jiuyue.user.ui.main.activity;
+package com.jiuyue.user.ui.mine.address;
 
 import android.content.Intent;
 import android.view.View;
@@ -24,7 +24,7 @@ import com.jiuyue.user.widget.TitleView;
 
 import java.util.List;
 
-public class EditAddressActivity extends BaseActivity<EditAddressPresenter,ActivityEditAddressBinding> implements EditAddressContract.IView, View.OnClickListener {
+public class EditAddressActivity extends BaseActivity<EditAddressPresenter, ActivityEditAddressBinding> implements EditAddressContract.IView, View.OnClickListener {
     private ActivityResultLauncher<Intent> chooseAddress;
     private TitleView title;
     private AppCompatEditText addName;
@@ -32,7 +32,7 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter,Activ
     private AppCompatTextView addAddress;
     private AppCompatEditText addHouseNumber;
     private AppCompatTextView addPreservation;
-    private ConstraintLayout  addBack;
+    private ConstraintLayout addBack;
     private double addressLatitude;
     private double addressLongitude;
     private String addressCity;
@@ -61,16 +61,14 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter,Activ
         addBack = binding.editBack;
 
         chooseAddress = registerForActivityResult(
-                new StartActivityContract<CityBean.ListDTO>(IntentKey.SERVICE_CITY_BRAN), result -> {
-                    if (result!=null){
-                        // TODO: 2022/8/3  上传接口
+                new StartActivityContract<CityBean.ListDTO>(IntentKey.CHOOSE_CITY_BRAN), result -> {
+                    if (result != null) {
                         address = result.getAddress();
                         addAddress.setText(address);
                         addressLatitude = result.getAddressLatitude();
                         addressLongitude = result.getAddressLongitude();
                         addressCity = result.getAddressCity();
                         addressCityCode = result.getAddressCityCode();
-
                     }
 
                 });
@@ -95,7 +93,7 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter,Activ
     public void onAddressListSuccess(AddressListBean data) {
         List<AddressListBean.ListDTO> list = data.getList();
         int isDefault = list.get(0).getIsDefault();
-        if (isDefault==1){
+        if (isDefault == 1) {
             addAddress.setText(list.get(0).getAddress());
         }
     }
@@ -107,15 +105,17 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter,Activ
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.edit_back:
-                IntentUtils.startActivity(EditAddressActivity.this, InputTipsActivity.class);
+                chooseAddress.launch(
+                        new Intent().setClass(this, InputTipsActivity.class)
+                );
                 break;
             case R.id.edit_preservation:
                 String name = addName.getText().toString();
                 String phone = addPhone.getText().toString();
                 String houseNumber = addHouseNumber.getText().toString();
-                mPresenter.EditAddress(0,name,"男士",phone,address,houseNumber,addressCityCode,addressCity,addressLatitude,addressLongitude);
+                mPresenter.EditAddress(0, name, "男士", phone, address, houseNumber, addressCityCode, addressCity, addressLatitude, addressLongitude);
 //                mPresenter.EditAddress(0,name,"男士",phone,"北京市东城区阿文汤包(南小街店)",houseNumber,"10010","北京",40.052834,116.303013);
                 break;
         }

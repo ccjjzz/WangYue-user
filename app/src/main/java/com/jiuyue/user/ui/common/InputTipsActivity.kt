@@ -43,9 +43,9 @@ class InputTipsActivity : BaseActivity<BasePresenter?, ActivityInputTipsBinding>
     TextWatcher, InputtipsListener {
     private var city = "北京" //城市
     private var cityCode = "010" //城市code
-    private var address = "" //地址
-    private var addressLatitude = 0.0 //纬度
-    private var addressLongitude = 0.0 // 经度
+    private var mAddress = "" //地址
+    private var mAddressLatitude = 0.0 //纬度
+    private var mAddressLongitude = 0.0 // 经度
     private var hotCities: List<HotCity> = ArrayList()
     private var allCities: List<City> = ArrayList()
     private val mKeywordText by lazy {
@@ -97,8 +97,8 @@ class InputTipsActivity : BaseActivity<BasePresenter?, ActivityInputTipsBinding>
         //获取默认城市信息
         city = App.getSharePre().getString(SpKey.DEFAULT_CITY_NAME)
         cityCode = App.getSharePre().getString(SpKey.CITY_CODE)
-        addressLongitude = App.getSharePre().getDouble(SpKey.LONGITUDE)
-        addressLatitude = App.getSharePre().getDouble(SpKey.LATITUDE)
+        mAddressLongitude = App.getSharePre().getDouble(SpKey.LONGITUDE)
+        mAddressLatitude = App.getSharePre().getDouble(SpKey.LATITUDE)
         //获取城市数据
         hotCities = App.getSharePre().getList(SpKey.HOT_CITIES, HotCity::class.java)
         allCities = App.getSharePre().getList(SpKey.ALL_CITIES, City::class.java)
@@ -250,24 +250,24 @@ class InputTipsActivity : BaseActivity<BasePresenter?, ActivityInputTipsBinding>
                 aAdapter.notifyDataSetChanged()
                 mInputList.onItemClickListener =
                     AdapterView.OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
-                        address = tipList[position].district + tipList[position].name
-                        addressLongitude = tipList[position].point.longitude
-                        addressLatitude = tipList[position].point.latitude
+                        mAddress = tipList[position].district + tipList[position].name
+                        mAddressLongitude = tipList[position].point.longitude
+                        mAddressLatitude = tipList[position].point.latitude
 
                         //回调结果出去
                         val cityBean = CityBean.ListDTO().apply {
                             this.addressCity = city
                             this.addressCityCode = cityCode
-                            this.address = address
-                            this.addressLongitude = addressLongitude
-                            this.addressLatitude = addressLatitude
+                            this.address = mAddress
+                            this.addressLongitude = mAddressLongitude
+                            this.addressLatitude = mAddressLatitude
                         }
                         Logger.wtf(
                             "地址信息:" + city + ","
                                     + cityCode + ","
-                                    + address + ","
-                                    + addressLongitude + ","
-                                    + addressLatitude + ","
+                                    + mAddress + ","
+                                    + mAddressLongitude + ","
+                                    + mAddressLatitude + ","
                         )
 
                         val resultIntent = Intent().apply {

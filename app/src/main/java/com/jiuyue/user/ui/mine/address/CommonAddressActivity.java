@@ -1,4 +1,4 @@
-package com.jiuyue.user.ui.main.activity;
+package com.jiuyue.user.ui.mine.address;
 
 import android.view.View;
 
@@ -11,12 +11,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.jiuyue.user.R;
 import com.jiuyue.user.adapter.CommonAddressAdapter;
-import com.jiuyue.user.adapter.FollowTechnicianAdapter;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.databinding.ActivityCommonAddressBinding;
 import com.jiuyue.user.entity.AddressListBean;
-import com.jiuyue.user.entity.CityBean;
-import com.jiuyue.user.entity.FollowTechnicianBean;
 import com.jiuyue.user.mvp.contract.CommonAddressContract;
 import com.jiuyue.user.mvp.presenter.CommonAddressPresenter;
 import com.jiuyue.user.utils.IntentUtils;
@@ -39,6 +36,11 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
     }
 
     @Override
+    public View getLoadingTargetView() {
+        return binding.commonRecycler;
+    }
+
+    @Override
     protected CommonAddressPresenter createPresenter() {
         return new CommonAddressPresenter(this);
     }
@@ -57,9 +59,9 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.add_address:
-                IntentUtils.startActivity(CommonAddressActivity.this,EditAddressActivity.class);
+                IntentUtils.startActivity(CommonAddressActivity.this, EditAddressActivity.class);
                 break;
         }
     }
@@ -74,15 +76,15 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
             id = list.get(0).getId();
             adapter.setList(list);
         } else {
-//            showEmpty();
+            showEmpty();
         }
-            //删除地址列表
-            adapter.addChildClickViewIds(R.id.common_item_delete);
-            adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        //删除地址列表
+        adapter.addChildClickViewIds(R.id.common_item_delete);
+        adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                if (view.getId()==R.id.common_item_delete){
-                    mPresenter.DelAddress(id+"");
+                if (view.getId() == R.id.common_item_delete) {
+                    mPresenter.DelAddress(id + "");
                 }
             }
         });
@@ -92,6 +94,7 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
     public void onAddressListError(String msg, int code) {
         showError(msg, code);
     }
+
     //删除
     @Override
     public void onDelAddressSuccess(Object data) {

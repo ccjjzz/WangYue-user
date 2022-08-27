@@ -9,7 +9,6 @@ public class IntentKey {
     public static final String VIDEO_COVER_PATH = "INTENT_VIDEO_COVER_PATH";
     public static final String PHOTO_LIST = "INTENT_PHOTO_LIST";
     public static final String PHOTO_POSITION = "INTENT_PHOTO_POSITION";
-    public static final String SERVICE_CITY_BRAN = "INTENT_SERVICE_CITY_BRAN";
 
     /*****************************业务*******************************/
     public static final String PRODUCT_ID = "PRODUCT_ID";

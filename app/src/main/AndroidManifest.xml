@@ -161,22 +161,22 @@
             android:launchMode="standard"
             android:screenOrientation="behind" />
         <activity
-            android:name=".ui.main.activity.FollowCommodityActivity"
+            android:name=".ui.mine.FollowCommodityActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind" />
         <activity
-            android:name=".ui.main.activity.FollowTechnicianActivity"
+            android:name=".ui.mine.FollowTechnicianActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind" />
         <activity
-            android:name=".ui.main.activity.CommonAddressActivity"
+            android:name=".ui.mine.address.CommonAddressActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind" />
         <activity
-            android:name=".ui.main.activity.EditAddressActivity"
+            android:name=".ui.mine.address.EditAddressActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind" />

@@ -1,4 +1,4 @@
-package com.jiuyue.user.ui.main.activity;
+package com.jiuyue.user.ui.mine;
 
 import android.widget.TextView;
 

@@ -2,8 +2,6 @@ package com.jiuyue.user.mvp.contract;
 
 import com.jiuyue.user.base.BaseView;
 import com.jiuyue.user.entity.AddressListBean;
-import com.jiuyue.user.entity.CityBean;
-import com.jiuyue.user.entity.DynamicBean;
 import com.jiuyue.user.net.BaseObserver;
 
 public interface EditAddressContract {
