@@ -42,4 +42,56 @@ public class DynamicPresenter extends IBasePresenter<DynamicContract.IView> impl
             }
         });
     }
+
+    @Override
+    public void likeDynamic(int techId, int dynamicId, int type) {
+        mModel.likeDynamic(techId, dynamicId,type, new BaseObserver<Object>(mView) {
+            @Override
+            public void onSuccess(HttpResponse<Object> data) {
+                mView.onLikeDynamicSuccess(data.getData());
+            }
+
+            @Override
+            public void onError(String msg, int code) {
+                mView.onLikeDynamicError(msg, code);
+            }
+
+            @Override
+            public void complete() {
+
+            }
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                addDisposable(d);
+            }
+        });
+    }
+
+    @Override
+    public void collectDynamic(int techId, int dynamicId, int type) {
+        mModel.collectDynamic(techId, dynamicId,type, new BaseObserver<Object>(mView) {
+            @Override
+            public void onSuccess(HttpResponse<Object> data) {
+                mView.onCollectDynamicSuccess(data.getData());
+            }
+
+            @Override
+            public void onError(String msg, int code) {
+                mView.onCollectDynamicError(msg, code);
+            }
+
+            @Override
+            public void complete() {
+
+            }
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                addDisposable(d);
+            }
+        });
+    }
+
+
 }

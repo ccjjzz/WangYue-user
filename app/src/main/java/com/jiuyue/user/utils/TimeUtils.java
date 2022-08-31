@@ -101,7 +101,7 @@ public class TimeUtils {
     }
 
 
-    //秒数转分钟
+    //秒数转时分秒
     public static String SecondChangeMinute(long second) {
         long h = 0;
         long d = 0;

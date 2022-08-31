@@ -11,6 +11,7 @@ public class UserInfoEntity {
     private int collectNum;
     private double wallet;
     private int vipLevel;
+    private double score;
 
     public int getId() {
         return id;
@@ -90,5 +91,13 @@ public class UserInfoEntity {
 
     public void setVipLevel(int vipLevel) {
         this.vipLevel = vipLevel;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 }

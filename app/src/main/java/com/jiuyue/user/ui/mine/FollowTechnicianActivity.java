@@ -1,15 +1,14 @@
 package com.jiuyue.user.ui.mine;
 
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jiuyue.user.adapter.FollowCommodityAdapter;
 import com.jiuyue.user.adapter.FollowTechnicianAdapter;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.databinding.ActivityFollowTechnicianBinding;
-import com.jiuyue.user.entity.FollowCommoditBean;
 import com.jiuyue.user.entity.FollowTechnicianBean;
 import com.jiuyue.user.mvp.contract.FollowTechnicianContract;
 import com.jiuyue.user.mvp.presenter.FollowTechnicianPresenter;
@@ -29,6 +28,11 @@ public class FollowTechnicianActivity extends BaseActivity<FollowTechnicianPrese
     @Override
     protected FollowTechnicianPresenter createPresenter() {
         return new FollowTechnicianPresenter(this);
+    }
+
+    @Override
+    public View getLoadingTargetView() {
+        return binding.followRecycler;
     }
 
     @Override

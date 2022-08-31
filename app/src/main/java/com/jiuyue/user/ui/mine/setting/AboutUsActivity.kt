@@ -1,12 +1,11 @@
 package com.jiuyue.user.ui.mine.setting
 
 import android.view.View
+import com.jiuyue.user.App
 import com.jiuyue.user.base.BaseActivity
 import com.jiuyue.user.base.BasePresenter
-import com.jiuyue.user.entity.ConfigEntity
-import com.jiuyue.user.App
-import com.jiuyue.user.R
 import com.jiuyue.user.databinding.ActivityAboutUsBinding
+import com.jiuyue.user.entity.ConfigEntity
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.utils.IntentUtils
 
@@ -49,7 +48,7 @@ class AboutUsActivity : BaseActivity<BasePresenter, ActivityAboutUsBinding>(),
                 IntentUtils.startWebActivity(this, config.zerenUrl, "责任声明")
             }
             binding.gzh -> {
-                IntentUtils.startWebActivity(this, config.wxgzhEwmUrl, "微信公众号")
+                IntentUtils.startActivity(this,QRCodeWxActivity::class.java)
             }
         }
     }

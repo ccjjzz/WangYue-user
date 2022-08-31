@@ -18,8 +18,6 @@ import com.jiuyue.user.global.IntentKey;
 import com.jiuyue.user.mvp.contract.EditAddressContract;
 import com.jiuyue.user.mvp.presenter.EditAddressPresenter;
 import com.jiuyue.user.ui.common.InputTipsActivity;
-import com.jiuyue.user.utils.AppStockManage;
-import com.jiuyue.user.utils.IntentUtils;
 import com.jiuyue.user.utils.StartActivityContract;
 import com.jiuyue.user.utils.ToastUtil;
 import com.jiuyue.user.widget.TitleView;

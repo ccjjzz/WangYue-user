@@ -1,10 +1,7 @@
 package com.jiuyue.user.mvp.contract;
 
 import com.jiuyue.user.base.BaseView;
-import com.jiuyue.user.entity.CouponEntity;
-import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.OrderInfoEntity;
-import com.jiuyue.user.entity.ProductEntity;
 import com.jiuyue.user.entity.TrafficEntity;
 import com.jiuyue.user.entity.req.PlaceOrderReq;
 import com.jiuyue.user.net.BaseObserver;

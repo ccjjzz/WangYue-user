@@ -1,6 +1,6 @@
 package com.jiuyue.user.ui.mine;
 
-import android.widget.TextView;
+import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +15,16 @@ import com.jiuyue.user.mvp.presenter.FollowCommodityPresenter;
 import java.util.List;
 
 public class FollowCommodityActivity extends BaseActivity<FollowCommodityPresenter, ActivityFollowCommodityBinding> implements FollowCommodityContract.IView {
-    private TextView title;
     private RecyclerView followRv;
 
     @Override
     protected ActivityFollowCommodityBinding getViewBinding() {
         return ActivityFollowCommodityBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
+    public View getLoadingTargetView() {
+        return binding.followRecycler;
     }
 
     @Override

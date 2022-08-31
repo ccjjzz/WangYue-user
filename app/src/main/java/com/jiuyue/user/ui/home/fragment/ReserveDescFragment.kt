@@ -3,10 +3,8 @@ package com.jiuyue.user.ui.home.fragment
 import android.content.Intent
 import android.net.Uri
 import android.net.http.SslError
-import android.view.LayoutInflater
 import android.view.View
 import android.webkit.*
-import com.jiuyue.user.R
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.databinding.FragmentReserveDescBinding

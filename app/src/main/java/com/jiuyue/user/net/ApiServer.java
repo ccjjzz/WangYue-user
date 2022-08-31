@@ -2,24 +2,24 @@ package com.jiuyue.user.net;
 
 
 import com.jiuyue.user.entity.AddressListBean;
-import com.jiuyue.user.entity.CityBean;
 import com.jiuyue.user.entity.CityListBean;
 import com.jiuyue.user.entity.ConfigEntity;
 import com.jiuyue.user.entity.CouponEntity;
 import com.jiuyue.user.entity.DynamicEntity;
 import com.jiuyue.user.entity.FollowCommoditBean;
+import com.jiuyue.user.entity.FollowTechnicianBean;
 import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.NumberEntity;
 import com.jiuyue.user.entity.OrderInfoEntity;
 import com.jiuyue.user.entity.ProductEntity;
 import com.jiuyue.user.entity.ReserveTimeEntity;
+import com.jiuyue.user.entity.TechnicianDynamicEntity;
 import com.jiuyue.user.entity.TechnicianEntity;
 import com.jiuyue.user.entity.TokenEntity;
 import com.jiuyue.user.entity.TrafficEntity;
 import com.jiuyue.user.entity.UserInfoEntity;
 import com.jiuyue.user.entity.req.PlaceOrderReq;
-import com.jiuyue.user.entity.FollowTechnicianBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -107,10 +107,35 @@ public interface ApiServer {
     @FormUrlEncoded
     Observable<HttpResponse<ListBean<TechnicianEntity>>> technicianList(@FieldMap Map<String, Object> map);
 
+    //技师详情
+    @POST("/api/user/technicianInfo")
+    @FormUrlEncoded
+    Observable<HttpResponse<TechnicianEntity>> technicianInfo(@Field("techId") int techId);
+
+    //技师动态列表
+    @POST("/api/user/technicianDynamicList")
+    @FormUrlEncoded
+    Observable<HttpResponse<TechnicianDynamicEntity>> technicianDynamicList(@Field("techId") int techId, @Field("page") int page);
+
+    //关注、取关技师
+    @POST("/api/user/followTechnician")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> followTechnician(@Field("techId") int techId, @Field("type") int type);
+
     //发现TAB数据
     @POST("/api/user/dynamicList")
     @FormUrlEncoded
     Observable<HttpResponse<ListBean<DynamicEntity>>> dynamicList(@Field("tabId") int tabId, @Field("page") int page);
+
+    //点赞/取消点赞动态
+    @POST("/api/user/likeDynamic")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> likeDynamic(@Field("tabId") int tabId, @Field("dynamicId") int dynamicId, @Field("type") int type);
+
+    //收藏/取消收藏动态
+    @POST("/api/user/collectDynamic")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> collectDynamic(@Field("tabId") int tabId, @Field("dynamicId") int dynamicId, @Field("type") int type);
 
     //项目套餐详情
     @POST("/api/user/productInfo")
@@ -140,11 +165,11 @@ public interface ApiServer {
     //新增/修改用户地址
     @POST("/api/user/saveAddress")
     @FormUrlEncoded
-    Observable<HttpResponse<Object>> saveAddress(@Field("addressId") int addressId,@Field("userName") String userName,
-                                                 @Field("genderName") String genderName,@Field("mobile") String mobile,
-                                                 @Field("address") String address,@Field("addressHouse") String addressHouse,
-                                                 @Field("addressCityCode") String addressCityCode,@Field("addressCity") String addressCity,
-                                                 @Field("addressLatitude") double addressLatitude,@Field("addressLongitude") double addressLongitude);
+    Observable<HttpResponse<Object>> saveAddress(@Field("addressId") int addressId, @Field("userName") String userName,
+                                                 @Field("genderName") String genderName, @Field("mobile") String mobile,
+                                                 @Field("address") String address, @Field("addressHouse") String addressHouse,
+                                                 @Field("addressCityCode") String addressCityCode, @Field("addressCity") String addressCity,
+                                                 @Field("addressLatitude") double addressLatitude, @Field("addressLongitude") double addressLongitude);
 
 
     //获取优惠券
@@ -165,10 +190,30 @@ public interface ApiServer {
     //获取出行方式
     @POST("/api/user/orderTrafficSet")
     @FormUrlEncoded
-    Observable<HttpResponse<TrafficEntity>> orderTrafficSet(@FieldMap HashMap<String,Object> map);
+    Observable<HttpResponse<TrafficEntity>> orderTrafficSet(@FieldMap HashMap<String, Object> map);
 
     //用户下单
     @POST("/api/user/orderProduct")
     Observable<HttpResponse<OrderInfoEntity>> orderProduct(@Body PlaceOrderReq req);
+
+    //订单列表
+    @POST("/api/user/orderList")
+    @FormUrlEncoded
+    Observable<HttpResponse<ListBean<OrderInfoEntity>>> orderList(@Field("status") int status);
+
+    //订单详情
+    @POST("/api/user/orderInfo")
+    @FormUrlEncoded
+    Observable<HttpResponse<OrderInfoEntity>> orderInfo(@Field("orderNo") String orderNo);
+
+    //取消订单
+    @POST("/api/user/cancelOrder")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> cancelOrder(@Field("orderNo") String orderNo);
+
+    //删除订单
+    @POST("/api/user/delOrder")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> delOrder(@Field("orderNo") String orderNo);
 
 }

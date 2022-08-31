@@ -3,6 +3,9 @@ package com.jiuyue.user.global;
 public class EventKey {
     public static final String UPDATE_PRODUCT_LIST = "UPDATE_PRODUCT_LIST";
     public static final String PRODUCT_DETAIL_DATA = "PRODUCT_DETAIL_DATA";
+    public static final String REFRESH_ORDER_STATUS = "REFRESH_ORDER_STATUS";
+    public static final String MODIFY_INFO = "MODIFY_INFO";
+    public static final String UPDATE_FOLLOW_STATUS = "UPDATE_FOLLOW_STATUS";
 
     public static class EventMsg {
         private int code;

@@ -1,7 +1,6 @@
 package com.jiuyue.user.mvp.model;
 
 import com.jiuyue.user.entity.AddressListBean;
-import com.jiuyue.user.entity.CityBean;
 import com.jiuyue.user.mvp.contract.EditAddressContract;
 import com.jiuyue.user.net.ApiRetrofit;
 import com.jiuyue.user.net.ApiServer;

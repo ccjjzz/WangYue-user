@@ -8,12 +8,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.jiuyue.user.entity.ProductEntity;
+import com.jiuyue.user.entity.req.PlaceOrderReq;
 import com.jiuyue.user.global.IntentKey;
 import com.jiuyue.user.ui.common.PhotoViewActivity;
 import com.jiuyue.user.ui.common.VideoPlayerActivity;
+import com.jiuyue.user.ui.home.PlaceOrderActivity;
 import com.jiuyue.user.ui.home.ProductDetailActivity;
 import com.jiuyue.user.ui.main.MainActivity;
 import com.jiuyue.user.ui.mine.order.OrderDetailsActivity;
+import com.jiuyue.user.ui.technician.TechnicianDetailActivity;
+import com.jiuyue.user.ui.technician.TechnicianProfileActivity;
 import com.jiuyue.user.ui.web.WebActivity;
 import com.jiuyue.user.ui.web.WebDataActivity;
 
@@ -247,6 +252,46 @@ public class IntentUtils {
             Intent intent = new Intent();
             intent.setClass(context, OrderDetailsActivity.class);
             intent.putExtra(IntentKey.ORDER_ID, orderId);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转下单页面
+     *
+     */
+    public static void startPlaceOrderActivity(Context context, PlaceOrderReq placeOrderReq,ProductEntity productEntity) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, PlaceOrderActivity.class);
+            intent.putExtra(IntentKey.PLACE_ORDER_REQ, placeOrderReq);
+            intent.putExtra(IntentKey.PRODUCT_BEAN, productEntity);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转技师详情页面
+     *
+     */
+    public static void startTechnicianDetailsActivity(Context context,int techId) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, TechnicianDetailActivity.class);
+            intent.putExtra(IntentKey.TECH_ID, techId);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转技师简介页面
+     *
+     */
+    public static void startTechnicianProfileActivity(Context context,int techId) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, TechnicianProfileActivity.class);
+            intent.putExtra(IntentKey.TECH_ID, techId);
             context.startActivity(intent);
         }
     }

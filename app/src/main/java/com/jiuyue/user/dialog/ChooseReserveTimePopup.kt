@@ -2,7 +2,6 @@ package com.jiuyue.user.dialog
 
 import android.content.Context
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -14,14 +13,11 @@ import com.jiuyue.user.R
 import com.jiuyue.user.adapter.base.BaseBindingAdapter
 import com.jiuyue.user.databinding.ItemBusyDateBinding
 import com.jiuyue.user.databinding.ItemBusyTimeBinding
-import com.jiuyue.user.entity.ListBean
 import com.jiuyue.user.entity.ReserveTimeEntity
 import com.jiuyue.user.mvp.model.CommonModel
 import com.jiuyue.user.net.ResultListener
-import com.jiuyue.user.utils.ScreenUtils
 import com.jiuyue.user.utils.ToastUtil
 import com.lxj.xpopup.core.BottomPopupView
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 class ChooseReserveTimePopup : BottomPopupView {
     private var mContext: Context

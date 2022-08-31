@@ -9,13 +9,18 @@ import com.jiuyue.user.adapter.HomeProductAdapter
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.databinding.FragmentMineBinding
+import com.jiuyue.user.entity.ConfigEntity
 import com.jiuyue.user.entity.ProductEntity
 import com.jiuyue.user.entity.UserInfoEntity
 import com.jiuyue.user.global.EventKey
 import com.jiuyue.user.global.SpKey
-import com.jiuyue.user.ui.mine.address.CommonAddressActivity
+import com.jiuyue.user.mvp.model.CommonModel
+import com.jiuyue.user.net.ResultListener
+import com.jiuyue.user.tim.TIMHelper
 import com.jiuyue.user.ui.mine.FollowCommodityActivity
 import com.jiuyue.user.ui.mine.FollowTechnicianActivity
+import com.jiuyue.user.ui.mine.ModifyInfoActivity
+import com.jiuyue.user.ui.mine.address.CommonAddressActivity
 import com.jiuyue.user.ui.mine.setting.SettingActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
@@ -41,7 +46,7 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
         //个人信息
         val info = App.getSharePre().getObject(SpKey.USER_INFO_ENTITY, UserInfoEntity::class.java)
         GlideLoader.display(info.headImg, binding.ivMineAvatar, R.drawable.default_user_icon)
-        binding.tvMineName.text = info.name
+        binding.tvMineName.text = info.name.ifEmpty { "点击设置昵称" }
         binding.tvMineFollowNum.text = info.followNum.toString()
         binding.tvMineCollectNum.text = info.collectNum.toString()
 
@@ -50,8 +55,18 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             binding.clMineCollect,
             binding.clMineFollow,
             binding.tvMineAddress,
-            binding.ivMineSetting
+            binding.ivMineSetting,
+            binding.tvMineCustomerService,
+            binding.tvMineName,
+            binding.ivMineAvatar
         )
+
+        //接受修改信息操作通知
+        LiveEventBus
+            .get<String>(EventKey.MODIFY_INFO)
+            .observeSticky(this) {
+                refreshInfo()
+            }
         //接受订单详情操作通知
         LiveEventBus
             .get<List<ProductEntity>>(EventKey.UPDATE_PRODUCT_LIST)
@@ -61,11 +76,32 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
 
     }
 
+    private fun refreshInfo() {
+        CommonModel().getUserInfo(object : ResultListener<UserInfoEntity> {
+            override fun onSuccess(data: UserInfoEntity) {
+                //缓存用户信息
+                App.getSharePre().putObject(SpKey.USER_INFO_ENTITY, data)
+                //更新页面
+                GlideLoader.display(
+                    data.headImg,
+                    binding.ivMineAvatar,
+                    R.drawable.default_user_icon
+                )
+                binding.tvMineName.text = data.name.ifEmpty { "点击设置昵称" }
+                binding.tvMineFollowNum.text = data.followNum.toString()
+                binding.tvMineCollectNum.text = data.collectNum.toString()
+            }
+
+            override fun onError(msg: String?, code: Int) {
+            }
+        })
+    }
+
     private fun refreshProducts(products: List<ProductEntity>) {
         val mAdapterProduct by lazy {
             HomeProductAdapter().apply {
-                setOnItemClickListener { adapter, view, position ->
-                    // TODO: 套餐详情
+                setOnItemClickListener { _, _, position ->
+                    IntentUtils.startProductDetailActivity(mContext, data[position].id)
                 }
             }
         }
@@ -93,8 +129,18 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             binding.tvMineAddress -> {
                 IntentUtils.startActivity(mContext, CommonAddressActivity::class.java)
             }
-            binding.ivMineSetting->{
+            binding.ivMineSetting -> {
                 IntentUtils.startActivity(mContext, SettingActivity::class.java)
+            }
+            binding.tvMineCustomerService -> {
+                //联系客服
+                val config =
+                    App.getSharePre().getObject(SpKey.CONFIG_INFO, ConfigEntity::class.java)
+                TIMHelper.startC2CChat(mContext, config.customServiceImId, "久约客服")
+            }
+            binding.tvMineName,
+            binding.ivMineAvatar -> {
+                IntentUtils.startActivity(mContext, ModifyInfoActivity::class.java)
             }
         }
     }

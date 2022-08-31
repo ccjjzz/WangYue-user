@@ -63,8 +63,9 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
 
     private val mAdapterTechnician by lazy {
         HomeTechnicianAdapter().apply {
-            setOnItemClickListener { adapter, view, position ->
-                // TODO: 技师详情
+            setOnItemClickListener { _, _, position ->
+                //套餐详情
+                IntentUtils.startTechnicianDetailsActivity(mContext, data[position].id)
             }
         }
     }
@@ -78,11 +79,20 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
         }
     }
 
+    private val refreshLayout by lazy {
+        binding.refreshLayout.apply {
+            setEnableLoadMore(false)
+            setOnRefreshListener {
+                mPresenter.index()
+            }
+        }
+    }
+
     override fun getViewBinding(): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(layoutInflater)
     }
 
-    override fun getLoadingTargetView(): View = binding.scrollView
+    override fun getLoadingTargetView(): View = binding.refreshLayout
 
     override fun createPresenter(): HomePresenter {
         return HomePresenter(this)
@@ -263,6 +273,7 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
     }
 
     override fun onIndexSuccess(bean: HomeEntity?) {
+        refreshLayout.finishRefresh()
         if (bean == null) {
             showEmpty()
             return
@@ -308,16 +319,18 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
                 }
 
                 adapter = mAdapterTechnician
-                addItemDecoration(object : GridItemDecoration(mContext, 10, Color.TRANSPARENT) {
-                    override fun getItemSidesIsHaveOffsets(
-                        view: View?,
-                        itemPosition: Int
-                    ): BooleanArray {
-                        return booleanArrayOf(
-                            true, false, true, true
-                        )
-                    }
-                })
+                if (itemDecorationCount <= 0) {
+                    addItemDecoration(object : GridItemDecoration(mContext, 10, Color.TRANSPARENT) {
+                        override fun getItemSidesIsHaveOffsets(
+                            view: View?,
+                            itemPosition: Int
+                        ): BooleanArray {
+                            return booleanArrayOf(
+                                true, false, true, true
+                            )
+                        }
+                    })
+                }
             }
             mAdapterTechnician.setList(technicians)
             binding.tvHomeMoreTechnician.setOnClickListener {
@@ -347,6 +360,7 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
     }
 
     override fun onIndexError(msg: String?, code: Int) {
+        refreshLayout.finishRefresh()
         showError(msg, code)
         ToastUtil.show(msg)
     }

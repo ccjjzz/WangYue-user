@@ -36,12 +36,18 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/main_tab_5.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_check_main.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_code.xml" value="0.1245" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_follow.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_follow_icon.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_like_icon.xml" value="0.1175" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_mark_view.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_tech_gender.xml" value="0.1175" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/selector_tech_service.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_00d5c4_50dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_bbbbbb_50dp.xml" value="0.1245" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_f5f5f5_50dp.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_fd4473_50dp.xml" value="0.1005" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_btn_translucent_50dp.xml" value="0.1165" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_fd4473_4dp.xml" value="0.1205" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_fd4473_50dp.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_ffffff_bottom_5dp.xml" value="0.13" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_mind.xml" value="0.13" />
@@ -49,21 +55,55 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_10dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_15dp_shadow.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_radius_5dp.xml" value="0.13" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_top_radius_10dp.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_top_radius_15dp.xml" value="0.1005" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_card_top_radius_20dp.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_ceeff_50dp.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_eee_8dp.xml" value="0.1205" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_fbe8ef_radius_50dp.xml" value="0.105" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_fc2947_3dp.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_fc2947_50dp.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_fcf2f4_5dp.xml" value="0.1205" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_ffe4ee_50dp.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/shape_right_top_999_50dp.xml" value="0.1005" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1dp_999_50dp.xml" value="0.1245" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1dp_9a_3dp.xml" value="0.13" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1dp_bbb_50dp.xml" value="0.1005" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1dp_fd4473_50dp.xml" value="0.13" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1px_999_50dp.xml" value="0.1175" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/stroke_1px_eee_50dp.xml" value="0.1175" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/drawable/web_progress.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_about_us.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_add_address.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_address_manage.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_choose_address.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_common_address.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_edit_address.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_follow_commodity.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_follow_technician.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_input_tips.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_main.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_modify.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_modify_info.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_order_details.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_pay_result.xml" value="0.25546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_photo_view.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_place_order.xml" value="0.22" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_product_detail.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_qr_code_wx.xml" value="0.25546875" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_select_technician.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_setting.xml" value="0.25546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_splash.xml" value="0.12" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_technician_detail.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_technician_profile.xml" value="0.25546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_video_player.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/activity_web.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_dividing_line_gray.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_recycle_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_refresh_recycle.xml" value="0.12" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/common_title_recycle.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_bubble_tips.xml" value="0.25546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_confirm.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_loading.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/dialog_privacy_pact.xml" value="0.25625" />
@@ -75,13 +115,20 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_reserve_desc.xml" value="0.2546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_technician.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/fragment_web.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_busy_date.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_busy_period.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_busy_time.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_common_address.xml" value="0.25546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic.xml" value="0.3333333333333333" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic_grid.xml" value="0.25546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic_img.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_dynamic_profile.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_home_product.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_home_technician.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_input_tips.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_photo_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_technician.xml" value="0.3333333333333333" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/item_technician_product.xml" value="0.3333333333333333" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/layout_detail_title.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/layout_home_head.xml" value="0.2546875" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_empty_view.xml" value="0.25625" />
@@ -89,6 +136,7 @@
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_net_error_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/loading_view.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/marquee_scroll_content.xml" value="0.25625" />
+        <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/popup_reserve_time.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/popup_top_msg.xml" value="0.25625" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/view_amount.xml" value="0.1" />
         <entry key="..\:/WorkSpace/WangYue-user/app/src/main/res/layout/view_mark_view.xml" value="0.25625" />

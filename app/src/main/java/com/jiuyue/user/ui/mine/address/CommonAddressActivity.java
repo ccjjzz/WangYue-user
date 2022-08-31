@@ -3,7 +3,6 @@ package com.jiuyue.user.ui.mine.address;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
-import android.content.Intent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -21,8 +20,6 @@ import com.jiuyue.user.entity.AddressListBean;
 import com.jiuyue.user.global.IntentKey;
 import com.jiuyue.user.mvp.contract.CommonAddressContract;
 import com.jiuyue.user.mvp.presenter.CommonAddressPresenter;
-import com.jiuyue.user.net.ResultListener;
-import com.jiuyue.user.utils.CountdownUtils;
 import com.jiuyue.user.utils.IntentUtils;
 import com.jiuyue.user.utils.ToastUtil;
 

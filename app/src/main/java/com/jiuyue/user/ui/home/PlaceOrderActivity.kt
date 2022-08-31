@@ -18,18 +18,18 @@ import com.jiuyue.user.mvp.presenter.PlaceOrderPresenter
 import com.jiuyue.user.net.BaseObserver
 import com.jiuyue.user.net.HttpResponse
 import com.jiuyue.user.ui.mine.address.CommonAddressActivity
-import com.jiuyue.user.utils.IntentUtils
+import com.jiuyue.user.utils.*
 import com.jiuyue.user.utils.KeyboardUtils.hideKeyBoard
 import com.jiuyue.user.utils.KeyboardUtils.showKeyBoard
-import com.jiuyue.user.utils.StartActivityContract
-import com.jiuyue.user.utils.ToastUtil
-import com.jiuyue.user.utils.XPopupHelper
 import com.jiuyue.user.utils.glide.GlideLoader
 import com.lxj.xpopup.XPopup
 import com.orhanobut.logger.Logger
 import io.reactivex.disposables.Disposable
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
+/**
+ *  下单
+ */
 class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderBinding>(),
     PlaceOrderContract.IView, View.OnClickListener {
     private lateinit var placeOrderReq: PlaceOrderReq
@@ -55,18 +55,31 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
 
         //初始化服务信息
         placeOrderReq.let {
-            binding.tvServiceTime.text = it.serviceTitle
-            binding.tvServiceTechName.text = it.certName
+            binding.tvServiceTime.text = if (it.serviceTitle.isNullOrEmpty()) {
+                "选择预约时间"
+            } else {
+                it.serviceTitle
+            }
+            binding.tvServiceTechName.text = if (it.certName.isNullOrEmpty()) {
+                "选择技师"
+            } else {
+                it.certName
+            }
             GlideLoader.display(it.techAvatar, binding.ivServiceTechAvatar)
         }
 
         //初始化套餐信息
         productData.let {
-            val banners = it.banners.split(",".toRegex()).toMutableList()
-            GlideLoader.display(banners[0], binding.ivProductAvatar)
+            GlideLoader.displayRound(
+                it.picture,
+                binding.ivProductAvatar,
+                R.drawable.ic_defalut_product,
+                Dp2px.dp2px(5)
+            )
             binding.tvProductName.text = it.name
-            binding.tvProductNum.text = placeOrderReq?.productNum.toString()
+            binding.tvProductNum.text = placeOrderReq.productNum.toString()
             binding.tvProductPrice.text = "¥ ${it.price}"
+            placeOrderReq.productId = it.id
             //支付金额
             placeOrderReq.buyPrice = it.price
             binding.tvBuyPrice.text = placeOrderReq.buyPrice.toString()
@@ -217,7 +230,7 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
         binding.tvTrafficFee.text = "¥ ${data.trafficFee}"
 
         //支付金额
-        placeOrderReq.buyPrice = placeOrderReq.buyPrice.minus(data.trafficFee)
+        placeOrderReq.buyPrice = productData.price.plus(data.trafficFee)
         binding.tvBuyPrice.text = placeOrderReq.buyPrice.toString()
     }
 
@@ -274,6 +287,14 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
             binding.btnBuy -> {
                 if (placeOrderReq.addressId == -1) {
                     XPopupHelper.showBubbleTips(this, "请先选择地址", binding.tvAddress)
+                    return
+                }
+                if (placeOrderReq.certName == null) {
+                    XPopupHelper.showBubbleTips(this, "请先选择技师", binding.tvServiceTechName)
+                    return
+                }
+                if (placeOrderReq.serviceTitle == null) {
+                    XPopupHelper.showBubbleTips(this, "请先选择预约时间", binding.tvServiceTime)
                     return
                 }
                 //下单

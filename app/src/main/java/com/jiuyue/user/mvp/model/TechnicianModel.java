@@ -1,6 +1,7 @@
 package com.jiuyue.user.mvp.model;
 
 import com.jiuyue.user.entity.ListBean;
+import com.jiuyue.user.entity.TechnicianDynamicEntity;
 import com.jiuyue.user.entity.TechnicianEntity;
 import com.jiuyue.user.mvp.contract.TechnicianContract;
 import com.jiuyue.user.net.ApiRetrofit;
@@ -18,6 +19,30 @@ public class TechnicianModel implements TechnicianContract.Model {
     @Override
     public void technicianList(HashMap<String, Object> map, BaseObserver<ListBean<TechnicianEntity>> observer) {
         apiServer.technicianList(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    @Override
+    public void technicianInfo(int techId, BaseObserver<TechnicianEntity> observer) {
+        apiServer.technicianInfo(techId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    @Override
+    public void followTechnician(int techId, int type, BaseObserver<Object> observer) {
+        apiServer.followTechnician(techId, type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    @Override
+    public void technicianDynamicList(int techId, int page, BaseObserver<TechnicianDynamicEntity> observer) {
+        apiServer.technicianDynamicList(techId, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

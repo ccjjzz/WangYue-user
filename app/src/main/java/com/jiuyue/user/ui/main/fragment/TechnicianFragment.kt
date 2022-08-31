@@ -14,12 +14,14 @@ import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.FragmentTechnicianBinding
 import com.jiuyue.user.entity.CityListBean
 import com.jiuyue.user.entity.ListBean
+import com.jiuyue.user.entity.TechnicianDynamicEntity
 import com.jiuyue.user.entity.TechnicianEntity
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.contract.TechnicianContract
 import com.jiuyue.user.mvp.model.CommonModel
 import com.jiuyue.user.mvp.presenter.TechnicianPresenter
 import com.jiuyue.user.net.ResultListener
+import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.LocationHelper
 import com.jiuyue.user.utils.ToastUtil
 import com.permissionx.guolindev.PermissionX
@@ -52,8 +54,8 @@ class TechnicianFragment : BaseFragment<TechnicianPresenter, FragmentTechnicianB
 
     private val mAdapter by lazy {
         TechnicianAdapter().apply {
-            setOnItemClickListener { adapter, view, position ->
-                // TODO: 技师详情
+            setOnItemClickListener { _, _, position ->
+                IntentUtils.startTechnicianDetailsActivity(mContext,data[position].id)
             }
         }
     }
@@ -311,5 +313,23 @@ class TechnicianFragment : BaseFragment<TechnicianPresenter, FragmentTechnicianB
     override fun onTechnicianListError(msg: String?, code: Int) {
         showError(msg, code)
         ToastUtil.show(msg)
+    }
+
+    override fun onTechnicianInfoSuccess(data: TechnicianEntity?) {
+    }
+
+    override fun onTechnicianInfoError(msg: String?, code: Int) {
+    }
+
+    override fun onFollowTechnicianSuccess(data: Any?) {
+    }
+
+    override fun onFollowTechnicianError(msg: String?, code: Int) {
+    }
+
+    override fun onTechnicianDynamicListSuccess(data: TechnicianDynamicEntity.ListDTO) {
+    }
+
+    override fun onTechnicianDynamicListError(msg: String?, code: Int) {
     }
 }

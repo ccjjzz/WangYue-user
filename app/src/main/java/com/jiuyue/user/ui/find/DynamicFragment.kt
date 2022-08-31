@@ -124,4 +124,16 @@ class DynamicFragment(private var mTabId: Int) :
         showError(msg, code)
         ToastUtil.show(msg)
     }
+
+    override fun onLikeDynamicSuccess(data: Any?) {
+    }
+
+    override fun onLikeDynamicError(msg: String?, code: Int) {
+    }
+
+    override fun onCollectDynamicSuccess(data: Any?) {
+    }
+
+    override fun onCollectDynamicError(msg: String?, code: Int) {
+    }
 }

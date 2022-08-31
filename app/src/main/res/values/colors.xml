@@ -27,5 +27,6 @@
     <color name="colorE9">#E9E9E9</color>
     <color name="color80">#808080</color>
     <color name="colorPrice">#FD4473</color>
+    <color name="colorFollow">#FC2947</color>
     <color name="colorTabIndicator">#E72831</color>
 </resources>

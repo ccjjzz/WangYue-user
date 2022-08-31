@@ -44,9 +44,9 @@ ext {
     externalWechatPay = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     externalNavigationTabStrip = 'io.github.h07000223:flycoTabLayout:3.0.0'
     externalLiveEventBus = 'io.github.jeremyliao:live-event-bus-x:1.8.0'
-    externalSmartRefreshLayout = 'com.scwang.smart:refresh-layout-kernel:2.0.3'
-    externalSmartRefreshLayoutHeader = 'com.scwang.smart:refresh-header-classics:2.0.3'
-    externalSmartRefreshLayoutFooter = 'com.scwang.smart:refresh-footer-classics:2.0.3'
+    externalSmartRefreshLayout = 'io.github.scwang90:refresh-layout-kernel:2.0.5'
+    externalSmartRefreshLayoutHeader = 'io.github.scwang90:refresh-header-classics:2.0.5'
+    externalSmartRefreshLayoutFooter = 'io.github.scwang90:refresh-footer-classics:2.0.5'
     externalOverScroll = 'io.github.everythingme:overscroll-decor-android:1.1.1'
     externalGold3dMap = 'com.amap.api:3dmap:9.3.1' //高德3d地图
     externalGoldSearch = 'com.amap.api:search:9.2.0' //高德搜索服务

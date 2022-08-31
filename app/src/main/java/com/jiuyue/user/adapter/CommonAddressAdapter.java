@@ -4,13 +4,10 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.jiuyue.user.R;
 import com.jiuyue.user.adapter.base.BaseBindingAdapter;
 import com.jiuyue.user.databinding.ItemCommonAddressBinding;
 import com.jiuyue.user.entity.AddressListBean;
-import com.jiuyue.user.entity.CityBean;
 
 public class CommonAddressAdapter extends BaseBindingAdapter<AddressListBean.ListDTO, ItemCommonAddressBinding> {
     public CommonAddressAdapter() {

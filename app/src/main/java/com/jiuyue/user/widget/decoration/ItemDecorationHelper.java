@@ -71,9 +71,9 @@ public class ItemDecorationHelper {
                 if (column == 0) {
                     mBoolean = new boolean[]{false, false, true, true};
                 } else if (column == 1) {
-                    mBoolean = new boolean[]{true, false, true, true};
+                    mBoolean = new boolean[]{false, false, true, true};
                 } else {
-                    mBoolean = new boolean[]{true, false, false, true};
+                    mBoolean = new boolean[]{false, false, true, true};
                 }
                 return mBoolean;
             }

@@ -9,183 +9,189 @@
         android:id="@+id/head"
         layout="@layout/layout_home_head" />
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+    <com.jiuyue.user.widget.XRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingBottom="10dp">
-
-                <com.youth.banner.Banner
-                    android:id="@+id/home_banner"
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/colorEee" />
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_home_center"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp">
 
-                    <com.jiuyue.user.widget.CenterTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/ic_home_center_1"
-                        android:drawablePadding="3dp"
-                        android:gravity="center"
-                        android:text="超时秒退"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
+                    <com.youth.banner.Banner
+                        android:id="@+id/home_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="115dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorEee" />
 
-                    <com.jiuyue.user.widget.CenterTextView
-                        android:layout_width="0dp"
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/ic_home_center_2"
-                        android:drawablePadding="3dp"
-                        android:gravity="center"
-                        android:text="持证上岗"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:background="@drawable/bg_home_center"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <com.jiuyue.user.widget.CenterTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/ic_home_center_3"
-                        android:drawablePadding="3dp"
-                        android:gravity="center"
-                        android:text="爽约包赔"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        <com.jiuyue.user.widget.CenterTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_home_center_1"
+                            android:drawablePadding="3dp"
+                            android:gravity="center"
+                            android:text="超时秒退"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
 
-                    <com.jiuyue.user.widget.CenterTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/ic_home_center_4"
-                        android:drawablePadding="3dp"
-                        android:gravity="center"
-                        android:text="全场保障"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        <com.jiuyue.user.widget.CenterTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_home_center_2"
+                            android:drawablePadding="3dp"
+                            android:gravity="center"
+                            android:text="持证上岗"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+                        <com.jiuyue.user.widget.CenterTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_home_center_3"
+                            android:drawablePadding="3dp"
+                            android:gravity="center"
+                            android:text="爽约包赔"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+                        <com.jiuyue.user.widget.CenterTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_home_center_4"
+                            android:drawablePadding="3dp"
+                            android:gravity="center"
+                            android:text="全场保障"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_card_radius_10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="11dp"
+                        android:text="推荐技师"
+                        android:textColor="@color/color333"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tl:layout_constraintStart_toStartOf="parent"
+                        tl:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_home_more_technician"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="13dp"
+                        android:drawableEnd="@drawable/ic_arrow_right_gray"
+                        android:drawablePadding="4dp"
+                        android:text="查看更多"
+                        android:textColor="@color/color999"
+                        android:textSize="11sp"
+                        tl:layout_constraintEnd_toEndOf="parent"
+                        tl:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_home_technician"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="41dp"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        tl:layout_constraintStart_toStartOf="parent"
+                        tl:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_card_radius_10dp">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="11dp"
+                        android:text="推荐套餐"
+                        android:textColor="@color/color333"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tl:layout_constraintStart_toStartOf="parent"
+                        tl:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_home_more_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="13dp"
+                        android:drawableEnd="@drawable/ic_arrow_right_gray"
+                        android:drawablePadding="4dp"
+                        android:text="查看更多"
+                        android:textColor="@color/color999"
+                        android:textSize="11sp"
+                        android:visibility="invisible"
+                        tl:layout_constraintEnd_toEndOf="parent"
+                        tl:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_home_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="41dp"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        tl:layout_constraintStart_toStartOf="parent"
+                        tl:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/shape_card_radius_10dp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="11dp"
-                    android:text="推荐技师"
-                    android:textColor="@color/color333"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tl:layout_constraintStart_toStartOf="parent"
-                    tl:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_home_more_technician"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginEnd="13dp"
-                    android:drawableEnd="@drawable/ic_arrow_right_gray"
-                    android:drawablePadding="4dp"
-                    android:text="查看更多"
-                    android:textColor="@color/color999"
-                    android:textSize="11sp"
-                    tl:layout_constraintEnd_toEndOf="parent"
-                    tl:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_home_technician"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="41dp"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    tl:layout_constraintStart_toStartOf="parent"
-                    tl:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/shape_card_radius_10dp">
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="11dp"
-                    android:text="推荐套餐"
-                    android:textColor="@color/color333"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tl:layout_constraintStart_toStartOf="parent"
-                    tl:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_home_more_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginEnd="13dp"
-                    android:drawableEnd="@drawable/ic_arrow_right_gray"
-                    android:drawablePadding="4dp"
-                    android:text="查看更多"
-                    android:textColor="@color/color999"
-                    android:textSize="11sp"
-                    android:visibility="invisible"
-                    tl:layout_constraintEnd_toEndOf="parent"
-                    tl:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_home_product"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="41dp"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    tl:layout_constraintStart_toStartOf="parent"
-                    tl:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
+    </com.jiuyue.user.widget.XRefreshLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

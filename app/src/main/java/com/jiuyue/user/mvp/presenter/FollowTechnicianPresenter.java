@@ -2,7 +2,6 @@ package com.jiuyue.user.mvp.presenter;
 
 import androidx.annotation.NonNull;
 
-import com.jiuyue.user.base.BaseView;
 import com.jiuyue.user.base.IBasePresenter;
 import com.jiuyue.user.entity.FollowTechnicianBean;
 import com.jiuyue.user.mvp.contract.FollowTechnicianContract;

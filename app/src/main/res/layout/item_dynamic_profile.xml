@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022"
+        android:textColor="@color/color333"
+        android:textSize="19sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_moth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="01月"
+        android:textColor="@color/colorBbb"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_item_dynamic_year"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_dynamic_year" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="end"
+        android:text="标题"
+        android:textColor="@color/color333"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_item_dynamic_moth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_dynamic_moth" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_item_dynamic_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_item_dynamic_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_dynamic_title"
+        app:layout_constraintVertical_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_browse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="14dp"
+        android:textColor="@color/color999"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/rv_item_dynamic_list"
+        app:layout_constraintTop_toBottomOf="@+id/rv_item_dynamic_list"
+        tools:text="浏览0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_collect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="26dp"
+        android:drawableStart="@drawable/selector_follow_icon"
+        android:drawablePadding="2dp"
+        android:text="0"
+        android:textColor="@color/dynamic_color"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_item_dynamic_list" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_item_dynamic_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="13dp"
+        android:drawableStart="@drawable/selector_like_icon"
+        android:drawablePadding="2dp"
+        android:text="0"
+        android:textColor="@color/dynamic_color"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_item_dynamic_collect"
+        app:layout_constraintTop_toBottomOf="@+id/rv_item_dynamic_list" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="19dp"
+        android:background="@color/colorEee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_item_dynamic_browse"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_dynamic_browse" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

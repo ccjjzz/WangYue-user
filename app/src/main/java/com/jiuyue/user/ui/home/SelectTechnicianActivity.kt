@@ -9,6 +9,7 @@ import com.jiuyue.user.base.BaseActivity
 import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.ActivitySelectTechnicianBinding
 import com.jiuyue.user.entity.ListBean
+import com.jiuyue.user.entity.TechnicianDynamicEntity
 import com.jiuyue.user.entity.TechnicianEntity
 import com.jiuyue.user.global.IntentKey
 import com.jiuyue.user.mvp.contract.TechnicianContract
@@ -17,8 +18,7 @@ import com.jiuyue.user.utils.ToastUtil
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 
-class SelectTechnicianActivity :
-    BaseActivity<TechnicianPresenter, ActivitySelectTechnicianBinding>(), TechnicianContract.IView {
+class SelectTechnicianActivity : BaseActivity<TechnicianPresenter, ActivitySelectTechnicianBinding>(), TechnicianContract.IView {
 
     private val mAdapter by lazy {
         TechnicianAdapter().apply {
@@ -127,5 +127,23 @@ class SelectTechnicianActivity :
     override fun onTechnicianListError(msg: String?, code: Int) {
         showError(msg, code)
         ToastUtil.show(msg)
+    }
+
+    override fun onTechnicianInfoSuccess(data: TechnicianEntity?) {
+    }
+
+    override fun onTechnicianInfoError(msg: String?, code: Int) {
+    }
+
+    override fun onFollowTechnicianSuccess(data: Any?) {
+    }
+
+    override fun onFollowTechnicianError(msg: String?, code: Int) {
+    }
+
+    override fun onTechnicianDynamicListSuccess(data: TechnicianDynamicEntity.ListDTO) {
+    }
+
+    override fun onTechnicianDynamicListError(msg: String?, code: Int) {
     }
 }

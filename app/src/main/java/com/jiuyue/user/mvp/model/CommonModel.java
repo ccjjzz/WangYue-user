@@ -1,8 +1,9 @@
 package com.jiuyue.user.mvp.model;
 
+import androidx.annotation.NonNull;
+
 import com.jiuyue.user.entity.CityListBean;
 import com.jiuyue.user.entity.ConfigEntity;
-import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.NumberEntity;
 import com.jiuyue.user.entity.ReserveTimeEntity;
 import com.jiuyue.user.entity.UserInfoEntity;
@@ -11,7 +12,9 @@ import com.jiuyue.user.net.ApiServer;
 import com.jiuyue.user.net.BaseObserver;
 import com.jiuyue.user.net.HttpResponse;
 import com.jiuyue.user.net.ResultListener;
+import com.jiuyue.user.net.uploadFile.UploadFileRetrofit;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -207,5 +210,38 @@ public class CommonModel {
 
                     }
                 });
+    }
+
+    /**
+     * 修改个人资料
+     */
+    public void modifyInfo(@NonNull String name, int gender,File headImg, ResultListener<Object> resultListener) {
+        HashMap<String, Object> paramsMap = new HashMap<>();
+        paramsMap.put("name", name);
+        paramsMap.put("gender", gender);
+        HashMap<String, File> fileMap = new HashMap<>();
+        if (headImg != null) {
+            fileMap.put("headImg", headImg);
+        }
+        UploadFileRetrofit.uploadParamAndFiles("/api/user/modifyInfo", paramsMap, fileMap, new BaseObserver<Object>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<Object> data) {
+                resultListener.onSuccess(data.getData());
+            }
+
+            @Override
+            public void onError(String msg, int code) {
+                resultListener.onError(msg, code);
+            }
+
+            @Override
+            public void complete() {
+
+            }
+        });
     }
 }

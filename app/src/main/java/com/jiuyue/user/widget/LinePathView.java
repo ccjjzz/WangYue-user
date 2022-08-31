@@ -1,4 +1,4 @@
-package com.jiuyue.user.utils;
+package com.jiuyue.user.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;

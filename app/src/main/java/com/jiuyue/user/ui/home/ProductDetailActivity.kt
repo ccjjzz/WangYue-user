@@ -1,7 +1,6 @@
 package com.jiuyue.user.ui.home
 
 import android.content.Intent
-import android.graphics.Paint
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.os.bundleOf
@@ -324,12 +323,8 @@ class ProductDetailActivity : BaseActivity<ProductPresenter, ActivityProductDeta
                     placeOrderReq.productId = it.id
                     placeOrderReq.productNum = 1
                     placeOrderReq.vipCardId = 0
-                    IntentUtils.startActivity(
-                        this, PlaceOrderActivity::class.java, bundleOf(
-                            Pair(IntentKey.PLACE_ORDER_REQ, placeOrderReq),
-                            Pair(IntentKey.PRODUCT_BEAN, dataBean)
-                        )
-                    )
+                    //跳转下单界面
+                    IntentUtils.startPlaceOrderActivity(this, placeOrderReq, dataBean)
                 }
             }
         }

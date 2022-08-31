@@ -9,6 +9,7 @@ public class ProductEntity implements Serializable {
     private String name;
     private double price;
     private double vipPrice;
+    private String tags;
     private int serviceTimeMins;
     private int buyCount;
     private String introduction;
@@ -60,6 +61,14 @@ public class ProductEntity implements Serializable {
 
     public void setVipPrice(double vipPrice) {
         this.vipPrice = vipPrice;
+    }
+
+    public String getTags() {
+        return tags == null ? "" : tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public int getServiceTimeMins() {

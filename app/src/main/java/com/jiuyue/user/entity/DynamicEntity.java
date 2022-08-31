@@ -2,7 +2,7 @@ package com.jiuyue.user.entity;
 
 public class DynamicEntity {
     private int id;
-    private String techId;
+    private int techId;
     private String avator;
     private String certName;
     private int serviceStatus;
@@ -26,11 +26,11 @@ public class DynamicEntity {
         this.id = id;
     }
 
-    public String getTechId() {
-        return techId == null ? "" : techId;
+    public int getTechId() {
+        return techId;
     }
 
-    public void setTechId(String techId) {
+    public void setTechId(int techId) {
         this.techId = techId;
     }
 

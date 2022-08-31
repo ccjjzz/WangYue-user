@@ -1,21 +1,15 @@
 package com.jiuyue.user.mvp.presenter;
 
 import com.jiuyue.user.base.IBasePresenter;
-import com.jiuyue.user.entity.CouponEntity;
-import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.OrderInfoEntity;
-import com.jiuyue.user.entity.ProductEntity;
 import com.jiuyue.user.entity.TrafficEntity;
 import com.jiuyue.user.entity.req.PlaceOrderReq;
 import com.jiuyue.user.mvp.contract.PlaceOrderContract;
-import com.jiuyue.user.mvp.contract.ProductContract;
 import com.jiuyue.user.mvp.model.PlaceOrderModel;
-import com.jiuyue.user.mvp.model.ProductModel;
 import com.jiuyue.user.net.BaseObserver;
 import com.jiuyue.user.net.HttpResponse;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
 

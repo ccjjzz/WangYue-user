@@ -125,7 +125,7 @@ class TakeVideoContract : ActivityResultContract<Unit?, Uri?>() {
                 Pair(MediaStore.MediaColumns.MIME_TYPE, mimeType),
                 Pair(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM)
             )
-            context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+            context.contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
         } else {
             // Android 9 及以下获取图片uri
             FileProvider.getUriForFile(

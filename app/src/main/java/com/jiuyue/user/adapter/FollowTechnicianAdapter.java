@@ -1,7 +1,5 @@
 package com.jiuyue.user.adapter;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -9,7 +7,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.jiuyue.user.R;
-import com.jiuyue.user.entity.FollowCommoditBean;
 import com.jiuyue.user.entity.FollowTechnicianBean;
 import com.jiuyue.user.utils.Dp2px;
 import com.jiuyue.user.utils.glide.GlideLoader;

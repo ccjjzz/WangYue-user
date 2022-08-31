@@ -1,332 +1,344 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.fragment.MineFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.jiuyue.user.widget.ScrollRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_view"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="143dp"
-            android:background="@drawable/shape_card_mind_banner"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.jiuyue.user.widget.CircleImageView
-                android:id="@+id/iv_mine_avatar"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="44dp"
-                android:src="@drawable/default_user_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12sp"
-                android:text="久约"
-                android:textColor="@color/color26"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@id/iv_mine_avatar"
-                app:layout_constraintStart_toEndOf="@id/iv_mine_avatar"
-                app:layout_constraintTop_toTopOf="@id/iv_mine_avatar" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_mine_setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="12dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_setting"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_mine_collect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="143dp"
+                    android:background="@drawable/shape_card_mind_banner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.jiuyue.user.widget.CircleImageView
+                        android:id="@+id/iv_mine_avatar"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="44dp"
+                        android:src="@drawable/default_user_icon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12sp"
+                        android:text="久约"
+                        android:textColor="@color/color26"
+                        android:textSize="17sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_mine_avatar"
+                        app:layout_constraintStart_toEndOf="@id/iv_mine_avatar"
+                        app:layout_constraintTop_toTopOf="@id/iv_mine_avatar" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_mine_setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="12dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_setting"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_mine_collect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="88dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_mine_collect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="11dp"
+                            android:text="关注商品"
+                            android:textColor="@color/color26"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_mine_collect_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="7dp"
+                            android:text="0"
+                            android:textColor="@color/color26"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_mine_collect"
+                            app:layout_constraintEnd_toEndOf="@id/tv_mine_collect"
+                            app:layout_constraintStart_toStartOf="@+id/tv_mine_collect" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="@color/color80"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_mine_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="88dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_mine_follow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="11dp"
+                            android:text="关注理疗师"
+                            android:textColor="@color/color26"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_mine_follow_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="7dp"
+                            android:text="0"
+                            android:textColor="@color/color26"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_mine_follow"
+                            app:layout_constraintEnd_toEndOf="@id/tv_mine_follow"
+                            app:layout_constraintStart_toStartOf="@+id/tv_mine_follow" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape_card_radius_5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_view">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="10dp"
+                        android:text="我的订单"
+                        android:textColor="@color/color26"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_pending_payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_pending_payment"
+                        android:drawablePadding="10dp"
+                        android:text="待支付"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_pending_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_pending_service"
+                        android:drawablePadding="10dp"
+                        android:text="待服务"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_process"
+                        app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_payment" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_pending_process"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_pending_processing"
+                        android:drawablePadding="10dp"
+                        android:text="进行中"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_refund"
+                        app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_service" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_pending_refund"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_pending_refund"
+                        android:drawablePadding="10dp"
+                        android:text="退款/售后"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_evaluate"
+                        app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_process" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_pending_evaluate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_pending_evaluate"
+                        android:drawablePadding="10dp"
+                        android:text="待评价"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="102dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape_card_radius_5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_view1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="10dp"
+                        android:text="其他工具"
+                        android:textColor="@color/color26"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_mine_address"
+                        android:drawablePadding="10dp"
+                        android:text="常用地址"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_customer_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_mine_kf"
+                        android:drawablePadding="10dp"
+                        android:text="联系客服"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_my_evaluate"
+                        app:layout_constraintStart_toEndOf="@+id/tv_mine_address" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_my_evaluate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_mine_evaluate"
+                        android:drawablePadding="10dp"
+                        android:text="我的评价"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_coupon"
+                        app:layout_constraintStart_toEndOf="@+id/tv_mine_customer_service" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_coupon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_mine_coupon"
+                        android:drawablePadding="10dp"
+                        android:text="优惠券"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_mine_collect"
+                    android:id="@+id/tv_mine_recommend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="11dp"
-                    android:text="关注商品"
-                    android:textColor="@color/color26"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:layout_marginTop="24dp"
+                    android:drawableStart="@drawable/ic_recommend_left"
+                    android:drawableEnd="@drawable/ic_recommend_right"
+                    android:drawablePadding="7dp"
+                    android:text="为你推荐"
+                    android:textColor="@color/color333"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_view2" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_mine_collect_num"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_mine_recommend"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:text="0"
-                    android:textColor="@color/color26"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_mine_collect"
-                    app:layout_constraintEnd_toEndOf="@id/tv_mine_collect"
-                    app:layout_constraintStart_toStartOf="@+id/tv_mine_collect" />
-
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape_card_radius_5dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_mine_recommend" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="14dp"
-                android:background="@color/color80"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+    </com.jiuyue.user.widget.ScrollRefreshLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_mine_follow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="88dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_mine_follow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="11dp"
-                    android:text="关注理疗师"
-                    android:textColor="@color/color26"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_mine_follow_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:text="0"
-                    android:textColor="@color/color26"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_mine_follow"
-                    app:layout_constraintEnd_toEndOf="@id/tv_mine_follow"
-                    app:layout_constraintStart_toStartOf="@+id/tv_mine_follow" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_view1"
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_card_radius_5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_view">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="10dp"
-                android:text="我的订单"
-                android:textColor="@color/color26"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_pending_payment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_pending_payment"
-                android:drawablePadding="10dp"
-                android:text="待支付"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_pending_service"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_pending_service"
-                android:drawablePadding="10dp"
-                android:text="待服务"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_process"
-                app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_payment" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_pending_process"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_pending_processing"
-                android:drawablePadding="10dp"
-                android:text="进行中"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_refund"
-                app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_service" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_pending_refund"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_pending_refund"
-                android:drawablePadding="10dp"
-                android:text="退款/售后"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_evaluate"
-                app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_process" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_pending_evaluate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_pending_evaluate"
-                android:drawablePadding="10dp"
-                android:text="待评价"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_view2"
-            android:layout_width="match_parent"
-            android:layout_height="102dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_card_radius_5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_view1">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="10dp"
-                android:text="其他工具"
-                android:textColor="@color/color26"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_mine_address"
-                android:drawablePadding="10dp"
-                android:text="常用地址"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_customer_service"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_mine_kf"
-                android:drawablePadding="10dp"
-                android:text="联系客服"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mine_my_evaluate"
-                app:layout_constraintStart_toEndOf="@+id/tv_mine_address" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_my_evaluate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_mine_evaluate"
-                android:drawablePadding="10dp"
-                android:text="我的评价"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mine_coupon"
-                app:layout_constraintStart_toEndOf="@+id/tv_mine_customer_service" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_mine_coupon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="13dp"
-                android:drawableTop="@drawable/ic_mine_coupon"
-                android:drawablePadding="10dp"
-                android:text="优惠券"
-                android:textColor="@color/color26"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_mine_recommend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:drawableStart="@drawable/ic_recommend_left"
-            android:drawableEnd="@drawable/ic_recommend_right"
-            android:drawablePadding="7dp"
-            android:text="为你推荐"
-            android:textColor="@color/color333"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_view2" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_mine_recommend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_card_radius_5dp"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@+id/tv_mine_recommend" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

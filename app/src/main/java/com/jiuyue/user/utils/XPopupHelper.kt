@@ -2,7 +2,6 @@ package com.jiuyue.user.utils
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.view.View
 import com.jiuyue.user.App
@@ -99,7 +98,6 @@ object XPopupHelper {
         }
         XPopup.Builder(mContext)
             .hasShadowBg(false)
-            .hasStatusBarShadow(false)
             .hasBlurBg(false)
             .isLightStatusBar(true)
             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
@@ -180,7 +178,6 @@ object XPopupHelper {
         XPopup.Builder(mContext)
             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
             .atView(atView)
-            .hasStatusBarShadow(false)
             .hasBlurBg(false)
             .hasShadowBg(false) // 去掉半透明背景
             .isClickThrough(true)//是否点击穿透

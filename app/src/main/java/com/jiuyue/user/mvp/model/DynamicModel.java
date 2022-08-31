@@ -20,4 +20,20 @@ public class DynamicModel implements DynamicContract.Model {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
+
+    @Override
+    public void likeDynamic(int techId, int dynamicId, int type, BaseObserver<Object> observer) {
+        apiServer.likeDynamic(techId, dynamicId,type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    @Override
+    public void collectDynamic(int techId, int dynamicId, int type, BaseObserver<Object> observer) {
+        apiServer.collectDynamic(techId, dynamicId,type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
 }

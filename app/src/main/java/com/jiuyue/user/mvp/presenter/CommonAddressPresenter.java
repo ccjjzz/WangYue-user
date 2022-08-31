@@ -2,10 +2,8 @@ package com.jiuyue.user.mvp.presenter;
 
 import androidx.annotation.NonNull;
 
-import com.jiuyue.user.base.BaseView;
 import com.jiuyue.user.base.IBasePresenter;
 import com.jiuyue.user.entity.AddressListBean;
-import com.jiuyue.user.entity.CityBean;
 import com.jiuyue.user.mvp.contract.CommonAddressContract;
 import com.jiuyue.user.mvp.model.CommonAddressModel;
 import com.jiuyue.user.net.BaseObserver;

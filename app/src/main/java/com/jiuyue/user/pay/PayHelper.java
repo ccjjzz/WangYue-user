@@ -28,6 +28,10 @@ public class PayHelper {
     public static boolean isNativePay = false;
     private PayResult payResult;
 
+    public PayHelper(Activity mActivity) {
+        this.mActivity = mActivity;
+    }
+
     public PayHelper(Activity mActivity, PayResult payResult) {
         this.mActivity = mActivity;
         this.payResult = payResult;
@@ -157,25 +161,21 @@ public class PayHelper {
 
     /**
      * 检测微信支付的结果，做响应的刷新处理
-     * 需要在界面的onResume调用
      */
-    public void checkPayState() {
-        String errCode = App.getSharePre().getString(Constant.WX_PAY_STATUS, "3");
+    public void checkPayState(int payStatus) {
         //微信支付的状态：isPaySuccess
-        int isPaySuccess = Integer.parseInt(errCode);
-        Log.e("pay", "wx=$isPaySuccess");
-        switch (isPaySuccess) {
+        Log.e("pay", "wx=errCode" + payStatus);
+        switch (payStatus) {
             case 0:
                 paySuccess();
                 break;
-            case 1:
+            case -2:
                 payCancel();
                 break;
-            case 2:
+            case -1:
                 payFailed();
                 break;
         }
-        App.getSharePre().putString(Constant.WX_PAY_STATUS, "3");
     }
 
 
