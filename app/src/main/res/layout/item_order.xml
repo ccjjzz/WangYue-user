@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="19dp"
+    android:layout_marginTop="9dp"
+    android:layout_marginEnd="19dp"
+    android:background="@drawable/shape_card_radius_5dp"
+    android:paddingStart="8dp"
+    android:paddingTop="17dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="17dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_order_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_order_time"
+        android:drawablePadding="5dp"
+        android:textColor="@color/colorBbb"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2022-07-15 12:03" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/order_status_color"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="待付款" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorEee"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_product_avatar"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12sp"
+        android:src="@color/colorEee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_line" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:textColor="@color/color333"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_product_num"
+        app:layout_constraintStart_toEndOf="@id/iv_product_avatar"
+        app:layout_constraintTop_toTopOf="@id/iv_product_avatar"
+        tools:text="芳香精油套餐" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_product_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:textColor="@color/color333"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_product_avatar"
+        app:layout_constraintStart_toEndOf="@id/iv_product_avatar"
+        app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+        tools:text="数量：x1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_order_sf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="实付："
+        android:textColor="@color/color999"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_product_price"
+        app:layout_constraintEnd_toStartOf="@+id/tv_product_price" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color999"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_product_num"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="¥276" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_order_cancel"
+        android:layout_width="73dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/stroke_1dp_999_50dp"
+        android:text="取消订单"
+        android:textColor="@color/color999"
+        android:textSize="12sp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/btn_order_confirm"
+        app:layout_constraintEnd_toStartOf="@id/btn_order_confirm" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_order_confirm"
+        android:layout_width="73dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/login_shape"
+        android:text="去付款"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_product_avatar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

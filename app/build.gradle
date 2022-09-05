@@ -108,12 +108,12 @@ dependencies {
     implementation externalCoreKtx
     implementation externalAppcompat
     implementation externalMaterial
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.ar.sceneform:filament-android:1.17.1'
+    implementation externalConstraintLayout
     testImplementation externalJunit
     androidTestImplementation externalAndroidTestJunit
     androidTestImplementation externalAndroidTestEspressoCore
     implementation externalSwpeRefreshLayout
+    implementation externalFlexBox
     api project(':tuichat')
     api project(':citypicker')
     //dex分包
@@ -177,7 +177,9 @@ dependencies {
     //极光推送
     implementation externalJpushJcore
     implementation externalJpush
+    //侧滑按钮
     implementation externalSwipeDelMenuLayout
+    //长图加载
     implementation externalSubScanleImageView
 }
 

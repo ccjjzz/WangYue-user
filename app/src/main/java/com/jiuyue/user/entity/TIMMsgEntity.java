@@ -18,6 +18,16 @@ public class TIMMsgEntity implements Serializable {
     private String msgContent;
     private String msgTime;
     private int subType;//1=粉丝 2=动态点赞 3=动态收藏
+    private String businessID;
+    private int productId;
+    private String productName;
+    private String productImg;
+    private int productNum;
+    private int productServiceTimeMins;
+    private double totalPayment;
+    private int techId;
+    private String techName;
+    private int remainPaySecond;
 
     public String getMsgType() {
         return msgType == null ? "" : msgType;
@@ -65,5 +75,85 @@ public class TIMMsgEntity implements Serializable {
 
     public void setSubType(int subType) {
         this.subType = subType;
+    }
+
+    public String getBusinessID() {
+        return businessID == null ? "" : businessID;
+    }
+
+    public void setBusinessID(String businessID) {
+        this.businessID = businessID;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName == null ? "" : productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductImg() {
+        return productImg == null ? "" : productImg;
+    }
+
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
+    }
+
+    public int getProductNum() {
+        return productNum;
+    }
+
+    public void setProductNum(int productNum) {
+        this.productNum = productNum;
+    }
+
+    public int getProductServiceTimeMins() {
+        return productServiceTimeMins;
+    }
+
+    public void setProductServiceTimeMins(int productServiceTimeMins) {
+        this.productServiceTimeMins = productServiceTimeMins;
+    }
+
+    public double getTotalPayment() {
+        return totalPayment;
+    }
+
+    public void setTotalPayment(double totalPayment) {
+        this.totalPayment = totalPayment;
+    }
+
+    public int getTechId() {
+        return techId;
+    }
+
+    public void setTechId(int techId) {
+        this.techId = techId;
+    }
+
+    public String getTechName() {
+        return techName == null ? "" : techName;
+    }
+
+    public void setTechName(String techName) {
+        this.techName = techName;
+    }
+
+    public int getRemainPaySecond() {
+        return remainPaySecond;
+    }
+
+    public void setRemainPaySecond(int remainPaySecond) {
+        this.remainPaySecond = remainPaySecond;
     }
 }

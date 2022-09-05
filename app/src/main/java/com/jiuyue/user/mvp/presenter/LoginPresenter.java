@@ -37,7 +37,7 @@ public class LoginPresenter extends IBasePresenter<LoginContract.IView> implemen
 
             @Override
             public void onSubscribe(Disposable d) {
-
+                addDisposable(d);
             }
         });
     }

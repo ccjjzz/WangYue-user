@@ -24,6 +24,7 @@ import com.jiuyue.user.ui.mine.address.CommonAddressActivity
 import com.jiuyue.user.ui.mine.setting.SettingActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
+import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX
 
 /**
  * 我的
@@ -39,6 +40,15 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
 
     override fun createPresenter(): BasePresenter? {
         return null
+    }
+
+    override fun initStatusBar() {
+        UltimateBarX.statusBarOnly(this)
+            .fitWindow(false)
+            .colorRes(R.color.transparent)
+            .light(true)
+            .lvlColorRes(R.color.black)
+            .apply()
     }
 
     override fun onFragmentFirstVisible() {
@@ -58,7 +68,12 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             binding.ivMineSetting,
             binding.tvMineCustomerService,
             binding.tvMineName,
-            binding.ivMineAvatar
+            binding.ivMineAvatar,
+            binding.tvMinePendingPayment,
+            binding.tvMinePendingProcess,
+            binding.tvMinePendingCompleted,
+            binding.tvMinePendingRefund,
+            binding.tvMinePendingEvaluate,
         )
 
         //接受修改信息操作通知
@@ -67,7 +82,8 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             .observeSticky(this) {
                 refreshInfo()
             }
-        //接受订单详情操作通知
+
+        //接受首页发送的推荐套餐
         LiveEventBus
             .get<List<ProductEntity>>(EventKey.UPDATE_PRODUCT_LIST)
             .observeSticky(this) {
@@ -141,6 +157,21 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             binding.tvMineName,
             binding.ivMineAvatar -> {
                 IntentUtils.startActivity(mContext, ModifyInfoActivity::class.java)
+            }
+            binding.tvMinePendingPayment -> {
+                IntentUtils.startAllOrderActivity(mContext, 0)
+            }
+            binding.tvMinePendingProcess -> {
+                IntentUtils.startAllOrderActivity(mContext, 1)
+            }
+            binding.tvMinePendingCompleted -> {
+                IntentUtils.startAllOrderActivity(mContext, 2)
+            }
+            binding.tvMinePendingEvaluate -> {
+                IntentUtils.startAllOrderActivity(mContext, 3)
+            }
+            binding.tvMinePendingRefund -> {
+                IntentUtils.startAllOrderActivity(mContext, 4)
             }
         }
     }

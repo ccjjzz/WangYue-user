@@ -10,6 +10,7 @@ import com.jiuyue.user.entity.DynamicEntity
 import com.jiuyue.user.entity.ListBean
 import com.jiuyue.user.mvp.contract.DynamicContract
 import com.jiuyue.user.mvp.presenter.DynamicPresenter
+import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.ToastUtil
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
@@ -23,8 +24,8 @@ class DynamicFragment(private var mTabId: Int) :
 
     private val mAdapter by lazy {
         DynamicAdapter(mContext).apply {
-            setOnItemClickListener { adapter, view, position ->
-                // TODO: 动态详情
+            setOnItemClickListener { _, _, position ->
+                IntentUtils.startTechnicianProfileActivity(mContext,data[position].techId)
             }
         }
     }

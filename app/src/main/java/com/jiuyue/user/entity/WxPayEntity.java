@@ -1,6 +1,6 @@
 package com.jiuyue.user.entity;
 
-public class PayCallbackEntity {
+public class WxPayEntity {
     /**
      * 微信支付返回的字段
      * appid : wxa34264624d0bccc9

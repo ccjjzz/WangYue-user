@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#141414</color>
-    <color name="colorPrimaryDark">#141414</color>
-    <color name="colorAccent">#141414</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
@@ -29,4 +26,5 @@
     <color name="colorPrice">#FD4473</color>
     <color name="colorFollow">#FC2947</color>
     <color name="colorTabIndicator">#E72831</color>
+    <color name="colorStatus">#FF3B61</color>
 </resources>

@@ -158,13 +158,13 @@ class TechnicianDetailActivity :
     }
 
     override fun onTechnicianDynamicListSuccess(data: TechnicianDynamicEntity.ListDTO) {
+        if (data.list.isEmpty()) {
+            binding.clSummary.visibility = View.GONE
+            return
+        }
         //查看全部
         binding.tvDynamicAll.text = "全部${data.total}视频/照片"
         //动态列表
-        if (data.list.isEmpty()) {
-            binding.rvDynamic.visibility = View.GONE
-            return
-        }
         var dataList: List<DynamicEntity> = data.list
         if (dataList.size > 4) {
             dataList = dataList.subList(0, 4)

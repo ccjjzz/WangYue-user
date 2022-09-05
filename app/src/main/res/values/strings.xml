@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name" tools:ignore="MissingTranslation">久约管理版</string>
+    <string name="app_name" tools:ignore="MissingTranslation">久约</string>
     <string name="string_loading_message">加载中</string>
     <string name="string_network_error_message">未发现可以网络~</string>
     <string name="string_error_message">加载失败~</string>

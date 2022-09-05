@@ -1,4 +1,4 @@
-package com.jiuyue.user.ui.home
+package com.jiuyue.user.ui.mine.order
 
 import android.content.Intent
 import android.view.View
@@ -17,6 +17,7 @@ import com.jiuyue.user.mvp.model.ProductModel
 import com.jiuyue.user.mvp.presenter.PlaceOrderPresenter
 import com.jiuyue.user.net.BaseObserver
 import com.jiuyue.user.net.HttpResponse
+import com.jiuyue.user.ui.home.SelectTechnicianActivity
 import com.jiuyue.user.ui.mine.address.CommonAddressActivity
 import com.jiuyue.user.utils.*
 import com.jiuyue.user.utils.KeyboardUtils.hideKeyBoard

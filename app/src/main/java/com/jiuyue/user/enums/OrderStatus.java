@@ -25,7 +25,7 @@ import java.lang.annotation.RetentionPolicy;
 public @interface OrderStatus {
     int CANCEL_PAYMENT = -2;//取消(未支付)
     int PAYMENT_TIMEOUT = -1;//支付超时
-    int UNPAID = 1;//待支付
+    int UNPAID = 1;//待付款
     int PENDING_ORDER = 2; //待接单
     int ORDER_RECEIVED = 3; //已接单未出发
     int HAS_DEPARTED = 4; //已出发

@@ -193,7 +193,7 @@
             android:screenOrientation="behind" />
 
         <activity
-            android:name=".ui.home.PlaceOrderActivity"
+            android:name=".ui.mine.order.PlaceOrderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind"
@@ -243,6 +243,34 @@
 
         <activity
             android:name=".ui.technician.TechnicianDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".ui.mine.order.AllOrderActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".ui.mine.order.RefundDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".ui.mine.order.EvaluateActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".ui.mine.order.PayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind"
@@ -300,6 +328,14 @@
             android:authorities="${applicationId}.TUIConversation.Init"
             android:enabled="true"
             android:exported="false" />
+        <!--IM消息监听-->
+        <service
+            android:name=".service.TIMMessageService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="${applicationId}.service.action.message" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

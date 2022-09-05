@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_card_radius_10dp_shadow"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_msg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="消息标题"
+        android:textColor="#FC3A6A"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_msg_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_msg_title"
+        android:layout_marginStart="10dp"
+        android:layout_toStartOf="@id/tv_msg_pay"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="start"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="消息内容"
+        android:textColor="#FC3A6A"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_msg_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="立即付款"
+        android:textColor="#FF0000"
+        android:textSize="14sp" />
+</RelativeLayout>

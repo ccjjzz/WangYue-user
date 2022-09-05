@@ -9,6 +9,7 @@ import com.jiuyue.user.databinding.ItemDynamicBinding
 import com.jiuyue.user.entity.DynamicEntity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
+import com.jiuyue.user.widget.decoration.ItemDecorationHelper
 
 class DynamicAdapter(private val mContext: Context) :
     BaseBindingAdapter<DynamicEntity, ItemDynamicBinding>(0) {
@@ -38,11 +39,20 @@ class DynamicAdapter(private val mContext: Context) :
         }
         if (item.type == 1) { //图片
             holder.bd.rvItemDynamicList.layoutManager = GridLayoutManager(mContext, 3)
+            if (holder.bd.rvItemDynamicList.itemDecorationCount <= 0) {
+                holder.bd.rvItemDynamicList.addItemDecoration(
+                    ItemDecorationHelper.getGridItemDecoration3Span(
+                        mContext,
+                        10,
+                        holder.bd.rvItemDynamicList
+                    )
+                )
+            }
             holder.bd.rvItemDynamicList.setHasFixedSize(true)
             holder.bd.rvItemDynamicList.isNestedScrollingEnabled = true
             val adapter = DynamicItemAdapter(item.type)
             holder.bd.rvItemDynamicList.adapter = adapter
-            val list = item.pictures.split(",".toRegex()).toTypedArray().toMutableList()
+            val list = item.pictures.split(",".toRegex()).toMutableList()
             adapter.setList(list)
             adapter.setOnItemClickListener { _, _, position ->
                 IntentUtils.startPhotoViewActivity(
@@ -53,11 +63,20 @@ class DynamicAdapter(private val mContext: Context) :
             }
         } else { //视频
             holder.bd.rvItemDynamicList.layoutManager = GridLayoutManager(mContext, 3)
+            if (holder.bd.rvItemDynamicList.itemDecorationCount <= 0) {
+                holder.bd.rvItemDynamicList.addItemDecoration(
+                    ItemDecorationHelper.getGridItemDecoration3Span(
+                        mContext,
+                        10,
+                        holder.bd.rvItemDynamicList
+                    )
+                )
+            }
             holder.bd.rvItemDynamicList.setHasFixedSize(true)
             holder.bd.rvItemDynamicList.isNestedScrollingEnabled = true
             val adapter = DynamicItemAdapter(item.type)
             holder.bd.rvItemDynamicList.adapter = adapter
-            val list = item.videoCover.split(",".toRegex()).toTypedArray().toMutableList()
+            val list = item.videoCover.split(",".toRegex()).toMutableList()
             adapter.setList(list)
             adapter.setOnItemClickListener { _, _, _ ->
                 IntentUtils.startVideoPlayerActivity(

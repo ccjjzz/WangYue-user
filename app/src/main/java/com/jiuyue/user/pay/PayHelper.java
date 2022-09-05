@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import com.alipay.sdk.app.PayTask;
 import com.jiuyue.user.App;
 import com.jiuyue.user.R;
-import com.jiuyue.user.entity.PayCallbackEntity;
+import com.jiuyue.user.entity.WxPayEntity;
 import com.jiuyue.user.global.Constant;
 import com.jiuyue.user.utils.ThreadManager;
 import com.jiuyue.user.utils.ToastUtil;
@@ -25,6 +25,7 @@ import java.util.Map;
 
 public class PayHelper {
     private Activity mActivity;
+    public static String wxAppId = "WX_APP_ID";
     public static boolean isNativePay = false;
     private PayResult payResult;
 
@@ -130,7 +131,8 @@ public class PayHelper {
      *
      * @param bean 请求参数
      */
-    public void doWxPay(PayCallbackEntity bean) {
+    public void doWxPay(WxPayEntity bean) {
+        wxAppId = bean.getAppid();
         if (!isWXAppInstalledAndSupported()) {
             ToastUtil.show(App.getAppContext().getString(R.string.string_wx_not_installed));
             return;
@@ -155,7 +157,7 @@ public class PayHelper {
      */
     private boolean isWXAppInstalledAndSupported() {
         wxApi = WXAPIFactory.createWXAPI(mActivity, null);
-        wxApi.registerApp(Constant.WX_APP_ID);
+        wxApi.registerApp(wxAppId);
         return wxApi.isWXAppInstalled();
     }
 
@@ -184,7 +186,7 @@ public class PayHelper {
      */
     private void paySuccess() {
         sendPayResults(3);
-        ToastUtil.show(App.getAppContext().getString(R.string.string_pay_success));
+        //ToastUtil.show(App.getAppContext().getString(R.string.string_pay_success));
         payResult.paySuccess();
     }
 
@@ -193,7 +195,7 @@ public class PayHelper {
      */
     private void payFailed() {
         sendPayResults(6);
-        ToastUtil.show(App.getAppContext().getString(R.string.string_pay_failed));
+        //ToastUtil.show(App.getAppContext().getString(R.string.string_pay_failed));
         payResult.payFailed();
     }
 
@@ -202,7 +204,7 @@ public class PayHelper {
      */
     private void payCancel() {
         sendPayResults(5);
-        ToastUtil.show(App.getAppContext().getString(R.string.string_pay_cancel_by_user));
+        //ToastUtil.show(App.getAppContext().getString(R.string.string_pay_cancel_by_user));
         payResult.payCancel();
     }
 

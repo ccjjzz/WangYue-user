@@ -12,6 +12,8 @@ import com.jiuyue.user.entity.HomeEntity;
 import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.NumberEntity;
 import com.jiuyue.user.entity.OrderInfoEntity;
+import com.jiuyue.user.entity.PayEntity;
+import com.jiuyue.user.entity.PayTypeEntity;
 import com.jiuyue.user.entity.ProductEntity;
 import com.jiuyue.user.entity.ReserveTimeEntity;
 import com.jiuyue.user.entity.TechnicianDynamicEntity;
@@ -215,5 +217,40 @@ public interface ApiServer {
     @POST("/api/user/delOrder")
     @FormUrlEncoded
     Observable<HttpResponse<Object>> delOrder(@Field("orderNo") String orderNo);
+
+    //评价列表
+    @POST("/api/user/ratingsList")
+    @FormUrlEncoded
+    Observable<HttpResponse<ListBean<OrderInfoEntity>>> ratingsList(@Field("os") String os);
+
+    //用户评价订单
+    @POST("/api/user/ratingOrder")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> ratingOrder(@Field("orderNo") String orderNo,
+                                                 @Field("ratings") int ratings,
+                                                 @Field("comment") String comment,
+                                                 @Field("anonymous") int anonymous);
+
+    //获取支付方式
+    @POST("/api/user/paySiteList")
+    @FormUrlEncoded
+    Observable<HttpResponse<ListBean<PayTypeEntity>>> paySiteList(@Field("os") String os);
+
+    /**
+     * 获取支付参数
+     *
+     * @param paySite 1=微信 2=支付宝 3=银联
+     */
+    @POST("/api/user/orderProductPayInfo")
+    @FormUrlEncoded
+    Observable<HttpResponse<PayEntity>> orderProductPayInfo(@Field("orderNo") String orderNo, @Field("paySite") int paySite);
+
+    /**
+     * 获取结果查询
+     *
+     */
+    @POST("/api/user/orderProductPayResult")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> orderProductPayResult(@Field("orderNo") String orderNo);
 
 }

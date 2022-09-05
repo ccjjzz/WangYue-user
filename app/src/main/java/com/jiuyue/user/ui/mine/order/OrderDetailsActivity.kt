@@ -8,8 +8,6 @@ import com.jiuyue.user.base.BaseActivity
 import com.jiuyue.user.databinding.ActivityOrderDetailsBinding
 import com.jiuyue.user.entity.ListBean
 import com.jiuyue.user.entity.OrderInfoEntity
-import com.jiuyue.user.entity.ProductEntity
-import com.jiuyue.user.entity.req.PlaceOrderReq
 import com.jiuyue.user.enums.OrderStatus
 import com.jiuyue.user.global.EventKey
 import com.jiuyue.user.global.IntentKey
@@ -35,7 +33,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
     override fun initStatusBar() {
         super.initStatusBar()
         UltimateBarX.statusBarOnly(this)
-            .fitWindow(true)
+            .fitWindow(false)
             .colorRes(R.color.transparent)
             .light(false)
             .lvlColorRes(R.color.white)
@@ -52,7 +50,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
             setTitle("查看订单")
             setViewBackgroundColor(R.color.transparent)
         }
-        val orderNo = intent.extras?.getString(IntentKey.ORDER_ID)
+        val orderNo = intent.extras?.getString(IntentKey.ORDER_NO)
         showLoading()
         mPresenter.orderInfo(orderNo)
     }
@@ -104,7 +102,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
             when (data.orderStatus) {
                 OrderStatus.UNPAID -> { //待付款
                     //立即付款
-                    // TODO: 支付
+                    IntentUtils.startPayActivity(this,data.orderNo)
                 }
                 OrderStatus.PENDING_ORDER,//已支付
                 OrderStatus.ORDER_RECEIVED,//技师已接单
@@ -113,26 +111,32 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
                 OrderStatus.BELL_IN_SERVICE,//服务中
                 OrderStatus.SERVING -> {
                     //在线联系
-                    TIMHelper.startC2CChat(this, data.techId.toString(), data.techName)
+                    TIMHelper.startC2CChat(
+                        this,
+                        data.techId.toString(),
+                        data.techName,
+                        data.techMobile
+                    )
                 }
                 OrderStatus.COMPLETED,//已完成
                 OrderStatus.CANCEL_PAYMENT,//支付取消
                 OrderStatus.CANCELLED,//已取消
                 OrderStatus.PAYMENT_TIMEOUT -> { //支付超时
                     //重新购买
-                    val placeOrderReq = PlaceOrderReq()
-                    placeOrderReq.productId = data.productId
-                    placeOrderReq.productNum = data.productNum
-                    placeOrderReq.techId = data.techId
-                    placeOrderReq.techAvatar = data.techAvator
-                    placeOrderReq.certName = data.techName
-                    val dataBean = ProductEntity()
-                    dataBean.id = data.productId
-                    dataBean.name = data.productName
-                    dataBean.price = data.productPrice
-                    dataBean.picture = data.productImg
-                    //跳转下单界面
-                    IntentUtils.startPlaceOrderActivity(this, placeOrderReq, dataBean)
+//                    val placeOrderReq = PlaceOrderReq()
+//                    placeOrderReq.productId = data.productId
+//                    placeOrderReq.productNum = data.productNum
+//                    placeOrderReq.techId = data.techId
+//                    placeOrderReq.techAvatar = data.techAvator
+//                    placeOrderReq.certName = data.techName
+//                    val dataBean = ProductEntity()
+//                    dataBean.id = data.productId
+//                    dataBean.name = data.productName
+//                    dataBean.price = data.productPrice
+//                    dataBean.picture = data.productImg
+//                    //跳转下单界面
+//                    IntentUtils.startPlaceOrderActivity(this, placeOrderReq, dataBean)
+                    IntentUtils.startProductDetailActivity(this, data.productId)
                 }
             }
         }
@@ -201,7 +205,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
                         "删除",
                         "取消"
                     ) {
-                        mPresenter.cancelOrder(data.orderNo)
+                        mPresenter.delOrder(data.orderNo)
                     }
                 }
             }
@@ -240,10 +244,10 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
      */
     private fun setOrderStatus(data: OrderInfoEntity) {
         when (data.orderStatus) {
-            OrderStatus.UNPAID -> {//待支付
+            OrderStatus.UNPAID -> {//待付款
                 binding.ivStatus.setImageResource(R.drawable.ic_order_dzf)
                 binding.tvStatusTips.visibility = View.VISIBLE
-                binding.tvStatus.text = "待支付,剩余${data.remainPaySecond}"
+                binding.tvStatus.text = "待付款,剩余"
                 startServiceTiming(data.remainPaySecond, data.orderNo)
                 binding.priceGroup.visibility = View.VISIBLE
                 binding.btnCancel.text = "取消订单"
@@ -258,7 +262,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
                 binding.btnBuy.text = "在线联系"
             }
             OrderStatus.ORDER_RECEIVED -> {//技师已接单
-                binding.ivStatus.setImageResource(R.drawable.ic_order_ydd)
+                binding.ivStatus.setImageResource(R.drawable.ic_order_yjd)
                 binding.tvStatusTips.visibility = View.GONE
                 binding.tvStatus.text = "技师已接单"
                 binding.priceGroup.visibility = View.GONE
@@ -274,7 +278,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
                 binding.btnBuy.text = "在线联系"
             }
             OrderStatus.ARRIVED -> { //技师已到达
-                binding.ivStatus.setImageResource(R.drawable.ic_order_dzf)
+                binding.ivStatus.setImageResource(R.drawable.ic_order_ydd)
                 binding.tvStatusTips.visibility = View.GONE
                 binding.tvStatus.text = "技师已到达"
                 binding.priceGroup.visibility = View.GONE
@@ -283,7 +287,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
             }
             OrderStatus.BELL_IN_SERVICE,
             OrderStatus.SERVING -> { //服务中
-                binding.ivStatus.setImageResource(R.drawable.ic_order_dzf)
+                binding.ivStatus.setImageResource(R.drawable.ic_order_ydd)
                 binding.tvStatusTips.visibility = View.GONE
                 binding.tvStatus.text = "服务中"
                 binding.priceGroup.visibility = View.GONE
@@ -300,7 +304,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
             }
             OrderStatus.CANCEL_PAYMENT,
             OrderStatus.CANCELLED -> {//已取消
-                binding.ivStatus.setImageResource(R.drawable.ic_order_dzf)
+                binding.ivStatus.setImageResource(R.drawable.ic_order_gb)
                 binding.tvStatusTips.visibility = View.GONE
                 binding.tvStatus.text = "已取消"
                 binding.priceGroup.visibility = View.GONE
@@ -311,7 +315,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
             OrderStatus.PAYMENT_TIMEOUT -> {//交易关闭
                 binding.ivStatus.setImageResource(R.drawable.ic_order_gb)
                 binding.tvStatusTips.visibility = View.GONE
-                binding.tvStatus.text = "交易关闭"
+                binding.tvStatus.text = "订单关闭"
                 binding.priceGroup.visibility = View.GONE
                 binding.btnCancel.text = "删除订单"
                 binding.btnBuy.text = "重新购买"
@@ -331,7 +335,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
                 if (data.toInt() == 0) {
                     mPresenter.orderInfo(orderNo)
                 } else {
-                    binding.tvStatus.text = "待支付,剩余${TimeUtils.SecondChangeMinute(data)}"
+                    binding.tvStatus.text = "待付款,剩余${TimeUtils.SecondChangeMinute(data)}"
                 }
             }
 

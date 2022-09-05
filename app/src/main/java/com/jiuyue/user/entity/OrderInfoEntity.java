@@ -1,6 +1,8 @@
 package com.jiuyue.user.entity;
 
-public class OrderInfoEntity {
+import java.io.Serializable;
+
+public class OrderInfoEntity implements Serializable {
     private String orderNo;
     private String orderTime;
     private int orderStatus;
@@ -31,6 +33,7 @@ public class OrderInfoEntity {
     private String techAvator;
     private int ratingsStatus;
     private int ratings;
+    private String ratingsTime;
     private String comment;
     private double refundAmount;
     private double deductionAmount;
@@ -277,6 +280,14 @@ public class OrderInfoEntity {
 
     public void setRatings(int ratings) {
         this.ratings = ratings;
+    }
+
+    public String getRatingsTime() {
+        return ratingsTime == null ? "" : ratingsTime;
+    }
+
+    public void setRatingsTime(String ratingsTime) {
+        this.ratingsTime = ratingsTime;
     }
 
     public String getComment() {

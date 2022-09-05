@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_card_radius_15dp_shadow"
+    android:background="@drawable/shape_card_radius_10dp_shadow"
     android:orientation="vertical">
 
     <TextView

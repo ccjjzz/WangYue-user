@@ -13,10 +13,14 @@ import com.jiuyue.user.entity.req.PlaceOrderReq;
 import com.jiuyue.user.global.IntentKey;
 import com.jiuyue.user.ui.common.PhotoViewActivity;
 import com.jiuyue.user.ui.common.VideoPlayerActivity;
-import com.jiuyue.user.ui.home.PlaceOrderActivity;
+import com.jiuyue.user.ui.mine.order.PayActivity;
+import com.jiuyue.user.ui.mine.order.PlaceOrderActivity;
 import com.jiuyue.user.ui.home.ProductDetailActivity;
 import com.jiuyue.user.ui.main.MainActivity;
+import com.jiuyue.user.ui.mine.order.AllOrderActivity;
+import com.jiuyue.user.ui.mine.order.EvaluateActivity;
 import com.jiuyue.user.ui.mine.order.OrderDetailsActivity;
+import com.jiuyue.user.ui.mine.order.RefundDetailsActivity;
 import com.jiuyue.user.ui.technician.TechnicianDetailActivity;
 import com.jiuyue.user.ui.technician.TechnicianProfileActivity;
 import com.jiuyue.user.ui.web.WebActivity;
@@ -223,7 +227,7 @@ public class IntentUtils {
                 startWebActivity(context, url, "");
                 break;
             case 2:
-                // TODO: 2022/8/23 跳转项目
+                startProductDetailActivity(context,productId);
                 break;
         }
     }
@@ -251,7 +255,7 @@ public class IntentUtils {
         if (!FastClickHelper.isFastClick()) {
             Intent intent = new Intent();
             intent.setClass(context, OrderDetailsActivity.class);
-            intent.putExtra(IntentKey.ORDER_ID, orderId);
+            intent.putExtra(IntentKey.ORDER_NO, orderId);
             context.startActivity(intent);
         }
     }
@@ -292,6 +296,59 @@ public class IntentUtils {
             Intent intent = new Intent();
             intent.setClass(context, TechnicianProfileActivity.class);
             intent.putExtra(IntentKey.TECH_ID, techId);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转全部订单简介页面
+     *
+     */
+    public static void startAllOrderActivity(Context context,int currentTab) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, AllOrderActivity.class);
+            intent.putExtra(IntentKey.ORDER_TAB, currentTab);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转售后详情页面
+     *
+     */
+    public static void startRefundDetailsActivity(Context context,String orderNo) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, RefundDetailsActivity.class);
+            intent.putExtra(IntentKey.ORDER_NO, orderNo);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转立即评价页面
+     *
+     */
+    public static void startEvaluateActivity(Context context, String orderNo) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, EvaluateActivity.class);
+            intent.putExtra(IntentKey.ORDER_NO, orderNo);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转立即付款页面
+     *
+     */
+    public static void startPayActivity(Context context, String orderNo) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+            intent.setClass(context, PayActivity.class);
+            intent.putExtra(IntentKey.ORDER_NO, orderNo);
             context.startActivity(intent);
         }
     }

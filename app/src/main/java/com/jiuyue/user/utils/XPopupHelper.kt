@@ -7,14 +7,17 @@ import android.view.View
 import com.jiuyue.user.App
 import com.jiuyue.user.R
 import com.jiuyue.user.dialog.BubbleTipsPopup
+import com.jiuyue.user.dialog.PayTipsPopup
 import com.jiuyue.user.dialog.TopMsgPopup
 import com.jiuyue.user.dialog.XPopupCallbackImpl
 import com.jiuyue.user.entity.NumberEntity
+import com.jiuyue.user.entity.TIMMsgEntity
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.model.CommonModel
 import com.jiuyue.user.net.ResultListener
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.enums.PopupAnimation
 import com.lxj.xpopup.interfaces.OnCancelListener
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.lxj.xpopup.interfaces.OnSelectListener
@@ -106,6 +109,35 @@ object XPopupHelper {
             .isTouchThrough(true)
             .dismissOnBackPressed(false)
             .dismissOnTouchOutside(false)
+            .offsetY(offsetY)
+            .asCustom(popup)
+            .show()
+    }
+
+    /**
+     * 顶部支付通知提示弹窗
+     *
+     * @param context
+     * @param msg
+     */
+    fun showPayTips(mContext: Context, data: TIMMsgEntity, offsetY: Int, payTipsPopup: PayTipsPopup?) {
+        var popup = payTipsPopup
+        if (popup == null) {
+            popup = PayTipsPopup(mContext, data)
+        } else {
+            popup.setData(data)
+        }
+        XPopup.Builder(mContext)
+            .hasShadowBg(false)
+            .hasBlurBg(false)
+            .isLightStatusBar(true)
+            .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+            .isCenterHorizontal(true)
+            .isClickThrough(true) //是否点击穿透
+            .isTouchThrough(true)
+            .dismissOnBackPressed(false)
+            .dismissOnTouchOutside(false)
+            .popupAnimation(PopupAnimation.ScrollAlphaFromTop)
             .offsetY(offsetY)
             .asCustom(popup)
             .show()

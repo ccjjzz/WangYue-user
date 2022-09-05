@@ -123,10 +123,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ActivityLoginBin
      * 13=用户注销账号 14=商户注销 15=合伙人注销
      */
     private void sendCode(String mobile) {
+        showDialogLoading("正在发送..");
         new CommonModel().sendMobileSms(mobile, 10, new ResultListener<Object>() {
             @Override
             public void onSuccess(Object data) {
-                ToastUtil.show("发送验证码");
+                hideDialogLoading();
+                ToastUtil.show("发送成功");
                 //定位到验证码输入框
                 KeyboardUtils.INSTANCE.showKeyBoard(binding.loginCode, App.getAppContext());
                 //开启倒计时
@@ -151,6 +153,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ActivityLoginBin
 
             @Override
             public void onError(String msg, int code) {
+                hideDialogLoading();
                 ToastUtil.show(msg);
             }
         });

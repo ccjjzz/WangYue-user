@@ -167,25 +167,11 @@
                         android:layout_marginBottom="13dp"
                         android:drawableTop="@drawable/ic_pending_payment"
                         android:drawablePadding="10dp"
-                        android:text="待支付"
+                        android:text="待付款"
                         android:textColor="@color/color26"
                         android:textSize="11sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_mine_pending_service"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="13dp"
-                        android:drawableTop="@drawable/ic_pending_service"
-                        android:drawablePadding="10dp"
-                        android:text="待服务"
-                        android:textColor="@color/color26"
-                        android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_process"
-                        app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_payment" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_mine_pending_process"
@@ -198,17 +184,17 @@
                         android:textColor="@color/color26"
                         android:textSize="11sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_refund"
-                        app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_service" />
+                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_completed"
+                        app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_payment" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_mine_pending_refund"
+                        android:id="@+id/tv_mine_pending_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="13dp"
-                        android:drawableTop="@drawable/ic_pending_refund"
+                        android:drawableTop="@drawable/ic_pending_completed"
                         android:drawablePadding="10dp"
-                        android:text="退款/售后"
+                        android:text="已完成"
                         android:textColor="@color/color26"
                         android:textSize="11sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -219,11 +205,25 @@
                         android:id="@+id/tv_mine_pending_evaluate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="13dp"
                         android:layout_marginBottom="13dp"
                         android:drawableTop="@drawable/ic_pending_evaluate"
                         android:drawablePadding="10dp"
                         android:text="待评价"
+                        android:textColor="@color/color26"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_mine_pending_refund"
+                        app:layout_constraintStart_toEndOf="@+id/tv_mine_pending_completed" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_mine_pending_refund"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:drawableTop="@drawable/ic_pending_refund"
+                        android:drawablePadding="10dp"
+                        android:text="取消/售后"
                         android:textColor="@color/color26"
                         android:textSize="11sp"
                         app:layout_constraintBottom_toBottomOf="parent"

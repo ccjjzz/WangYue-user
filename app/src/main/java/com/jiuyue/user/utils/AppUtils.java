@@ -2,6 +2,8 @@ package com.jiuyue.user.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -256,6 +258,11 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用32位签名信息
+     *
+     * @param context
+     */
     @SuppressLint("PackageManagerGetSignatures")
     public static void obtainA32BitSignature(Context context) {
         android.content.pm.Signature[] sigs = new android.content.pm.Signature[0];
@@ -268,6 +275,12 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用的SHA1值
+     *
+     * @param context
+     * @return
+     */
     public static String getSHA1(Context context) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(
@@ -292,5 +305,19 @@ public class AppUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 复制内容到剪切板
+     *
+     * @param context
+     * @param text
+     */
+    public static void CopyToClip(Context context, String text) {
+        ClipboardManager cbm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        cbm.setPrimaryClip(
+                ClipData.newPlainText(getAppName(context), text)
+        );
+        ToastUtil.show("已复制到剪切板");
     }
 }

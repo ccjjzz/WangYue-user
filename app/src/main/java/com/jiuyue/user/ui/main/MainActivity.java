@@ -1,5 +1,6 @@
 package com.jiuyue.user.ui.main;
 
+import android.content.Intent;
 import android.view.KeyEvent;
 import android.widget.RadioGroup;
 
@@ -10,6 +11,7 @@ import com.jiuyue.user.R;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.base.BasePresenter;
 import com.jiuyue.user.databinding.ActivityMainBinding;
+import com.jiuyue.user.service.TIMMessageService;
 import com.jiuyue.user.ui.main.fragment.FindFragment;
 import com.jiuyue.user.ui.main.fragment.HomeFragment;
 import com.jiuyue.user.ui.main.fragment.MineFragment;
@@ -47,6 +49,9 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
         rbMain = binding.rgMain;
         initBottomBar();
         foregroundShowUpDataDialog();
+        //开启TIM消息推送服务
+        Intent service = new Intent(this, TIMMessageService.class);
+        startService(service);
     }
 
     private void initBottomBar() {

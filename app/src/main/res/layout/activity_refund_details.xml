@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.jiuyue.user.widget.TitleView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/shape_card_radius_5dp"
+        android:paddingBottom="18dp"
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="9dp"
+            android:background="@drawable/shape_top_fc3768_5dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_refund_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="29dp"
+            android:text="退款成功"
+            android:textColor="@color/color333"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_refund_arrival_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="7dp"
+            android:textColor="@color/color333"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_refund_status"
+            tools:text="预计最晚2022年09月01日前到账" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_amount_t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="35dp"
+            android:text="订单金额"
+            android:textColor="@color/color333"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_refund_arrival_time" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_refund_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="9dp"
+            android:text="¥0.00"
+            android:textColor="@color/color333"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_amount_t1"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_amount_t1_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="8dp"
+            android:text="退回至原账户"
+            android:textColor="@color/color999"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_amount_t1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="4dp"
+            android:text="(套餐金额+车费)"
+            android:textColor="@color/colorBbb"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_amount_t1_a" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_amount_t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="55dp"
+            android:text="预计扣除金额"
+            android:textColor="@color/color333"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_amount_t1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_amount_deduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="9dp"
+            android:text="-¥0.00"
+            android:textColor="@color/colorPrice"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_amount_t2"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_amount_t2_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="8dp"
+            android:text="空时费+车费"
+            android:textColor="@color/color999"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_amount_t2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_amount_deduct_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="4dp"
+            android:text="（注：技师已经出发且没有到达，我们只退还套餐费用。不退还车费，
+       并扣除一百元空时费。）"
+            android:textColor="@color/colorBbb"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_amount_t2_a" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_amount_deduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_amount_t2,tv_amount_t2_a,tv_amount_deduct,tv_amount_deduct_remark" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_refund"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/shape_card_radius_5dp"
+        android:paddingTop="17dp"
+        android:paddingBottom="17dp"
+        app:layout_constraintTop_toBottomOf="@id/cl_amount">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:text="退款信息"
+            android:textColor="@color/color333"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_product_avatar"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="30dp"
+            android:src="@color/colorEee"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="套餐名称"
+            android:textColor="@color/color333"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_product_num"
+            app:layout_constraintStart_toEndOf="@id/iv_product_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_product_avatar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_product_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="x 1"
+            android:textColor="@color/color333"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_product_avatar"
+            app:layout_constraintStart_toEndOf="@id/iv_product_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="¥0.00"
+            android:textColor="@color/color333"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_product_name"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_order_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:text="订单编号："
+            android:textColor="@color/color999"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_product_avatar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_order_no_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/stroke_1dp_999_50dp"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="复制"
+            android:textColor="@color/color999"
+            android:textSize="10sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_order_no"
+            app:layout_constraintStart_toEndOf="@id/tv_order_no" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_refund_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:text="申请时间："
+            android:textColor="@color/color999"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_no" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

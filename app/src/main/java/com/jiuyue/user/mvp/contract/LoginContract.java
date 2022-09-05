@@ -7,10 +7,9 @@ import com.jiuyue.user.net.BaseObserver;
 
 public interface LoginContract {
     interface IView extends BaseView {
-        //登录
-        void onLoginSuccess(TokenEntity bean);
+        void onLoginSuccess(TokenEntity data);
 
-        void onLoginError(String Msg, int code);
+        void onLoginError(String msg, int code);
     }
 
     interface Model {

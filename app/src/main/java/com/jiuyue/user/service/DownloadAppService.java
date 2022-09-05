@@ -334,7 +334,7 @@ public class DownloadAppService extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)) //设置通知的大图标
                 //修改小圆圈默认背景颜色
-                .setColor(getResources().getColor(R.color.colorAccent))
+                .setColor(getResources().getColor(R.color.appBackground))
                 .setDefaults(Notification.DEFAULT_LIGHTS) //设置通知的提醒方式： 呼吸灯
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT) //设置通知的优先级：最大
                 .setAutoCancel(false)//设置通知被点击一次是否自动取消
