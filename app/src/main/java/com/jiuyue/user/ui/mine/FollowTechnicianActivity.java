@@ -1,5 +1,6 @@
 package com.jiuyue.user.ui.mine;
 
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,9 +28,16 @@ public class FollowTechnicianActivity extends BaseActivity<FollowTechnicianPrese
     }
 
     @Override
+    public View getLoadingTargetView() {
+        return binding.followRecycler;
+    }
+
+    @Override
     protected FollowTechnicianPresenter createPresenter() {
         return new FollowTechnicianPresenter(this);
     }
+
+
 
     @Override
     protected void init() {

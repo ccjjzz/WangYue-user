@@ -137,6 +137,11 @@ public interface ApiServer {
     @FormUrlEncoded
     Observable<HttpResponse<Object>> delAddress(@Field("addressId") int addressId);
 
+    //设置用户默认地址
+    @POST("/api/user/setAddress")
+    @FormUrlEncoded
+    Observable<HttpResponse<Object>> setAddress(@Field("addressId") int addressId);
+
     //新增/修改用户地址
     @POST("/api/user/saveAddress")
     @FormUrlEncoded

@@ -67,27 +67,37 @@
             android:background="@color/colorEee"
             app:layout_constraintTop_toBottomOf="@id/common_item_addressHouse" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/common_item_hook"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="14dp"
-            android:src="@drawable/ic_contract_hook"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/common_item_view" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="14dp"
-            android:text="已设为默认"
-            android:textColor="#fffd4473"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toRightOf="@id/common_item_hook"
-            app:layout_constraintTop_toBottomOf="@id/common_item_view" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/common_item_view">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:checked="true"
+                android:button="@null"
+                android:id="@+id/common_item_hook"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/selector_check_sex"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_common_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="14dp"
+                android:text="设为默认"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toRightOf="@id/common_item_hook"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/common_item_delete"

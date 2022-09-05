@@ -30,6 +30,7 @@ public class AddressListBean {
         private int isDefault;
         private boolean isChoose;
         private boolean isShowChoose;
+        private boolean isChoice;
 
         public int getId() {
             return id;
@@ -141,6 +142,14 @@ public class AddressListBean {
 
         public void setShowChoose(boolean showChoose) {
             isShowChoose = showChoose;
+        }
+
+        public boolean isChoice() {
+            return isChoice;
+        }
+
+        public void setChoice(boolean choice) {
+            isChoice = choice;
         }
     }
 }
