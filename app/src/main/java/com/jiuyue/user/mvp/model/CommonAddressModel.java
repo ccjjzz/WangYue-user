@@ -26,4 +26,12 @@ public class CommonAddressModel implements CommonAddressContract.Model {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
+
+    @Override
+    public void SetAddress(int addressId, BaseObserver<Object> observer) {
+        apiServer.setAddress(addressId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
 }

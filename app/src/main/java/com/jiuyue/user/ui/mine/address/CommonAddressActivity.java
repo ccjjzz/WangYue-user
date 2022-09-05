@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ import com.jiuyue.user.adapter.CommonAddressAdapter;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.databinding.ActivityCommonAddressBinding;
 import com.jiuyue.user.entity.AddressListBean;
+import com.jiuyue.user.global.EventKey;
 import com.jiuyue.user.global.IntentKey;
 import com.jiuyue.user.mvp.contract.CommonAddressContract;
 import com.jiuyue.user.mvp.presenter.CommonAddressPresenter;
@@ -31,6 +34,7 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
     private CommonAddressAdapter mAdapter;
     private int addressId;
     private int pageType;
+
 
     @Override
     protected ActivityCommonAddressBinding getViewBinding() {
@@ -50,7 +54,7 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
     @Override
     protected void init() {
 
-        LiveEventBus.get("Refresh", String.class).observeSticky(this, s -> {
+        LiveEventBus.get(EventKey.REFRESH_ADDRESS, String.class).observeSticky(this, s -> {
             mPresenter.AddressList("android");
         });
 
@@ -58,11 +62,9 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
         commonRv = binding.commonRecycler;
         addressId = getIntent().getIntExtra(IntentKey.ADDRESS_ID, -1);
         pageType = getIntent().getIntExtra(IntentKey.PAGER_TYPE, 0);
-
         commonRv.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new CommonAddressAdapter();
         commonRv.setAdapter(mAdapter);
-
         showLoading();
         mPresenter.AddressList("android");
         setViewClick(this,
@@ -99,9 +101,12 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
             showEmpty();
         }
 
+
         //删除地址列表
-        mAdapter.addChildClickViewIds(R.id.common_item_delete,R.id.common_item_compile, R.id.common_item_choose_n);
+        mAdapter.addChildClickViewIds(R.id.common_item_delete, R.id.common_item_compile, R.id.common_item_choose_n, R.id.common_item_hook);
         mAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+
+
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 if (view.getId() == R.id.common_item_delete) {
@@ -128,8 +133,8 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
                         resultIntent.putExtra(IntentKey.CHOOSE_ADDRESS_BRAN, addressBean);
                         setResult(Activity.RESULT_OK, resultIntent);
                         finish();
-                    },500);
-                }else if (view.getId() == R.id.common_item_compile){
+                    }, 500);
+                } else if (view.getId() == R.id.common_item_compile) {
                     String commonAddress = mAdapter.getData().get(position).getAddress();
                     String commonUserName = mAdapter.getData().get(position).getUserName();
                     String commonMobile = mAdapter.getData().get(position).getMobile();
@@ -138,15 +143,18 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
 
 
                     Intent intent = new Intent(CommonAddressActivity.this, EditAddressActivity.class);
-                    intent.putExtra("id",id);
-                    intent.putExtra("address",commonAddress);
-                    intent.putExtra("userName",commonUserName);
-                    intent.putExtra("mobile",commonMobile);
-                    intent.putExtra("addressHouse",commonAddressHouse);
-
+                    intent.putExtra(IntentKey.COMMON_ADDRESS_ID, id);
+                    intent.putExtra("address", commonAddress);
+                    intent.putExtra("userName", commonUserName);
+                    intent.putExtra("mobile", commonMobile);
+                    intent.putExtra("addressHouse", commonAddressHouse);
                     startActivity(intent);
 
+                } else if (view.getId() == R.id.common_item_hook) {
+                    int id = mAdapter.getData().get(position).getId();
+                    mPresenter.SetAddress(id);
                 }
+
             }
         });
     }
@@ -166,5 +174,16 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
     @Override
     public void onDelAddressError(String msg, int code) {
         ToastUtil.show("删除失败");
+    }
+
+    //默认地址
+    @Override
+    public void onSetAddressSuccess(Object data) {
+        mPresenter.AddressList("android");
+    }
+
+    @Override
+    public void onSetAddressError(String msg, int code) {
+
     }
 }

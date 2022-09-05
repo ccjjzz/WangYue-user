@@ -7,6 +7,7 @@ public class EventKey {
     public static final String MODIFY_INFO = "MODIFY_INFO";
     public static final String UPDATE_FOLLOW_STATUS = "UPDATE_FOLLOW_STATUS";
     public static final String UPDATE_ORDER_NUM = "UPDATE_ORDER_NUM";
+    public static final String REFRESH_ADDRESS = "REFRESH_ADDRESS";
 
     public static class EventMsg {
         private int code;

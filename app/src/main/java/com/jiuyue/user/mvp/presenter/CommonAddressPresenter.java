@@ -68,4 +68,29 @@ public class CommonAddressPresenter extends IBasePresenter<CommonAddressContract
             }
         });
     }
+
+    @Override
+    public void SetAddress(int addressId) {
+        model.SetAddress(addressId, new BaseObserver<Object>() {
+            @Override
+            public void onSuccess(HttpResponse<Object> data) {
+                mView.onSetAddressSuccess(data);
+            }
+
+            @Override
+            public void onError(String msg, int code) {
+                mView.onSetAddressError(msg, code);
+            }
+
+            @Override
+            public void complete() {
+
+            }
+
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                addDisposable(d);
+            }
+        });
+    }
 }

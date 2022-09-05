@@ -23,5 +23,7 @@ public class IntentKey {
     public static final String TECH_ID = "TECH_ID";
     public static final String ORDER_TAB = "ORDER_TAB";
     public static final String TIM_MSG_BEAN = "TIM_MSG_BEAN";
+    public static final String COMMON_ADDRESS_ID = "COMMON_ADDRESS_ID";
+
 
 }

@@ -26,9 +26,16 @@ public class FollowTechnicianActivity extends BaseActivity<FollowTechnicianPrese
     }
 
     @Override
+    public View getLoadingTargetView() {
+        return binding.followRecycler;
+    }
+
+    @Override
     protected FollowTechnicianPresenter createPresenter() {
         return new FollowTechnicianPresenter(this);
     }
+
+
 
     @Override
     public View getLoadingTargetView() {
