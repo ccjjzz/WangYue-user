@@ -7,7 +7,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.global.Constant;
+import com.jiuyue.user.global.EventKey;
 import com.jiuyue.user.pay.PayHelper;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -45,7 +47,8 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
     public void onResp(BaseResp resp) {
         Log.e(TAG,"onPayFinish, errCode = " + resp.errCode + "  errStr-" + resp.errStr + "  resp-" + resp.toString());
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            new PayHelper(this).checkPayState(resp.errCode);
+            //通知回调结果
+            LiveEventBus.get(EventKey.WX_PAY_RESULT,Integer.class).post(resp.errCode);
             finish();
         }
     }

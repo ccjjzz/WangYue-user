@@ -13,6 +13,7 @@ import com.jiuyue.user.entity.*
 import com.jiuyue.user.entity.req.PlaceOrderReq
 import com.jiuyue.user.global.IntentKey
 import com.jiuyue.user.mvp.contract.PlaceOrderContract
+import com.jiuyue.user.mvp.model.CommonAddressModel
 import com.jiuyue.user.mvp.model.ProductModel
 import com.jiuyue.user.mvp.presenter.PlaceOrderPresenter
 import com.jiuyue.user.net.BaseObserver
@@ -107,14 +108,7 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
             StartActivityContract<AddressListBean.ListDTO>(IntentKey.CHOOSE_ADDRESS_BRAN)
         ) { data ->
             if (data != null) {
-                binding.tvName.visibility = View.VISIBLE
-                binding.tvTel.visibility = View.VISIBLE
-                binding.tvAddress.text = data.address
-                binding.tvName.text = data.userName
-                binding.tvTel.text = data.mobile
-                placeOrderReq.addressId = data.id
-                //获取默认出行方式
-                getTrafficType()
+                showAddress(data)
             }
         }
 
@@ -130,6 +124,8 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
             binding.scrollView,
             binding.btnBuy,
         )
+        //获取默认地址
+        getDefaultAddress()
         //获取技师优惠券
         if (placeOrderReq.techDiscountId == 0) {
             getCoupon(placeOrderReq.techId, productData.id, 1, 1)
@@ -140,6 +136,51 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
         }
     }
 
+    /**
+     *  获取默认地址
+     */
+    private fun getDefaultAddress() {
+        CommonAddressModel().AddressList("android", object : BaseObserver<AddressListBean>() {
+            override fun onSubscribe(d: Disposable) {
+            }
+
+            override fun onSuccess(bean: HttpResponse<AddressListBean>) {
+                val list = bean.data.list.filter {
+                    it.isDefault == 1
+                }
+                if (list.isNotEmpty()) {
+                    showAddress(list[0])
+                }
+            }
+
+            override fun onError(msg: String?, code: Int) {
+            }
+
+            override fun complete() {
+            }
+
+        })
+    }
+
+    /**
+     *  显示默认地址
+     * @param data
+     */
+    private fun showAddress(data: AddressListBean.ListDTO) {
+        binding.tvName.visibility = View.VISIBLE
+        binding.tvTel.visibility = View.VISIBLE
+        binding.tvAddress.text = data.address
+        binding.tvName.text = data.userName
+        binding.tvTel.text = data.mobile
+        placeOrderReq.addressId = data.id
+        //获取默认出行方式
+        getTrafficType()
+    }
+
+
+    /**
+     *  获取出行方式
+     */
     private fun getTrafficType() {
         placeOrderReq.let {
             it.trafficId = 2 //默认固定出租滴滴
@@ -156,8 +197,14 @@ class PlaceOrderActivity : BaseActivity<PlaceOrderPresenter, ActivityPlaceOrderB
 
     }
 
+    /**
+     *  获取优惠券
+     * @param techId
+     * @param productId
+     * @param productNum
+     * @param discountType
+     */
     private fun getCoupon(techId: Int, productId: Int, productNum: Int, discountType: Int) {
-        //获取平台优惠券
         ProductModel().discountList(
             techId,
             productId,

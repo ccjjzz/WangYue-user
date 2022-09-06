@@ -103,6 +103,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
                 OrderStatus.UNPAID -> { //待付款
                     //立即付款
                     IntentUtils.startPayActivity(this,data.orderNo)
+                    finish()
                 }
                 OrderStatus.PENDING_ORDER,//已支付
                 OrderStatus.ORDER_RECEIVED,//技师已接单
@@ -137,6 +138,7 @@ class OrderDetailsActivity : BaseActivity<OrderPresenter, ActivityOrderDetailsBi
 //                    //跳转下单界面
 //                    IntentUtils.startPlaceOrderActivity(this, placeOrderReq, dataBean)
                     IntentUtils.startProductDetailActivity(this, data.productId)
+                    finish()
                 }
             }
         }

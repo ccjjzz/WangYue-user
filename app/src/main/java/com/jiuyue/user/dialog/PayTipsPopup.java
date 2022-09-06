@@ -3,10 +3,12 @@ package com.jiuyue.user.dialog;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.R;
 import com.jiuyue.user.entity.TIMMsgEntity;
 import com.jiuyue.user.enums.IMMsgType;
@@ -21,7 +23,7 @@ import com.lxj.xpopup.core.PositionPopupView;
 public class PayTipsPopup extends PositionPopupView {
     private Context context;
     private TIMMsgEntity data;
-    private int duration = 5;
+    private int duration = 60;
 
     public PayTipsPopup(@NonNull Context context) {
         super(context);
@@ -52,6 +54,11 @@ public class PayTipsPopup extends PositionPopupView {
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
+    @Override
     protected void onCreate() {
         super.onCreate();
         TextView tvTitle = findViewById(R.id.tv_msg_title);
@@ -72,7 +79,7 @@ public class PayTipsPopup extends PositionPopupView {
             tvPay.setOnClickListener(v -> {
                 // 隐藏弹窗
                 smartDismiss();
-                IntentUtils.startPayActivity(context, data.getOrderNo());
+                IntentUtils.startPayActivity(context, data);
             });
         }
     }

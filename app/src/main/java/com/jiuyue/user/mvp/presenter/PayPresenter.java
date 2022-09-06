@@ -77,17 +77,14 @@ public class PayPresenter extends IBasePresenter<PayContract.IView> implements P
 
     @Override
     public void orderProductPayResult(String orderNo) {
-        mView.showDialogLoading("查询支付结果...");
         mModel.orderProductPayResult(orderNo, new BaseObserver<Object>() {
             @Override
             public void onSuccess(HttpResponse<Object> data) {
-                mView.hideDialogLoading();
                 mView.onOrderProductPayResultSuccess(data.getData());
             }
 
             @Override
             public void onError(String msg, int code) {
-                mView.hideDialogLoading();
                 mView.onOrderProductPayResultError(msg, code);
             }
 

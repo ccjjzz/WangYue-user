@@ -7,12 +7,17 @@ import android.os.Message;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 
 import com.alipay.sdk.app.PayTask;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.App;
 import com.jiuyue.user.R;
 import com.jiuyue.user.entity.WxPayEntity;
+import com.jiuyue.user.enums.PayResultStatus;
 import com.jiuyue.user.global.Constant;
+import com.jiuyue.user.global.EventKey;
 import com.jiuyue.user.utils.ThreadManager;
 import com.jiuyue.user.utils.ToastUtil;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -25,17 +30,15 @@ import java.util.Map;
 
 public class PayHelper {
     private Activity mActivity;
-    public static String wxAppId = "WX_APP_ID";
+    public static String wxAppId = "wx90f78a62f23eaa2c";
     public static boolean isNativePay = false;
     private PayResult payResult;
-
-    public PayHelper(Activity mActivity) {
-        this.mActivity = mActivity;
-    }
 
     public PayHelper(Activity mActivity, PayResult payResult) {
         this.mActivity = mActivity;
         this.payResult = payResult;
+        //微信支付结果回调
+        LiveEventBus.get(EventKey.WX_PAY_RESULT, Integer.class).observeSticky((LifecycleOwner) mActivity, this::checkPayState);
     }
 
     /**
@@ -185,7 +188,7 @@ public class PayHelper {
      * 支付成功的处理
      */
     private void paySuccess() {
-        sendPayResults(3);
+        sendPayResults(PayResultStatus.PAY_SUCCESS);
         //ToastUtil.show(App.getAppContext().getString(R.string.string_pay_success));
         payResult.paySuccess();
     }
@@ -194,7 +197,7 @@ public class PayHelper {
      * 支付失败的处理
      */
     private void payFailed() {
-        sendPayResults(6);
+        sendPayResults(PayResultStatus.PAY_FAILED);
         //ToastUtil.show(App.getAppContext().getString(R.string.string_pay_failed));
         payResult.payFailed();
     }
@@ -203,7 +206,7 @@ public class PayHelper {
      * 支付取消的处理
      */
     private void payCancel() {
-        sendPayResults(5);
+        sendPayResults(PayResultStatus.PAY_CANCEL);
         //ToastUtil.show(App.getAppContext().getString(R.string.string_pay_cancel_by_user));
         payResult.payCancel();
     }
@@ -213,7 +216,7 @@ public class PayHelper {
      *
      * @param status
      */
-    private void sendPayResults(int status) {
+    private void sendPayResults(@PayResultStatus int status) {
         payResult.sendPayResults(status);
     }
 }

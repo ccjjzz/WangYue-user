@@ -2,6 +2,7 @@ package com.jiuyue.user.ui.mine.address;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -25,10 +26,12 @@ import com.jiuyue.user.mvp.contract.CommonAddressContract;
 import com.jiuyue.user.mvp.presenter.CommonAddressPresenter;
 import com.jiuyue.user.utils.IntentUtils;
 import com.jiuyue.user.utils.ToastUtil;
+import com.jiuyue.user.utils.XPopupHelper;
+import com.lxj.xpopup.interfaces.OnConfirmListener;
 
 import java.util.List;
 
-public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, ActivityCommonAddressBinding> implements View.OnClickListener, CommonAddressContract.IView {
+public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, ActivityCommonAddressBinding> implements CommonAddressContract.IView {
 
     private RecyclerView commonRv;
     private CommonAddressAdapter mAdapter;
@@ -53,33 +56,84 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
 
     @Override
     protected void init() {
+        binding.title.setTitle("服务地址");
+        addressId = getIntent().getIntExtra(IntentKey.ADDRESS_ID, -1);
+        pageType = getIntent().getIntExtra(IntentKey.PAGER_TYPE, 0);
+
+        commonRv = binding.commonRecycler;
+        commonRv.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new CommonAddressAdapter();
+        commonRv.setAdapter(mAdapter);
+
+        mAdapter.addChildClickViewIds(R.id.common_item_delete, R.id.common_item_compile, R.id.common_item_choose_n, R.id.common_item_hook, R.id.item_common_default);
+        mAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                switch (view.getId()) {
+                    case R.id.common_item_delete: //删除地址
+                        XPopupHelper.INSTANCE.showConfirm(
+                                CommonAddressActivity.this,
+                                "确认删除该地址？",
+                                "",
+                                "确定",
+                                "取消",
+                                () -> {
+                                    addressId = mAdapter.getData().get(position).getId();
+                                    mPresenter.DelAddress(addressId);
+                                }
+                        );
+                        break;
+                    case R.id.common_item_choose_n: //下单选择地址
+                        AddressListBean.ListDTO addressBean = mAdapter.getData().get(position);
+                        //更新ui
+                        List<AddressListBean.ListDTO> addressList = mAdapter.getData();
+                        for (int i = 0; i < addressList.size(); i++) {
+                            if (addressList.get(i).isChoose()) {
+                                addressList.get(i).setChoose(false);
+                                adapter.notifyItemChanged(i);
+                            }
+                            if (addressList.get(i).getId() == addressBean.getId()) {
+                                addressList.get(i).setChoose(true);
+                                adapter.notifyItemChanged(i);
+                            }
+                        }
+                        //延迟执行
+                        new Handler().postDelayed(() -> {
+                            //回调地址结果出去
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra(IntentKey.CHOOSE_ADDRESS_BRAN, addressBean);
+                            setResult(Activity.RESULT_OK, resultIntent);
+                            finish();
+                        }, 500);
+                        break;
+                    case R.id.common_item_compile: { //编辑地址
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(IntentKey.COMMON_ADDRESS, mAdapter.getData().get(position));
+                        IntentUtils.startActivity(CommonAddressActivity.this, EditAddressActivity.class, bundle);
+                        break;
+                    }
+                    case R.id.common_item_hook:
+                    case R.id.item_common_default: {  //设置默认
+                        int id = mAdapter.getData().get(position).getId();
+                        mPresenter.SetAddress(id);
+                        break;
+                    }
+                }
+
+            }
+        });
+
+        //新增地址
+        binding.addAddress.setOnClickListener(v -> {
+            IntentUtils.startActivity(CommonAddressActivity.this, EditAddressActivity.class);
+        });
+
+        showLoading();
+        mPresenter.AddressList("android");
 
         LiveEventBus.get(EventKey.REFRESH_ADDRESS, String.class).observeSticky(this, s -> {
             mPresenter.AddressList("android");
         });
-
-        binding.title.setTitle("服务地址");
-        commonRv = binding.commonRecycler;
-        addressId = getIntent().getIntExtra(IntentKey.ADDRESS_ID, -1);
-        pageType = getIntent().getIntExtra(IntentKey.PAGER_TYPE, 0);
-        commonRv.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new CommonAddressAdapter();
-        commonRv.setAdapter(mAdapter);
-        showLoading();
-        mPresenter.AddressList("android");
-        setViewClick(this,
-                binding.addAddress);
-
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.add_address:
-                IntentUtils.startActivity(CommonAddressActivity.this, EditAddressActivity.class);
-                break;
-        }
     }
 
     @Override
@@ -100,63 +154,6 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
         } else {
             showEmpty();
         }
-
-
-        //删除地址列表
-        mAdapter.addChildClickViewIds(R.id.common_item_delete, R.id.common_item_compile, R.id.common_item_choose_n, R.id.common_item_hook);
-        mAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
-
-
-            @Override
-            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                if (view.getId() == R.id.common_item_delete) {
-                    addressId = mAdapter.getData().get(position).getId();
-                    mPresenter.DelAddress(addressId);
-                } else if (view.getId() == R.id.common_item_choose_n) {
-                    AddressListBean.ListDTO addressBean = mAdapter.getData().get(position);
-                    //更新ui
-                    List<AddressListBean.ListDTO> addressList = mAdapter.getData();
-                    for (int i = 0; i < addressList.size(); i++) {
-                        if (addressList.get(i).isChoose()) {
-                            addressList.get(i).setChoose(false);
-                            adapter.notifyItemChanged(i);
-                        }
-                        if (addressList.get(i).getId() == addressBean.getId()) {
-                            addressList.get(i).setChoose(true);
-                            adapter.notifyItemChanged(i);
-                        }
-                    }
-                    //延迟执行
-                    new Handler().postDelayed(() -> {
-                        //回调地址结果出去
-                        Intent resultIntent = new Intent();
-                        resultIntent.putExtra(IntentKey.CHOOSE_ADDRESS_BRAN, addressBean);
-                        setResult(Activity.RESULT_OK, resultIntent);
-                        finish();
-                    }, 500);
-                } else if (view.getId() == R.id.common_item_compile) {
-                    String commonAddress = mAdapter.getData().get(position).getAddress();
-                    String commonUserName = mAdapter.getData().get(position).getUserName();
-                    String commonMobile = mAdapter.getData().get(position).getMobile();
-                    String commonAddressHouse = mAdapter.getData().get(position).getAddressHouse();
-                    int id = mAdapter.getData().get(position).getId();
-
-
-                    Intent intent = new Intent(CommonAddressActivity.this, EditAddressActivity.class);
-                    intent.putExtra(IntentKey.COMMON_ADDRESS_ID, id);
-                    intent.putExtra("address", commonAddress);
-                    intent.putExtra("userName", commonUserName);
-                    intent.putExtra("mobile", commonMobile);
-                    intent.putExtra("addressHouse", commonAddressHouse);
-                    startActivity(intent);
-
-                } else if (view.getId() == R.id.common_item_hook) {
-                    int id = mAdapter.getData().get(position).getId();
-                    mPresenter.SetAddress(id);
-                }
-
-            }
-        });
     }
 
     @Override
@@ -184,6 +181,6 @@ public class CommonAddressActivity extends BaseActivity<CommonAddressPresenter, 
 
     @Override
     public void onSetAddressError(String msg, int code) {
-
+        ToastUtil.show(msg);
     }
 }

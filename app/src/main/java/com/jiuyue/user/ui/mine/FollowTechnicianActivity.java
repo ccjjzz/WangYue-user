@@ -35,13 +35,6 @@ public class FollowTechnicianActivity extends BaseActivity<FollowTechnicianPrese
         return new FollowTechnicianPresenter(this);
     }
 
-
-
-    @Override
-    public View getLoadingTargetView() {
-        return binding.followRecycler;
-    }
-
     @Override
     protected void init() {
         binding.title.setTitle("关注理疗师");

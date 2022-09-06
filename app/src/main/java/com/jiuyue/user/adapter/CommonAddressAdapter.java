@@ -14,7 +14,7 @@ import com.jiuyue.user.databinding.ItemCommonAddressBinding;
 import com.jiuyue.user.utils.AppSharedPreferences;
 
 
-public class CommonAddressAdapter extends BaseBindingAdapter<AddressListBean.ListDTO,ItemCommonAddressBinding> {
+public class CommonAddressAdapter extends BaseBindingAdapter<AddressListBean.ListDTO, ItemCommonAddressBinding> {
     public CommonAddressAdapter() {
         super(R.layout.item_common_address);
     }
@@ -22,14 +22,11 @@ public class CommonAddressAdapter extends BaseBindingAdapter<AddressListBean.Lis
 
     @Override
     protected void convert(@NonNull BaseVBViewHolder<ItemCommonAddressBinding> holder, AddressListBean.ListDTO listDTO) {
-        boolean mothe = App.getSharePre().getBoolean("mother");
-        holder.bd.commonItemHook.setChecked(mothe);
-
-        holder.bd.commonItemHook.setChecked(false);
         holder.bd.commonItemName.setText(listDTO.getUserName());
         holder.bd.commonItemPhone.setText(listDTO.getMobile());
         holder.bd.commonItemAddress.setText(listDTO.getAddress());
         holder.bd.commonItemAddressHouse.setText(listDTO.getAddressHouse());
+
         //根据来源，判断是否展示使用按钮
         if (listDTO.isShowChoose()) {
             if (listDTO.isChoose()) {
@@ -44,47 +41,15 @@ public class CommonAddressAdapter extends BaseBindingAdapter<AddressListBean.Lis
             holder.bd.commonItemChooseN.setVisibility(View.GONE);
         }
 
-
-//        holder.bd.commonItemHook.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (listDTO.getIsDefault()==1||holder.bd.commonItemHook.isSelected()){
-//                        holder.bd.commonItemHook.setSelected(true);
-//                        holder.bd.itemCommonDefault.setText("已设为默认");
-//                        holder.bd.itemCommonDefault.setTextColor(android.graphics.Color.parseColor("#FD4473"));
-//
-//                }else if (listDTO.getIsDefault()==0){
-//                    holder.bd.commonItemHook.setSelected(false);
-//                    holder.bd.itemCommonDefault.setText("设为默认");
-//                    holder.bd.itemCommonDefault.setTextColor(android.graphics.Color.parseColor("#999999"));
-//                }
-//            }
-//        });
-
-        holder.bd.commonItemHook.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (holder.bd.commonItemHook.isChecked()||listDTO.getIsDefault()==1) {
-                    holder.bd.commonItemHook.setChecked(true);
-                    holder.bd.itemCommonDefault.setText("已设为默认");
-                    holder.bd.itemCommonDefault.setTextColor(android.graphics.Color.parseColor("#FD4473"));
-                    App.getSharePre().putBoolean("mother", true);
-                    holder.setIsRecyclable(false);
-
-                } else if (listDTO.getIsDefault()==0){
-                    holder.bd.commonItemHook.setChecked(false);
-                    holder.bd.itemCommonDefault.setText("设为默认");
-                    holder.bd.itemCommonDefault.setTextColor(android.graphics.Color.parseColor("#999999"));
-                    App.getSharePre().putBoolean("mother", false);
-                    holder.setIsRecyclable(false);
-
-                }
-            }
-        });
-
-
+        //是否默认
+        if (listDTO.getIsDefault() == 1) {
+            holder.bd.commonItemHook.setSelected(true);
+            holder.bd.itemCommonDefault.setSelected(true);
+            holder.bd.itemCommonDefault.setText("已设为默认");
+        } else {
+            holder.bd.commonItemHook.setSelected(false);
+            holder.bd.itemCommonDefault.setSelected(false);
+            holder.bd.itemCommonDefault.setText("设为默认");
+        }
     }
-
-
-
 }

@@ -127,6 +127,7 @@
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
 
@@ -271,6 +272,13 @@
 
         <activity
             android:name=".ui.mine.order.PayActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="standard"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".ui.mine.order.PayResultActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="standard"
             android:screenOrientation="behind"

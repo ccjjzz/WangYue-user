@@ -9,11 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.jiuyue.user.entity.ProductEntity;
+import com.jiuyue.user.entity.TIMMsgEntity;
 import com.jiuyue.user.entity.req.PlaceOrderReq;
+import com.jiuyue.user.enums.PayResultStatus;
 import com.jiuyue.user.global.IntentKey;
 import com.jiuyue.user.ui.common.PhotoViewActivity;
 import com.jiuyue.user.ui.common.VideoPlayerActivity;
 import com.jiuyue.user.ui.mine.order.PayActivity;
+import com.jiuyue.user.ui.mine.order.PayResultActivity;
 import com.jiuyue.user.ui.mine.order.PlaceOrderActivity;
 import com.jiuyue.user.ui.home.ProductDetailActivity;
 import com.jiuyue.user.ui.main.MainActivity;
@@ -349,6 +352,33 @@ public class IntentUtils {
             intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             intent.setClass(context, PayActivity.class);
             intent.putExtra(IntentKey.ORDER_NO, orderNo);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转立即付款页面
+     *
+     */
+    public static void startPayActivity(Context context, TIMMsgEntity orderInfo) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+            intent.setClass(context, PayActivity.class);
+            intent.putExtra(IntentKey.ORDER_INFO, orderInfo);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * 跳转支付结果页面
+     *
+     */
+    public static void startPayResultActivity(Context context, @PayResultStatus int payStatus) {
+        if (!FastClickHelper.isFastClick()) {
+            Intent intent = new Intent();
+            intent.setClass(context, PayResultActivity.class);
+            intent.putExtra(IntentKey.PAY_RESULT_STATUS, payStatus);
             context.startActivity(intent);
         }
     }

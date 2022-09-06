@@ -22,14 +22,17 @@ public class EditAddressPresenter extends IBasePresenter<EditAddressContract.IVi
 
     @Override
     public void EditAddress(int addressId, String userName, String genderName, String mobile, String address, String addressHouse, String addressCityCode, String addressCity, double addressLatitude, double addressLongitude) {
+        mView.showDialogLoading("正在保存...");
         model.EditAddress(addressId, userName, genderName, mobile, address, addressHouse,addressCityCode,addressCity,addressLatitude,addressLongitude, new BaseObserver<Object>() {
             @Override
             public void onSuccess(HttpResponse<Object> data) {
+                mView.hideDialogLoading();
                 mView.onEditAddressSuccess(data);
             }
 
             @Override
             public void onError(String msg, int code) {
+                mView.hideDialogLoading();
                 mView.onEditAddressError(msg, code);
             }
 

@@ -17,7 +17,7 @@ public class WxPayEntity {
     private String prepayid;
     private String timestamp;
     private String noncestr;
-    private String packageX;
+    private String packageValue;
     private String sign;
     private String order_sn;
     //报错时返回的字段
@@ -92,11 +92,11 @@ public class WxPayEntity {
     }
 
     public String getPackageX() {
-        return packageX == null ? "" : packageX;
+        return packageValue == null ? "" : packageValue;
     }
 
     public void setPackageX(String packageX) {
-        this.packageX = packageX;
+        this.packageValue = packageX;
     }
 
     public String getSign() {

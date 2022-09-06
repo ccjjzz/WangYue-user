@@ -5,10 +5,13 @@ import android.net.Uri
 import android.net.http.SslError
 import android.view.View
 import android.webkit.*
+import android.webkit.WebView.HitTestResult
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.databinding.FragmentReserveDescBinding
 import com.jiuyue.user.global.IntentKey
+import com.jiuyue.user.utils.IntentUtils
+
 
 /**
  * 预约须知
@@ -68,6 +71,7 @@ class ReserveDescFragment : BaseFragment<BasePresenter, FragmentReserveDescBindi
                 return super.shouldOverrideUrlLoading(view, request)
             }
 
+            @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 try {
                     if (url.startsWith("weixin://")
@@ -84,6 +88,17 @@ class ReserveDescFragment : BaseFragment<BasePresenter, FragmentReserveDescBindi
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
+                }
+                val hit = view.hitTestResult
+                val hitType = hit.type
+                if (hitType == HitTestResult.SRC_ANCHOR_TYPE) { // 点击超链接
+                    // 这里执行自定义的操作
+                    IntentUtils.startWebActivity(
+                        context,
+                        url,
+                        URLUtil.guessFileName(url,null,null)
+                    )
+                    return true
                 }
                 return super.shouldOverrideUrlLoading(view, url)
             }
