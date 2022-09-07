@@ -20,6 +20,7 @@ import com.jiuyue.user.tim.TIMHelper
 import com.jiuyue.user.ui.mine.FollowCommodityActivity
 import com.jiuyue.user.ui.mine.FollowTechnicianActivity
 import com.jiuyue.user.ui.mine.ModifyInfoActivity
+import com.jiuyue.user.ui.mine.MyEvaluateActivity
 import com.jiuyue.user.ui.mine.address.CommonAddressActivity
 import com.jiuyue.user.ui.mine.setting.SettingActivity
 import com.jiuyue.user.utils.IntentUtils
@@ -74,6 +75,8 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             binding.tvMinePendingCompleted,
             binding.tvMinePendingRefund,
             binding.tvMinePendingEvaluate,
+            binding.tvMineMyEvaluate,
+            binding.tvMineCoupon,
         )
 
         //接受修改信息操作通知
@@ -172,6 +175,12 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             }
             binding.tvMinePendingRefund -> {
                 IntentUtils.startAllOrderActivity(mContext, 4)
+            }
+            binding.tvMineMyEvaluate -> {
+                IntentUtils.startActivity(mContext,MyEvaluateActivity::class.java)
+            }
+            binding.tvMineCoupon -> {
+
             }
         }
     }

@@ -9,7 +9,7 @@ import com.jiuyue.user.entity.DynamicEntity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.widget.decoration.ItemDecorationHelper
 
-class DynamicProfileAdapter(private val mContext: Context) :
+class DynamicProfileAdapter(val mContext: Context) :
     BaseBindingAdapter<DynamicEntity, ItemDynamicProfileBinding>(
         R.layout.item_dynamic_profile
     ) {

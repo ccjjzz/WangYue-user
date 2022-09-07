@@ -1,36 +1,48 @@
-package com.jiuyue.user.ui.find
+package com.jiuyue.user.ui.mine
 
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jiuyue.user.adapter.DynamicAdapter
-import com.jiuyue.user.base.BaseFragment
+import com.jiuyue.user.R
+import com.jiuyue.user.adapter.CommentAdapter
+import com.jiuyue.user.adapter.MyEvaluateAdapter
+import com.jiuyue.user.base.BaseActivity
+import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.CommonRefreshRecycleBinding
-import com.jiuyue.user.entity.DynamicEntity
+import com.jiuyue.user.databinding.CommonTitleRecycleBinding
 import com.jiuyue.user.entity.ListBean
-import com.jiuyue.user.mvp.contract.DynamicContract
-import com.jiuyue.user.mvp.presenter.DynamicPresenter
+import com.jiuyue.user.entity.OrderInfoEntity
+import com.jiuyue.user.mvp.contract.EvaluateContract
+import com.jiuyue.user.mvp.presenter.EvaluatePresenter
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.ToastUtil
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 
-/**
- * 发现
- * @param mTabId 1=最新 2=关注 3=附近
- */
-class DynamicFragment(var mTabId: Int) :
-    BaseFragment<DynamicPresenter, CommonRefreshRecycleBinding>(), DynamicContract.IView {
-
+class MyEvaluateActivity : BaseActivity<EvaluatePresenter, CommonTitleRecycleBinding>(),
+    EvaluateContract.IView {
     private val mAdapter by lazy {
-        DynamicAdapter(mContext).apply {
+        MyEvaluateAdapter().apply {
             setOnItemClickListener { _, _, position ->
-                IntentUtils.startTechnicianProfileActivity(mContext,data[position].techId)
+                IntentUtils.startOrderDetailsActivity(
+                    this@MyEvaluateActivity,
+                    data[position].orderNo
+                )
             }
+        }
+    }
+
+    private val orderRv by lazy {
+        binding.recyclerView.apply {
+            setHasFixedSize(true)
         }
     }
     private val refreshLayout by lazy {
         binding.refreshLayout.apply {
+            setEnableLoadMore(false)
+            setEnableRefresh(false)
             setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
                 override fun onRefresh(refreshLayout: RefreshLayout) {
                     requestData(refresh = true)
@@ -46,39 +58,34 @@ class DynamicFragment(var mTabId: Int) :
     private var pageCount = 1
     private var isRefresh = true
 
-    override fun getViewBinding(): CommonRefreshRecycleBinding {
-        return CommonRefreshRecycleBinding.inflate(layoutInflater)
+    override fun getViewBinding(): CommonTitleRecycleBinding {
+        return CommonTitleRecycleBinding.inflate(layoutInflater)
     }
 
-    override fun getLoadingTargetView(): View {
-        return binding.refreshLayout
+    override fun createPresenter(): EvaluatePresenter {
+        return EvaluatePresenter(this)
     }
 
-    override fun createPresenter(): DynamicPresenter {
-        return DynamicPresenter(this)
-    }
+    override fun getLoadingTargetView(): View = binding.refreshLayout
 
     override fun initLoadingControllerRetryListener(): LoadingInterface.OnClickListener {
         return LoadingInterface.OnClickListener {
+            //加载数据
             showLoading()
             requestData(true)
         }
     }
 
-    override fun onFragmentFirstVisible() {
-        super.onFragmentFirstVisible()
-        //初始化列表数据
-        initData()
-    }
+    override fun init() {
+        binding.title.setTitle("我的评价")
+        orderRv.layoutManager = LinearLayoutManager(this)
+        orderRv.adapter = mAdapter
 
-    private fun initData() {
-        //初始化rv
-        binding.recyclerView.layoutManager = LinearLayoutManager(mContext)
-        binding.recyclerView.adapter = mAdapter
-        //请求页面数据
+        //加载数据
         showLoading()
         requestData(true)
     }
+
 
     private fun requestData(refresh: Boolean) {
         if (refresh) {
@@ -88,19 +95,15 @@ class DynamicFragment(var mTabId: Int) :
             pageCount++
             isRefresh = false
         }
-        mPresenter.dynamicList(mTabId, pageCount)
+        mPresenter.ratingsList()
     }
 
-
-    override fun onDynamicListSuccess(data: ListBean<DynamicEntity>) {
+    override fun onRatingsListSuccess(data: ListBean<OrderInfoEntity>) {
         val dataBeans = data.list
         if (dataBeans.size > 0) {
             if (isRefresh) {
                 mAdapter.setList(dataBeans)
                 refreshLayout.finishRefresh()
-                if (mAdapter.data.size < 10) {
-                    refreshLayout.finishLoadMoreWithNoMoreData()
-                }
             } else {
                 mAdapter.addData(dataBeans)
                 refreshLayout.finishLoadMore()
@@ -121,20 +124,14 @@ class DynamicFragment(var mTabId: Int) :
         }
     }
 
-    override fun onDynamicListError(msg: String?, code: Int) {
+    override fun onRatingsListError(msg: String?, code: Int) {
         showError(msg, code)
         ToastUtil.show(msg)
     }
 
-    override fun onLikeDynamicSuccess(data: Any?) {
+    override fun onRatingOrderSuccess(data: Any?) {
     }
 
-    override fun onLikeDynamicError(msg: String?, code: Int) {
-    }
-
-    override fun onCollectDynamicSuccess(data: Any?) {
-    }
-
-    override fun onCollectDynamicError(msg: String?, code: Int) {
+    override fun onRatingOrderError(msg: String?, code: Int) {
     }
 }

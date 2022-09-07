@@ -162,6 +162,7 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
                     tvAddress.text = data.name
                     App.getSharePre().putString(SpKey.DEFAULT_CITY_NAME, data.name)
                     App.getSharePre().putString(SpKey.CITY_CODE, data.code)
+                    requestData()
                 }
 
                 override fun onCancel() {

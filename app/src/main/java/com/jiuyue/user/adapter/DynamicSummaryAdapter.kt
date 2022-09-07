@@ -9,7 +9,8 @@ import com.jiuyue.user.utils.Dp2px
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
 
-class DynamicSummaryAdapter(private val mContext:Context) : BaseBindingAdapter<DynamicEntity, ItemDynamicImgBinding>(0) {
+class DynamicSummaryAdapter(val mContext: Context) :
+    BaseBindingAdapter<DynamicEntity, ItemDynamicImgBinding>(R.layout.item_dynamic_img) {
     override fun convert(holder: BaseVBViewHolder<ItemDynamicImgBinding>, item: DynamicEntity) {
         if (item.type == 1) {
             val arr: List<String> = item.pictures.split(",")

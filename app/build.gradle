@@ -54,7 +54,7 @@ android {
 
     flavorDimensions "version"
     productFlavors {
-        beta {
+        App {
             dimension "version"
             applicationIdSuffix ""
             versionNameSuffix ""
@@ -79,7 +79,7 @@ android {
         android.applicationVariants.all { variant ->
             variant.outputs.all {
 //                outputFileName = "jieyue-teacher-v${variant.versionName}-${productFlavors[0].name}_${releaseTime()}.apk"
-                outputFileName = "jieyue-teacher-v${variant.versionName}-${releaseTime()}.apk"
+                outputFileName = "jieyue-user-v${variant.versionName}-${releaseTime()}.apk"
             }
         }
     }

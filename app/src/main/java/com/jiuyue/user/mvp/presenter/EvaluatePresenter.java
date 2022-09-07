@@ -20,7 +20,7 @@ public class EvaluatePresenter extends IBasePresenter<EvaluateContract.IView> im
 
     @Override
     public void ratingsList() {
-        mModel.ratingsList(new BaseObserver<ListBean<OrderInfoEntity>>() {
+        mModel.ratingsList(new BaseObserver<ListBean<OrderInfoEntity>>(mView) {
             @Override
             public void onSuccess(HttpResponse<ListBean<OrderInfoEntity>> data) {
                 mView.onRatingsListSuccess(data.getData());

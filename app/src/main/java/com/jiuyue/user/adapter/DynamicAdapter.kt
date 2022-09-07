@@ -11,8 +11,8 @@ import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.glide.GlideLoader
 import com.jiuyue.user.widget.decoration.ItemDecorationHelper
 
-class DynamicAdapter(private val mContext: Context) :
-    BaseBindingAdapter<DynamicEntity, ItemDynamicBinding>(0) {
+class DynamicAdapter(val mContext: Context) :
+    BaseBindingAdapter<DynamicEntity, ItemDynamicBinding>(R.layout.item_dynamic) {
     @SuppressLint("SetTextI18n")
     override fun convert(
         holder: BaseVBViewHolder<ItemDynamicBinding>,
@@ -74,11 +74,11 @@ class DynamicAdapter(private val mContext: Context) :
             }
             holder.bd.rvItemDynamicList.setHasFixedSize(true)
             holder.bd.rvItemDynamicList.isNestedScrollingEnabled = true
-            val adapter = DynamicItemAdapter(item.type)
-            holder.bd.rvItemDynamicList.adapter = adapter
+            val mAdapter = DynamicItemAdapter(item.type)
+            holder.bd.rvItemDynamicList.adapter = mAdapter
             val list = item.videoCover.split(",".toRegex()).toMutableList()
-            adapter.setList(list)
-            adapter.setOnItemClickListener { _, _, _ ->
+            mAdapter.setList(list)
+            mAdapter.setOnItemClickListener { _, _, _ ->
                 IntentUtils.startVideoPlayerActivity(
                     mContext,
                     item.video,

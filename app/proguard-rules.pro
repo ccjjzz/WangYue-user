@@ -164,6 +164,11 @@ public void *(android.webkit.WebView, java.lang.String);
 public static ** bind(***);
 public static ** inflate(...);
 }
+
+#keep 类名和类成员都不会被移除和混淆
+-keep class * implements androidx.viewbinding.ViewBinding {
+    *;
+}
 #----------------------------------------------------------------------------
 
 #---------------------------------4.第三方包-------------------------------
