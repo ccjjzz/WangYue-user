@@ -1,10 +1,14 @@
 package com.jiuyue.user.ui.main.fragment
 
 import android.Manifest
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amap.api.location.AMapLocation
@@ -16,19 +20,20 @@ import com.jiuyue.user.adapter.HomeTechnicianAdapter
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.FragmentHomeBinding
-import com.jiuyue.user.entity.BannerEntity
-import com.jiuyue.user.entity.CityListBean
-import com.jiuyue.user.entity.HomeEntity
-import com.jiuyue.user.entity.ProductEntity
+import com.jiuyue.user.entity.*
 import com.jiuyue.user.global.EventKey
+import com.jiuyue.user.global.IntentKey
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.contract.HomeContract
 import com.jiuyue.user.mvp.model.CommonModel
 import com.jiuyue.user.mvp.presenter.HomePresenter
 import com.jiuyue.user.net.ResultListener
+import com.jiuyue.user.ui.common.InputTipsActivity
+import com.jiuyue.user.ui.home.AddressPickActivity
 import com.jiuyue.user.ui.main.MainActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.LocationHelper
+import com.jiuyue.user.utils.StartActivityContract
 import com.jiuyue.user.utils.ToastUtil
 import com.jiuyue.user.utils.glide.GlideLoader
 import com.jiuyue.user.widget.decoration.GridItemDecoration
@@ -43,6 +48,7 @@ import com.zaaach.citypicker.model.HotCity
 import com.zaaach.citypicker.model.LocateState
 import com.zaaach.citypicker.model.LocatedCity
 import com.zackratos.ultimatebarx.ultimatebarx.java.UltimateBarX
+import kotlin.concurrent.thread
 
 
 /**
@@ -58,6 +64,7 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
 
     //默认城市
     private lateinit var defaultCity: String
+    private lateinit var defaultAddress: String
     private lateinit var hotCities: MutableList<HotCity>
     private lateinit var allCities: MutableList<City>
 
@@ -100,6 +107,7 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
 
     override fun initLoadingControllerRetryListener(): LoadingInterface.OnClickListener {
         return LoadingInterface.OnClickListener {
+            showLoading()
             requestData()
         }
     }
@@ -115,14 +123,28 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
 
     override fun onFragmentFirstVisible() {
         super.onFragmentFirstVisible()
-        //初始化城市
+        //接收地址更新通知，刷新界面地址
+        LiveEventBus.get<CityBean.ListDTO>(EventKey.UPDATE_LOCATION_ADDRESS)
+            .observeSticky(this) { result->
+                tvAddress.text = result.address
+                App.getSharePre().putString(SpKey.DEFAULT_ADDRESS, result.address)
+                App.getSharePre().putString(SpKey.DEFAULT_CITY_NAME, result.addressCity)
+                App.getSharePre().putString(SpKey.CITY_CODE, result.addressCityCode)
+                App.getSharePre().putDouble(SpKey.LONGITUDE, result.addressLongitude)
+                App.getSharePre().putDouble(SpKey.LATITUDE, result.addressLatitude)
+                requestData()
+            }
+
+        //初始化位置
         initCity()
+
         //请求页面数据
+        showLoading()
         requestData()
+
     }
 
     private fun requestData() {
-        showLoading()
         mPresenter.index()
     }
 
@@ -135,58 +157,23 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
         if (defaultCity.isEmpty()) {
             if (hotCities.isEmpty() && allCities.isEmpty()) {
                 getCityList()
-            } else {
-                showCityPickDialog()
             }
+        }
+        //获取默认地址
+        defaultAddress = App.getSharePre().getString(SpKey.DEFAULT_ADDRESS)
+        if (defaultAddress.isEmpty()) {
+            //初始化地址为当前定位地址
+            Handler(Looper.myLooper()!!).postDelayed({
+                startLocation()
+            }, 500)
         } else {
-            tvAddress.text = defaultCity
-            //每次重新进app都定位一次,更新经纬度
-            startLocation()
+            tvAddress.text = defaultAddress
         }
-        //城市点击事件
+
+        //位置点击事件
         llAddress.setOnClickListener {
-            //显示城市dialog
-            showCityPickDialog()
+            IntentUtils.startActivity(mContext, AddressPickActivity::class.java)
         }
-    }
-
-    private fun showCityPickDialog() {
-        CityPicker.from(this)
-            .enableAnimation(true)
-            .setAnimationStyle(R.style.DefaultCityPickerAnimation)
-            .setLocatedCity(null)
-            .setHotCities(hotCities)
-            .setAllCities(allCities)
-            .setOnPickListener(object : OnPickListener {
-                override fun onPick(position: Int, data: City) {
-                    tvAddress.text = data.name
-                    App.getSharePre().putString(SpKey.DEFAULT_CITY_NAME, data.name)
-                    App.getSharePre().putString(SpKey.CITY_CODE, data.code)
-                    requestData()
-                }
-
-                override fun onCancel() {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (!PermissionX.isGranted(
-                                mContext,
-                                Manifest.permission.ACCESS_COARSE_LOCATION
-                            ) &&
-                            !PermissionX.isGranted(
-                                mContext,
-                                Manifest.permission.ACCESS_FINE_LOCATION
-                            )
-                        ) {
-                            startLocation()
-                            return
-                        }
-                    }
-                }
-
-                override fun onLocate() {
-                    //开始定位
-                    startLocation()
-                }
-            }).show()
     }
 
     private fun getCityList() {
@@ -221,11 +208,6 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
                         )
                     }
                 })
-                //第一次获取接口数据，需要初始化城市缓存数据，而且需要在put之后获取
-                hotCities = App.getSharePre().getList(SpKey.HOT_CITIES, HotCity::class.java)
-                allCities = App.getSharePre().getList(SpKey.ALL_CITIES, City::class.java)
-                //显示城市dialog
-                showCityPickDialog()
             }
 
             override fun onError(msg: String?, code: Int) {
@@ -237,22 +219,22 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LocationHelper.Builder(this).onCreate()
+        LocationHelper.Builder(requireActivity()).onCreate()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        LocationHelper.Builder(this).onDestroy()
+        LocationHelper.Builder(requireActivity()).onDestroy()
     }
 
     private fun startLocation() {
-        LocationHelper.Builder(this)
+        LocationHelper.Builder(requireActivity())
             .startLocation()
             .setLocationListener(object : ResultListener<AMapLocation> {
                 override fun onSuccess(location: AMapLocation?) {
                     location?.let {
                         //更新定位city
-                        CityPicker.from(this@HomeFragment).locateComplete(
+                        CityPicker.from(requireActivity()).locateComplete(
                             LocatedCity(
                                 it.city,
                                 it.province,
@@ -261,8 +243,13 @@ class HomeFragment : BaseFragment<HomePresenter, FragmentHomeBinding>(), HomeCon
                                 it.latitude.toString()
                             ), LocateState.SUCCESS
                         )
+                        tvAddress.text = it.poiName
+                        App.getSharePre().putString(SpKey.DEFAULT_ADDRESS, it.poiName)
+                        App.getSharePre().putString(SpKey.DEFAULT_CITY_NAME, it.city)
+                        App.getSharePre().putString(SpKey.CITY_CODE, it.cityCode)
                         App.getSharePre().putDouble(SpKey.LONGITUDE, it.longitude)
                         App.getSharePre().putDouble(SpKey.LATITUDE, it.latitude)
+                        requestData()
                     }
                 }
 

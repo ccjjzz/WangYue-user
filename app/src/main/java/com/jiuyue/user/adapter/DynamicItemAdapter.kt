@@ -15,7 +15,7 @@ class DynamicItemAdapter(val type: Int) :
         GlideLoader.displayRound(
             item,
             holder.bd.dynamicImg,
-            R.drawable.ic_publish_img_err,
+            R.color.colorEee,
             Dp2px.dp2px(5)
         )
     }

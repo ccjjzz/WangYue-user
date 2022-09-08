@@ -89,7 +89,7 @@ class InputTipsActivity : BaseActivity<BasePresenter?, ActivityInputTipsBinding>
 
     override fun init() {
         binding.title.apply {
-            setTitle("设置常驻地址")
+            setTitle("选择服务地址")
             showLine()
         }
         mKeywordText.addTextChangedListener(this)
@@ -226,7 +226,10 @@ class InputTipsActivity : BaseActivity<BasePresenter?, ActivityInputTipsBinding>
      * @param tipList
      * @param rCode
      */
-    override fun onGetInputtips(tipList: List<Tip>, rCode: Int) {
+    override fun onGetInputtips(list: List<Tip>, rCode: Int) {
+        val tipList = list.filter {
+            it.district.isNotEmpty()
+        }
         if (rCode == AMapException.CODE_AMAP_SUCCESS) {
             val listString: MutableList<HashMap<String, String?>> = ArrayList()
             if (tipList.isNotEmpty()) {

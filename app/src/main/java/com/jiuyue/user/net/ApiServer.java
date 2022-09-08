@@ -132,12 +132,12 @@ public interface ApiServer {
     //点赞/取消点赞动态
     @POST("/api/user/likeDynamic")
     @FormUrlEncoded
-    Observable<HttpResponse<Object>> likeDynamic(@Field("tabId") int tabId, @Field("dynamicId") int dynamicId, @Field("type") int type);
+    Observable<HttpResponse<Object>> likeDynamic(@Field("techId") int techId, @Field("dynamicId") int dynamicId, @Field("type") int type);
 
     //收藏/取消收藏动态
     @POST("/api/user/collectDynamic")
     @FormUrlEncoded
-    Observable<HttpResponse<Object>> collectDynamic(@Field("tabId") int tabId, @Field("dynamicId") int dynamicId, @Field("type") int type);
+    Observable<HttpResponse<Object>> collectDynamic(@Field("techId") int techId, @Field("dynamicId") int dynamicId, @Field("type") int type);
 
     //项目套餐详情
     @POST("/api/user/productInfo")

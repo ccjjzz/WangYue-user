@@ -17,7 +17,7 @@ class MyEvaluateAdapter : BaseBindingAdapter<OrderInfoEntity, ItemMyEvaluateBind
         GlideLoader.displayRound(
             item.productImg,
             holder.bd.ivProductAvatar,
-            R.drawable.ic_publish_img_err,
+            R.color.colorEee,
             Dp2px.dp2px(5)
         )
         holder.bd.tvProductName.text = item.productName

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="156dp"
         android:translationZ="1dp"
-        android:src="@drawable/bg_order_card"
+        android:background="@drawable/bg_order_card"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.jiuyue.user.widget.TitleView

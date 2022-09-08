@@ -19,7 +19,7 @@ class DynamicSummaryAdapter(val mContext: Context) :
             GlideLoader.displayRound(
                 img,
                 holder.getView(R.id.dynamic_img),
-                R.drawable.ic_publish_img_err,
+                R.color.colorEee,
                 Dp2px.dp2px(5)
             )
             holder.itemView.setOnClickListener {
@@ -34,7 +34,7 @@ class DynamicSummaryAdapter(val mContext: Context) :
             GlideLoader.displayRound(
                 item.videoCover,
                 holder.getView(R.id.dynamic_img),
-                R.drawable.ic_publish_img_err,
+                R.color.colorEee,
                 Dp2px.dp2px(5)
             )
             holder.itemView.setOnClickListener {

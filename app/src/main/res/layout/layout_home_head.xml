@@ -25,7 +25,7 @@
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="辉煌国际广场"
+            android:text="定位中"
             android:textColor="@color/color333"
             android:textSize="12sp" />
 

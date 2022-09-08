@@ -8,7 +8,7 @@
         android:id="@+id/item_iv_avatar"
         android:layout_width="match_parent"
         android:layout_height="78dp"
-        android:background="@color/colorEee"
+        android:src="@color/colorEee"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -68,7 +68,7 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter, Acti
         radioGroup = binding.radioGroup1;
         chooseAddress = registerForActivityResult(new StartActivityContract<CityBean.ListDTO>(IntentKey.CHOOSE_CITY_BRAN), result -> {
             if (result != null) {
-                addAddress.setText(address);
+                addAddress.setText(result.getAddress());
                 address = result.getAddress();
                 addressLatitude = result.getAddressLatitude();
                 addressLongitude = result.getAddressLongitude();
@@ -197,5 +197,4 @@ public class EditAddressActivity extends BaseActivity<EditAddressPresenter, Acti
         }
         return contact;
     }
-
 }

@@ -22,7 +22,7 @@ public interface DynamicContract {
     }
 
     interface Model {
-        void dynamicList(int tabId,int page,BaseObserver<ListBean<DynamicEntity>> observer);
+        void dynamicList(int techId,int page,BaseObserver<ListBean<DynamicEntity>> observer);
         void likeDynamic(int techId,int dynamicId,int type,BaseObserver<Object> observer);
         void collectDynamic(int techId,int dynamicId,int type,BaseObserver<Object> observer);
     }

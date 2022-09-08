@@ -128,19 +128,19 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
         mAdapter.addChildClickViewIds(R.id.tv_item_dynamic_collect, R.id.tv_item_dynamic_like);
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             if (view.getId() == R.id.tv_item_dynamic_collect) {
-                //关注
+                //收藏
                 TextView tvCollect = view.findViewById(view.getId());
                 DynamicEntity data = mAdapter.getData().get(position);
                 if (tvCollect.isSelected()) {
                     data.setIsCollect(0);
                     data.setCollectNum(data.getCollectNum() - 1);
                     mAdapter.notifyItemChanged(position);
-                    collectDynamic(data.getTechId(), data.getId(), 1);
+                    collectDynamic(techId, data.getId(), 1);
                 } else {
                     data.setIsCollect(1);
                     data.setCollectNum(data.getCollectNum() + 1);
                     mAdapter.notifyItemChanged(position);
-                    collectDynamic(data.getTechId(), data.getId(), 0);
+                    collectDynamic(techId, data.getId(), 0);
                 }
             } else if (view.getId() == R.id.tv_item_dynamic_like) {
                 //点赞
@@ -150,12 +150,12 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
                     data.setIsLike(0);
                     data.setLikeNum(data.getLikeNum() - 1);
                     mAdapter.notifyItemChanged(position);
-                    likeDynamic(data.getTechId(), data.getId(), 1);
+                    likeDynamic(techId, data.getId(), 1);
                 } else {
                     data.setIsLike(1);
                     data.setLikeNum(data.getLikeNum() + 1);
                     mAdapter.notifyItemChanged(position);
-                    likeDynamic(data.getTechId(), data.getId(), 0);
+                    likeDynamic(techId, data.getId(), 0);
                 }
             }
         });
@@ -298,6 +298,7 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
                 } else {
                     ToastUtil.show("取消点赞");
                 }
+                LiveEventBus.get(EventKey.REFRESH_DYNAMIC_STATUS, String.class).post(null);
             }
 
             @Override
@@ -331,6 +332,7 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
                 } else {
                     ToastUtil.show("取消收藏");
                 }
+                LiveEventBus.get(EventKey.REFRESH_DYNAMIC_STATUS, String.class).post(null);
             }
 
             @Override

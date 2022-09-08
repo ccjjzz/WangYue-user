@@ -50,6 +50,7 @@ class DynamicProfileAdapter(val mContext: Context) :
             holder.bd.rvItemDynamicList.setHasFixedSize(true)
             holder.bd.rvItemDynamicList.isNestedScrollingEnabled = true
             val adapter = DynamicItemAdapter(item.type)
+            adapter.animationEnable = false
             holder.bd.rvItemDynamicList.adapter = adapter
             val list = item.pictures.split(",".toRegex()).toMutableList()
             adapter.setList(list)
@@ -74,6 +75,7 @@ class DynamicProfileAdapter(val mContext: Context) :
             holder.bd.rvItemDynamicList.setHasFixedSize(true)
             holder.bd.rvItemDynamicList.isNestedScrollingEnabled = true
             val adapter = DynamicItemAdapter(item.type)
+            adapter.animationEnable = false
             holder.bd.rvItemDynamicList.adapter = adapter
             val list = item.videoCover.split(",".toRegex()).toMutableList()
             adapter.setList(list)

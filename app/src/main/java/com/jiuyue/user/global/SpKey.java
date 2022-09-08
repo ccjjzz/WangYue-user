@@ -8,6 +8,7 @@ public class SpKey {
     public static final String TOKEN = "SP_TOKEN";
     public static final String LOGIN_INFO = "SP_LOGIN_INFO";
     public static final String DEFAULT_CITY_NAME = "SP_DEFAULT_CITY_NAME";
+    public static final String DEFAULT_ADDRESS = "SP_DEFAULT_ADDRESS";
     public static final String CITY_CODE = "SP_CITY_CODE";
     public static final String LONGITUDE = "SP_LONGITUDE";//经度
     public static final String LATITUDE = "SP_LATITUDE";//纬度

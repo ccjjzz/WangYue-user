@@ -165,7 +165,7 @@
                 android:layout_height="81dp"
                 android:layout_marginStart="21dp"
                 android:layout_marginTop="102dp"
-                android:src="@drawable/ic_publish_img_err"
+                android:src="@color/colorEee"
                 app:circle_border_color="@color/white"
                 app:circle_border_width="4dp"
                 app:layout_constraintStart_toStartOf="parent"
