@@ -296,7 +296,7 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
                 if (type == 0) {
                     ToastUtil.show("已点赞");
                 } else {
-                    ToastUtil.show("取消点赞");
+                    ToastUtil.show("已取消");
                 }
                 LiveEventBus.get(EventKey.REFRESH_DYNAMIC_STATUS, String.class).post(null);
             }
@@ -330,7 +330,7 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
                 if (type == 0) {
                     ToastUtil.show("已收藏");
                 } else {
-                    ToastUtil.show("取消收藏");
+                    ToastUtil.show("已取消");
                 }
                 LiveEventBus.get(EventKey.REFRESH_DYNAMIC_STATUS, String.class).post(null);
             }

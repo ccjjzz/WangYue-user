@@ -25,6 +25,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
  */
 class DynamicFragment(var mTabId: Int) :
     BaseFragment<DynamicPresenter, CommonRefreshRecycleBinding>(), DynamicContract.IView {
+    private var type = 0
 
     private val mAdapter by lazy {
         DynamicAdapter(mContext).apply {
@@ -55,18 +56,20 @@ class DynamicFragment(var mTabId: Int) :
                                 if (data[position].isLike == 0) { //未点
                                     data[position].isLike = 1
                                     notifyItemChanged(position)
+                                    type = 0
                                     mPresenter.likeDynamic(
                                         data[position].techId,
                                         data[position].id,
-                                        0
+                                        type
                                     )
                                 } else {
                                     data[position].isLike = 0
                                     notifyItemChanged(position)
+                                    type = 1
                                     mPresenter.likeDynamic(
                                         data[position].techId,
                                         data[position].id,
-                                        1
+                                        type
                                     )
                                 }
                             }
@@ -74,18 +77,20 @@ class DynamicFragment(var mTabId: Int) :
                                 if (data[position].isCollect == 0) { //未点
                                     data[position].isCollect = 1
                                     notifyItemChanged(position)
+                                    type = 0
                                     mPresenter.collectDynamic(
                                         data[position].techId,
                                         data[position].id,
-                                        0
+                                        type
                                     )
                                 } else {
                                     data[position].isCollect = 0
                                     notifyItemChanged(position)
+                                    type = 1
                                     mPresenter.collectDynamic(
                                         data[position].techId,
                                         data[position].id,
-                                        1
+                                        type
                                     )
                                 }
                             }
@@ -147,7 +152,7 @@ class DynamicFragment(var mTabId: Int) :
 
         //技师简介点赞收藏通知更新列表
         LiveEventBus.get<String>(EventKey.REFRESH_DYNAMIC_STATUS)
-            .observeSticky(this){
+            .observeSticky(this) {
                 requestData(true)
             }
     }
@@ -199,14 +204,26 @@ class DynamicFragment(var mTabId: Int) :
     }
 
     override fun onLikeDynamicSuccess(data: Any?) {
+        if (type == 0) {
+            ToastUtil.show("已点赞")
+        } else {
+            ToastUtil.show("已取消")
+        }
     }
 
     override fun onLikeDynamicError(msg: String?, code: Int) {
+        ToastUtil.show(msg)
     }
 
     override fun onCollectDynamicSuccess(data: Any?) {
+        if (type == 0) {
+            ToastUtil.show("已收藏")
+        } else {
+            ToastUtil.show("已取消")
+        }
     }
 
     override fun onCollectDynamicError(msg: String?, code: Int) {
+        ToastUtil.show(msg)
     }
 }
