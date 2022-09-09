@@ -8,7 +8,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 
 import com.alipay.sdk.app.PayTask;
 import com.jeremyliao.liveeventbus.LiveEventBus;
@@ -16,7 +15,6 @@ import com.jiuyue.user.App;
 import com.jiuyue.user.R;
 import com.jiuyue.user.entity.WxPayEntity;
 import com.jiuyue.user.enums.PayResultStatus;
-import com.jiuyue.user.global.Constant;
 import com.jiuyue.user.global.EventKey;
 import com.jiuyue.user.utils.ThreadManager;
 import com.jiuyue.user.utils.ToastUtil;

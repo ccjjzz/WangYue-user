@@ -4,8 +4,6 @@ import com.jiuyue.user.base.BaseView;
 import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.PayEntity;
 import com.jiuyue.user.entity.PayTypeEntity;
-import com.jiuyue.user.entity.WxPayEntity;
-import com.jiuyue.user.entity.TokenEntity;
 import com.jiuyue.user.net.BaseObserver;
 
 

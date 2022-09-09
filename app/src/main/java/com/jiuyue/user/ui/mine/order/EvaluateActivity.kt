@@ -1,10 +1,8 @@
 package com.jiuyue.user.ui.mine.order
 
 import android.widget.TextView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxItemDecoration
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.jiuyue.user.R
@@ -23,8 +21,6 @@ import com.jiuyue.user.net.HttpResponse
 import com.jiuyue.user.utils.Dp2px
 import com.jiuyue.user.utils.ToastUtil
 import com.jiuyue.user.utils.glide.GlideLoader
-import com.jiuyue.user.widget.decoration.ItemDecorationHelper
-import com.orhanobut.logger.Logger
 import io.reactivex.disposables.Disposable
 
 class EvaluateActivity : BaseActivity<EvaluatePresenter, ActivityEvaluateBinding>(),

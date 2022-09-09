@@ -8,6 +8,7 @@ import com.jiuyue.user.R
 import com.jiuyue.user.adapter.DynamicSummaryAdapter
 import com.jiuyue.user.adapter.TechnicianProductAdapter
 import com.jiuyue.user.base.BaseActivity
+import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.ActivityTechnicianDetailBinding
 import com.jiuyue.user.entity.DynamicEntity
 import com.jiuyue.user.entity.ListBean
@@ -35,6 +36,14 @@ class TechnicianDetailActivity :
 
     override fun createPresenter(): TechnicianPresenter {
         return TechnicianPresenter(this)
+    }
+
+    override fun initLoadingControllerRetryListener(): LoadingInterface.OnClickListener {
+        return LoadingInterface.OnClickListener {
+            showLoading()
+            mPresenter.technicianInfo(techId)
+            mPresenter.technicianDynamicList(techId, 1)
+        }
     }
 
     override fun init() {
@@ -100,6 +109,9 @@ class TechnicianDetailActivity :
         binding.mvTechScore.setMarkStar(data.score)
         binding.tvTechOrderNum.text = "接单${data.orderNum}"
         binding.tvTechServiceTime.text = "最早可约：${data.canBuyTime}"
+        if (data.description.isNotEmpty()) {
+            binding.tvTechDescription.text = data.description
+        }
 
         //套餐列表
         val mAdapterProduct by lazy {
@@ -119,6 +131,8 @@ class TechnicianDetailActivity :
                     placeOrderReq.productId = this.data[position].id
                     placeOrderReq.productNum = 1
                     placeOrderReq.vipCardId = 0
+                    placeOrderReq.serviceDate = ""
+                    placeOrderReq.serviceTime = ""
                     IntentUtils.startPlaceOrderActivity(
                         this@TechnicianDetailActivity,
                         placeOrderReq,
@@ -151,6 +165,8 @@ class TechnicianDetailActivity :
         } else {
             ToastUtil.show("取消关注")
         }
+        //更新我的页面
+        LiveEventBus.get(EventKey.REFRESH_MINE_INFO, String::class.java).post(null)
     }
 
     override fun onFollowTechnicianError(msg: String?, code: Int) {

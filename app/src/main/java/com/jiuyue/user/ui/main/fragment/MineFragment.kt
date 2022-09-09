@@ -17,10 +17,7 @@ import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.model.CommonModel
 import com.jiuyue.user.net.ResultListener
 import com.jiuyue.user.tim.TIMHelper
-import com.jiuyue.user.ui.mine.FollowCommodityActivity
-import com.jiuyue.user.ui.mine.FollowTechnicianActivity
-import com.jiuyue.user.ui.mine.ModifyInfoActivity
-import com.jiuyue.user.ui.mine.MyEvaluateActivity
+import com.jiuyue.user.ui.mine.*
 import com.jiuyue.user.ui.mine.address.CommonAddressActivity
 import com.jiuyue.user.ui.mine.setting.SettingActivity
 import com.jiuyue.user.utils.IntentUtils
@@ -79,20 +76,25 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
             binding.tvMineCoupon,
         )
 
-        //接受修改信息操作通知
+        //接收修改信息操作通知
         LiveEventBus
             .get<String>(EventKey.MODIFY_INFO)
             .observeSticky(this) {
                 refreshInfo()
             }
 
-        //接受首页发送的推荐套餐
+        //接收首页发送的推荐套餐
         LiveEventBus
             .get<List<ProductEntity>>(EventKey.UPDATE_PRODUCT_LIST)
             .observeSticky(this) {
                 refreshProducts(it)
             }
 
+        //监听技师简介关注取关通知
+        LiveEventBus.get<String>(EventKey.REFRESH_MINE_INFO)
+            .observeSticky(this) {
+                refreshInfo()
+            }
     }
 
     private fun refreshInfo() {
@@ -177,10 +179,10 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
                 IntentUtils.startAllOrderActivity(mContext, 4)
             }
             binding.tvMineMyEvaluate -> {
-                IntentUtils.startActivity(mContext,MyEvaluateActivity::class.java)
+                IntentUtils.startActivity(mContext, MyEvaluateActivity::class.java)
             }
             binding.tvMineCoupon -> {
-
+                IntentUtils.startActivity(mContext, MyCouponActivity::class.java)
             }
         }
     }

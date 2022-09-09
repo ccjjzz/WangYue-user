@@ -1,17 +1,12 @@
 package com.jiuyue.user.ui.home
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
-import android.widget.ListAdapter
-import android.widget.ListView
 import android.widget.SimpleAdapter
 import com.amap.api.location.AMapLocation
 import com.amap.api.services.core.AMapException

@@ -1,7 +1,6 @@
 package com.jiuyue.user.widget.decoration;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.google.android.flexbox.FlexboxItemDecoration;
 import com.jiuyue.user.R;
 
 

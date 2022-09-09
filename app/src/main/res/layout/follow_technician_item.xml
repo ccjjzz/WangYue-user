@@ -1,85 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/shape_card_radius_5dp"
+        android:paddingStart="10dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="12dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true"
             android:id="@+id/item_technician_img"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="13dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="12dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
             android:src="@color/colorEee"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_technician_name"
-            app:layout_constraintLeft_toRightOf="@+id/item_technician_img"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="11dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
             android:text="石海英"
             android:textColor="#ff333333"
             android:textSize="13sp"
-            />
+            app:layout_constraintLeft_toRightOf="@+id/item_technician_img"
+            app:layout_constraintTop_toTopOf="@+id/item_technician_img" />
+
         <TextView
             android:id="@+id/item_technician_city"
-            app:layout_constraintLeft_toRightOf="@id/item_technician_img"
-            app:layout_constraintTop_toBottomOf="@id/item_technician_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
             android:text="北京海淀"
             android:textColor="#ff999999"
             android:textSize="12sp"
-            />
+            app:layout_constraintStart_toStartOf="@id/item_technician_name"
+            app:layout_constraintTop_toBottomOf="@id/item_technician_name" />
 
-        <TextView
-            app:layout_constraintTop_toBottomOf="@id/item_technician_city"
-            app:layout_constraintLeft_toRightOf="@id/item_technician_img"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="用户评分"
-            android:textColor="#ff9a9a9a"
-            android:textSize="11sp"
-            />
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/item_service_img"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            app:layout_constraintLeft_toRightOf="@id/item_technician_name"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="13dp"/>
+            app:layout_constraintLeft_toRightOf="@id/item_technician_name"
+            app:layout_constraintTop_toTopOf="@+id/item_technician_text"
+            app:layout_constraintBottom_toBottomOf="@+id/item_technician_text"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_technician_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:text="可服务"
             android:textColor="#ff333333"
             android:textSize="10sp"
             app:layout_constraintLeft_toRightOf="@id/item_service_img"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="2dp"/>
+            app:layout_constraintTop_toTopOf="@id/item_technician_name" />
 
+        <TextView
+            android:id="@+id/tv_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="用户评分"
+            android:textColor="#ff9a9a9a"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/item_technician_name"
+            app:layout_constraintTop_toBottomOf="@id/item_technician_city" />
+
+        <com.jiuyue.user.widget.MarkView
+            android:id="@+id/mv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_mark"
+            app:layout_constraintTop_toTopOf="@+id/tv_mark"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_mark"/>
+
+        <ImageView
+            android:layout_width="6dp"
+            android:layout_height="11dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/ic_arrow_right_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

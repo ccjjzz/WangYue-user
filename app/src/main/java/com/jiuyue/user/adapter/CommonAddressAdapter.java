@@ -1,17 +1,13 @@
 package com.jiuyue.user.adapter;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 
-import com.jiuyue.user.App;
 import com.jiuyue.user.R;
 import com.jiuyue.user.adapter.base.BaseBindingAdapter;
-import com.jiuyue.user.entity.AddressListBean;
 import com.jiuyue.user.databinding.ItemCommonAddressBinding;
-import com.jiuyue.user.utils.AppSharedPreferences;
+import com.jiuyue.user.entity.AddressListBean;
 
 
 public class CommonAddressAdapter extends BaseBindingAdapter<AddressListBean.ListDTO, ItemCommonAddressBinding> {

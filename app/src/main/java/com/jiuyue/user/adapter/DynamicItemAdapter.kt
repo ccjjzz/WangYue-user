@@ -4,7 +4,6 @@ import android.view.View
 import com.jiuyue.user.R
 import com.jiuyue.user.adapter.base.BaseBindingAdapter
 import com.jiuyue.user.databinding.ItemDynamicGridBinding
-import com.jiuyue.user.databinding.ItemTechnicianProductBinding
 import com.jiuyue.user.utils.Dp2px
 import com.jiuyue.user.utils.glide.GlideLoader
 

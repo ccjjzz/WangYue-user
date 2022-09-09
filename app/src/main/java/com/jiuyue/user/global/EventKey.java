@@ -11,6 +11,7 @@ public class EventKey {
     public static final String REFRESH_ADDRESS = "REFRESH_ADDRESS";
     public static final String UPDATE_LOCATION_ADDRESS = "UPDATE_LOCATION_ADDRESS";
     public static final String REFRESH_DYNAMIC_STATUS = "REFRESH_DYNAMIC_STATUS";
+    public static final String REFRESH_MINE_INFO = "REFRESH_MINE_INFO";
 
     public static class EventMsg {
         private int code;

@@ -5,7 +5,6 @@ import com.jiuyue.user.R
 import com.jiuyue.user.adapter.base.BaseBindingAdapter
 import com.jiuyue.user.databinding.ItemOrderBinding
 import com.jiuyue.user.entity.OrderInfoEntity
-import com.jiuyue.user.enums.OrderStatus
 import com.jiuyue.user.utils.Dp2px
 import com.jiuyue.user.utils.glide.GlideLoader
 

@@ -1,13 +1,9 @@
 package com.jiuyue.user.ui.main.fragment
 
-import android.Manifest
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amap.api.location.AMapLocation
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -19,7 +15,6 @@ import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.FragmentTechnicianBinding
 import com.jiuyue.user.entity.*
 import com.jiuyue.user.global.EventKey
-import com.jiuyue.user.global.IntentKey
 import com.jiuyue.user.global.SpKey
 import com.jiuyue.user.mvp.contract.TechnicianContract
 import com.jiuyue.user.mvp.model.CommonModel
@@ -28,13 +23,10 @@ import com.jiuyue.user.net.ResultListener
 import com.jiuyue.user.ui.home.AddressPickActivity
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.LocationHelper
-import com.jiuyue.user.utils.StartActivityContract
 import com.jiuyue.user.utils.ToastUtil
-import com.permissionx.guolindev.PermissionX
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.zaaach.citypicker.CityPicker
-import com.zaaach.citypicker.adapter.OnPickListener
 import com.zaaach.citypicker.model.City
 import com.zaaach.citypicker.model.HotCity
 import com.zaaach.citypicker.model.LocateState

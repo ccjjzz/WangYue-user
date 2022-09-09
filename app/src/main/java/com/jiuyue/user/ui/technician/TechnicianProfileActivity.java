@@ -150,11 +150,15 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
                     data.setIsLike(0);
                     data.setLikeNum(data.getLikeNum() - 1);
                     mAdapter.notifyItemChanged(position);
+                    int likeNum = Integer.parseInt(binding.tvProfileLike.getText().toString());
+                    binding.tvProfileLike.setText(String.valueOf(likeNum - 1));
                     likeDynamic(techId, data.getId(), 1);
                 } else {
                     data.setIsLike(1);
                     data.setLikeNum(data.getLikeNum() + 1);
                     mAdapter.notifyItemChanged(position);
+                    int likeNum = Integer.parseInt(binding.tvProfileLike.getText().toString());
+                    binding.tvProfileLike.setText(String.valueOf(likeNum + 1));
                     likeDynamic(techId, data.getId(), 0);
                 }
             }
@@ -240,6 +244,8 @@ public class TechnicianProfileActivity extends BaseActivity<TechnicianPresenter,
             ToastUtil.show("取消关注");
             LiveEventBus.get(EventKey.UPDATE_FOLLOW_STATUS, Boolean.class).post(false);
         }
+        //更新我的页面
+        LiveEventBus.get(EventKey.REFRESH_MINE_INFO, String.class).post(null);
     }
 
     @Override

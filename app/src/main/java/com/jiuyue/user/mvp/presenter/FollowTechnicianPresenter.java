@@ -21,7 +21,7 @@ public class FollowTechnicianPresenter extends IBasePresenter<FollowTechnicianCo
 
     @Override
     public void Follow(String os) {
-        model.Follow("android", new BaseObserver<FollowTechnicianBean>() {
+        model.Follow("android", new BaseObserver<FollowTechnicianBean>(mView) {
             @Override
             public void onSuccess(HttpResponse<FollowTechnicianBean> data) {
                 mView.onFollowSuccess(data.getData());

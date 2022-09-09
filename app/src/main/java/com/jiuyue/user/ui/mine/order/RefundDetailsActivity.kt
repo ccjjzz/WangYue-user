@@ -1,9 +1,6 @@
 package com.jiuyue.user.ui.mine.order
 
 import android.annotation.SuppressLint
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.view.View
 import com.jiuyue.user.R
 import com.jiuyue.user.base.BaseActivity
@@ -17,7 +14,6 @@ import com.jiuyue.user.mvp.presenter.OrderPresenter
 import com.jiuyue.user.utils.AppUtils
 import com.jiuyue.user.utils.Dp2px
 import com.jiuyue.user.utils.ToastUtil
-import com.jiuyue.user.utils.XPopupHelper
 import com.jiuyue.user.utils.glide.GlideLoader
 
 class RefundDetailsActivity : BaseActivity<OrderPresenter, ActivityRefundDetailsBinding>(),

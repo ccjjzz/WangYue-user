@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +25,6 @@ import com.jiuyue.user.mvp.presenter.CommonAddressPresenter;
 import com.jiuyue.user.utils.IntentUtils;
 import com.jiuyue.user.utils.ToastUtil;
 import com.jiuyue.user.utils.XPopupHelper;
-import com.lxj.xpopup.interfaces.OnConfirmListener;
 
 import java.util.List;
 

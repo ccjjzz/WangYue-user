@@ -32,7 +32,7 @@ class TechnicianAdapter :
             holder.bd.itemTvLabel.visibility = View.VISIBLE
             holder.bd.itemTvLabel.text = item.tag
         }
-        holder.bd.itemTvScore.text = item.score.toString()
+        holder.bd.itemTvScore.text = "${item.score}.0"
         holder.bd.itemTvAddress.text = item.distince
         holder.bd.itemTvStatus.text = when (item.serviceStatus) {
             0 -> "忙碌中"

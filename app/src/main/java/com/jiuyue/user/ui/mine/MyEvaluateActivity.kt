@@ -1,16 +1,10 @@
 package com.jiuyue.user.ui.mine
 
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jiuyue.user.R
-import com.jiuyue.user.adapter.CommentAdapter
 import com.jiuyue.user.adapter.MyEvaluateAdapter
 import com.jiuyue.user.base.BaseActivity
-import com.jiuyue.user.base.BasePresenter
 import com.jiuyue.user.base.loading.LoadingInterface
-import com.jiuyue.user.databinding.CommonRefreshRecycleBinding
 import com.jiuyue.user.databinding.CommonTitleRecycleBinding
 import com.jiuyue.user.entity.ListBean
 import com.jiuyue.user.entity.OrderInfoEntity

@@ -3,8 +3,6 @@ package com.jiuyue.user.mvp.model;
 import com.jiuyue.user.entity.ListBean;
 import com.jiuyue.user.entity.PayEntity;
 import com.jiuyue.user.entity.PayTypeEntity;
-import com.jiuyue.user.entity.TokenEntity;
-import com.jiuyue.user.mvp.contract.LoginContract;
 import com.jiuyue.user.mvp.contract.PayContract;
 import com.jiuyue.user.net.ApiRetrofit;
 import com.jiuyue.user.net.ApiServer;

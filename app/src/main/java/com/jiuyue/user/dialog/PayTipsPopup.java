@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.R;
 import com.jiuyue.user.entity.TIMMsgEntity;
 import com.jiuyue.user.enums.IMMsgType;

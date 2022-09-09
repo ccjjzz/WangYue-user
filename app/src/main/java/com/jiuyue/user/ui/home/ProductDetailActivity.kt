@@ -10,6 +10,7 @@ import com.jeremyliao.liveeventbus.LiveEventBus
 import com.jiuyue.user.App
 import com.jiuyue.user.R
 import com.jiuyue.user.base.BaseActivity
+import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.ActivityProductDetailBinding
 import com.jiuyue.user.dialog.ChooseReserveTimePopup
 import com.jiuyue.user.entity.*
@@ -37,6 +38,7 @@ import io.reactivex.disposables.Disposable
 class ProductDetailActivity : BaseActivity<ProductPresenter, ActivityProductDetailBinding>(),
     ProductContract.IView, View.OnClickListener {
     private lateinit var chooseTechnician: ActivityResultLauncher<Intent>
+    private var productId: Int = 0
     private val placeOrderReq by lazy {
         PlaceOrderReq()
     }
@@ -59,8 +61,16 @@ class ProductDetailActivity : BaseActivity<ProductPresenter, ActivityProductDeta
             .apply()
     }
 
+    override fun initLoadingControllerRetryListener(): LoadingInterface.OnClickListener {
+        return LoadingInterface.OnClickListener {
+            //请求数据
+            showLoading()
+            mPresenter.productInfo(productId)
+        }
+    }
+
     override fun init() {
-        val productId = intent.getIntExtra(IntentKey.PRODUCT_ID, 0)
+        productId = intent.getIntExtra(IntentKey.PRODUCT_ID, 0)
         //初始化标题栏
         initTitle()
         //注册选择技师
@@ -276,6 +286,8 @@ class ProductDetailActivity : BaseActivity<ProductPresenter, ActivityProductDeta
                     ToastUtil.show("取消收藏")
                 }
             }
+            //更新我的页面
+            LiveEventBus.get(EventKey.REFRESH_MINE_INFO, String::class.java).post(null)
         }
     }
 

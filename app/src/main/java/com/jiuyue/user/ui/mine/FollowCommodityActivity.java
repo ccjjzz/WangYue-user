@@ -5,12 +5,15 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.adapter.FollowCommodityAdapter;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.databinding.ActivityFollowCommodityBinding;
 import com.jiuyue.user.entity.FollowCommoditBean;
+import com.jiuyue.user.global.EventKey;
 import com.jiuyue.user.mvp.contract.FollowCommodityContract;
 import com.jiuyue.user.mvp.presenter.FollowCommodityPresenter;
+import com.jiuyue.user.utils.IntentUtils;
 
 import java.util.List;
 
@@ -39,6 +42,12 @@ public class FollowCommodityActivity extends BaseActivity<FollowCommodityPresent
 
         showLoading();
         mPresenter.Follow("android");
+
+        //监听技师简介关注取关通知
+        LiveEventBus.get(EventKey.REFRESH_MINE_INFO,String.class)
+                .observe(this, s -> {
+                    mPresenter.Follow("android");
+                });
     }
 
     @Override
@@ -46,10 +55,13 @@ public class FollowCommodityActivity extends BaseActivity<FollowCommodityPresent
 
         if (bean.getList().size() > 0) {
             followRv.setLayoutManager(new LinearLayoutManager(this));
-            FollowCommodityAdapter adapter = new FollowCommodityAdapter();
-            followRv.setAdapter(adapter);
+            FollowCommodityAdapter mAdapter = new FollowCommodityAdapter();
+            followRv.setAdapter(mAdapter);
             List<FollowCommoditBean.ListDTO> list = bean.getList();
-            adapter.setList(list);
+            mAdapter.setList(list);
+            mAdapter.setOnItemClickListener((adapter, view, position) -> {
+                IntentUtils.startProductDetailActivity(this,mAdapter.getData().get(position).getId());
+            });
         } else {
             showEmpty();
         }

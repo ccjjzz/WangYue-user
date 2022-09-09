@@ -13,7 +13,6 @@ import android.widget.RadioGroup;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.jiuyue.user.R;
@@ -28,9 +27,6 @@ import com.jiuyue.user.mvp.presenter.EditAddressPresenter;
 import com.jiuyue.user.ui.common.InputTipsActivity;
 import com.jiuyue.user.utils.StartActivityContract;
 import com.jiuyue.user.utils.ToastUtil;
-import com.jiuyue.user.widget.TitleView;
-
-import java.util.List;
 
 public class EditAddressActivity extends BaseActivity<EditAddressPresenter, ActivityEditAddressBinding> implements EditAddressContract.IView, View.OnClickListener {
     private static final int CODE_FOR_STARTACTIVITY_CONTACTS = 10000;

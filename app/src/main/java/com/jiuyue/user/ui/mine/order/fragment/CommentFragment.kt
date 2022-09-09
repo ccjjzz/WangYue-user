@@ -7,21 +7,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.jiuyue.user.R
 import com.jiuyue.user.adapter.CommentAdapter
-import com.jiuyue.user.adapter.OrderAdapter
 import com.jiuyue.user.base.BaseFragment
 import com.jiuyue.user.base.loading.LoadingInterface
 import com.jiuyue.user.databinding.CommonRefreshRecycleBinding
 import com.jiuyue.user.entity.ListBean
 import com.jiuyue.user.entity.OrderInfoEntity
-import com.jiuyue.user.enums.OrderStatus
 import com.jiuyue.user.enums.OrderTabType
 import com.jiuyue.user.global.EventKey
 import com.jiuyue.user.mvp.contract.OrderContract
 import com.jiuyue.user.mvp.presenter.OrderPresenter
-import com.jiuyue.user.tim.TIMHelper
 import com.jiuyue.user.utils.IntentUtils
 import com.jiuyue.user.utils.ToastUtil
-import com.jiuyue.user.utils.XPopupHelper
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 

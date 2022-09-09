@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.jeremyliao.liveeventbus.LiveEventBus;
-import com.jiuyue.user.global.Constant;
 import com.jiuyue.user.global.EventKey;
 import com.jiuyue.user.pay.PayHelper;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
