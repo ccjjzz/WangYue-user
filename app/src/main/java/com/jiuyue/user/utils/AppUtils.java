@@ -210,7 +210,7 @@ public class AppUtils {
      * @return
      */
     public static String getOsName() {
-        return Build.MODEL;
+        return Build.BRAND + Build.MODEL;
     }
 
     /**

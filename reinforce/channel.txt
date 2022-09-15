@@ -1,0 +1,15 @@
+yingyongbao # 应用宝
+baiduzhushou # 百度助手
+91zhushou # 91助手
+anzhuoshichang # 安智市场
+360zhushou # 360助手
+xiaomi # 小米
+aliyun # 阿里云
+ppzhushou # pp助手
+wandoujia # 豌豆荚
+sansung # 三星
+huawei # 华为
+oppo # oppo
+vivo # vivo
+meizu # 魅族
+guanwang # 官网

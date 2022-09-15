@@ -91,7 +91,7 @@
         <!--渠道号-->
         <meta-data
             android:name="channel"
-            android:value="huawei" />
+            android:value="guanwang" />
 
         <!--今日头条适配方案-->
         <meta-data

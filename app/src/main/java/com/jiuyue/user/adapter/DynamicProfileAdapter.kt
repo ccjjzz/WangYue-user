@@ -54,11 +54,11 @@ class DynamicProfileAdapter(val mContext: Context) :
             holder.bd.rvItemDynamicList.adapter = adapter
             val list = item.pictures.split(",".toRegex()).toMutableList()
             adapter.setList(list)
-            adapter.setOnItemClickListener { _, _, _ ->
+            adapter.setOnItemClickListener { _, _, position ->
                 IntentUtils.startPhotoViewActivity(
                     mContext,
                     list as ArrayList<String>,
-                    holder.bindingAdapterPosition
+                    position
                 )
             }
         } else { //视频

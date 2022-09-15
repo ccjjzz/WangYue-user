@@ -3,6 +3,7 @@ apply plugin: "kotlin-android"
 apply plugin: "kotlin-kapt"
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'walle'
+apply from: 'reinforce.gradle'
 
 static def releaseTime() {
     return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8"))
@@ -52,14 +53,14 @@ android {
         }
     }
 
-    flavorDimensions "version"
-    productFlavors {
-        app {
-            dimension "version"
-            applicationIdSuffix ""
-            versionNameSuffix ""
-        }
-    }
+//    flavorDimensions "version"
+//    productFlavors {
+//        app {
+//            dimension "version"
+//            applicationIdSuffix ""
+//            versionNameSuffix ""
+//        }
+//    }
 
     buildTypes {
         debug {
@@ -78,8 +79,8 @@ android {
         //打包命名规则
         android.applicationVariants.all { variant ->
             variant.outputs.all {
-//                outputFileName = "jieyue-teacher-v${variant.versionName}-${productFlavors[0].name}_${releaseTime()}.apk"
-                outputFileName = "jieyue-user-v${variant.versionName}-${releaseTime()}.apk"
+//                outputFileName = "jieyue-user-v${variant.versionName}-${productFlavors[0].name}_${releaseTime()}.apk"
+//                outputFileName = "jieyue-user-v${variant.versionName}-${releaseTime()}.apk"
             }
         }
     }

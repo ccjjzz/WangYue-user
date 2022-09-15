@@ -189,6 +189,39 @@ object XPopupHelper {
             .show()
     }
 
+
+    /**
+     * 通用确认弹窗,带取消事件监听
+     */
+    fun showConfirm(
+        context: Context,
+        title: String,
+        content: String,
+        confirmTxt: String,
+        cancelTxt: String,
+        isHideCancel: Boolean,
+        onConfirmListener: OnConfirmListener
+    ) {
+        XPopup.Builder(context)
+            .dismissOnTouchOutside(!isHideCancel)
+            .setPopupCallback(object : XPopupCallbackImpl() {
+                override fun onBackPressedImpl(popupView: BasePopupView?): Boolean {
+                    return if (isHideCancel) {
+                        AppStockManage.getInstance().appExit()
+                        true
+                    }else{
+                        false
+                    }
+                }
+            })
+            .asConfirm(
+                title, content, cancelTxt, confirmTxt,
+                onConfirmListener, null, isHideCancel, R.layout.dialog_confirm
+            )
+            .show()
+    }
+
+
     /**
      * 通用列表选择弹窗
      */

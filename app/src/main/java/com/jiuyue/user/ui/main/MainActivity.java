@@ -1,16 +1,26 @@
 package com.jiuyue.user.ui.main;
 
+import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RadioGroup;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.jiuyue.user.App;
 import com.jiuyue.user.R;
 import com.jiuyue.user.base.BaseActivity;
 import com.jiuyue.user.base.BasePresenter;
 import com.jiuyue.user.databinding.ActivityMainBinding;
+import com.jiuyue.user.entity.ConfigEntity;
+import com.jiuyue.user.global.SpKey;
+import com.jiuyue.user.service.DownloadAppService;
 import com.jiuyue.user.service.TIMMessageService;
 import com.jiuyue.user.ui.main.fragment.FindFragment;
 import com.jiuyue.user.ui.main.fragment.HomeFragment;
@@ -19,6 +29,8 @@ import com.jiuyue.user.ui.main.fragment.TechnicianFragment;
 import com.jiuyue.user.utils.AppStockManage;
 import com.jiuyue.user.utils.ForegroundUtil;
 import com.jiuyue.user.utils.ToastUtil;
+import com.jiuyue.user.utils.XPopupHelper;
+import com.permissionx.guolindev.PermissionX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +61,7 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
         rbMain = binding.rgMain;
         initBottomBar();
         foregroundShowUpDataDialog();
+        checkAppVersion();
         //开启TIM消息推送服务
         Intent service = new Intent(this, TIMMessageService.class);
         startService(service);
@@ -160,6 +173,92 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
             }
         });
 
+    }
+
+    private void checkAppVersion() {
+        ConfigEntity config = App.getSharePre().getObject(SpKey.CONFIG_INFO, ConfigEntity.class);
+        if (config.getUpdate() != null) {
+            if (config.getUpdate().getNeedUpdate() == 1) {
+                XPopupHelper.INSTANCE.showConfirm(
+                        this,
+                        "发现新版本",
+                        config.getUpdate().getRemark(),
+                        "立即升级",
+                        "暂不升级",
+                        config.getUpdate().getIsForce() == 1,
+                        this::checkPermissions
+                );
+            }
+        }
+    }
+
+
+    private void checkPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!PermissionX.isGranted(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
+                    !PermissionX.isGranted(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+            ) {
+                PermissionX.init(this).permissions(
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                        .explainReasonBeforeRequest()
+                        .onForwardToSettings((scope, deniedList) -> {
+                            scope.showForwardToSettingsDialog(
+                                    deniedList,
+                                    "您需要手动在设置中允许以下权限",
+                                    "去打开",
+                                    "取消"
+                            );
+                        })
+                        .request((allGranted, grantedList, deniedList) -> {
+                            if (!allGranted) {
+                                ToastUtil.show("为了更好的体验，需要您允许更新所需的必要权限");
+                            }else {
+                                checkInstallPermissions();
+                            }
+                        });
+            }
+        } else {
+            startDownloadService();
+        }
+    }
+
+    private void checkInstallPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // 8.0 需要开启安装未知来源
+            boolean canInstall = getPackageManager().canRequestPackageInstalls();
+            if (canInstall) {
+                startDownloadService();
+            } else {
+                //请求安装未知应用来源的权限
+                Uri packageURI = Uri.parse("package:" + getPackageName());
+                Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
+                startActivityForResult(intent, 1001);
+            }
+        } else {
+            startDownloadService();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1001) {
+            startDownloadService();
+        }
+    }
+
+    /**
+     * 开启下载服务
+     */
+    private void startDownloadService() {
+        Log.e("BaseActivity", "启动下载服务");
+        ConfigEntity config = App.getSharePre().getObject(SpKey.CONFIG_INFO, ConfigEntity.class);
+        String url = config.getUpdate().getUrl();
+        Intent intent = new Intent(this, DownloadAppService.class);
+        intent.putExtra("url", url);
+        startService(intent);
     }
 
     @Override

@@ -138,16 +138,16 @@ public class ConfigEntity {
     }
 
     public static class UpdateDTO {
-        private String needUpdate;
+        private int needUpdate;
         private String url;
         private String remark;
-        private String isForce;
+        private int isForce;
 
-        public String getNeedUpdate() {
-            return needUpdate == null ? "" : needUpdate;
+        public int getNeedUpdate() {
+            return needUpdate;
         }
 
-        public void setNeedUpdate(String needUpdate) {
+        public void setNeedUpdate(int needUpdate) {
             this.needUpdate = needUpdate;
         }
 
@@ -167,11 +167,11 @@ public class ConfigEntity {
             this.remark = remark;
         }
 
-        public String getIsForce() {
-            return isForce == null ? "" : isForce;
+        public int getIsForce() {
+            return isForce;
         }
 
-        public void setIsForce(String isForce) {
+        public void setIsForce(int isForce) {
             this.isForce = isForce;
         }
     }
