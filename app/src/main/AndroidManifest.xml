@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
@@ -44,10 +45,6 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <!--用于用户链接蓝牙时，在导航组件页面的蓝牙连接提醒，建立链接后开发者可选用蓝牙通道进行tts播报-->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <!--用与导航状态中保持屏幕常亮-->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!--允许写设备缓存，用于问题排查-->
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
@@ -72,6 +69,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         tools:ignore="UnusedAttribute"
         tools:replace="android:allowBackup"
         tools:targetApi="o">

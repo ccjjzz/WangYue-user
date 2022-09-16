@@ -192,7 +192,6 @@ public class MainActivity extends BaseActivity<BasePresenter, ActivityMainBindin
         }
     }
 
-
     private void checkPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!PermissionX.isGranted(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) &&

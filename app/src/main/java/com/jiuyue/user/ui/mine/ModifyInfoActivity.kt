@@ -43,7 +43,7 @@ class ModifyInfoActivity : BaseActivity<BasePresenter, ActivityModifyInfoBinding
             if (uri != null) {
                 binding.ivAvatar.setImageURI(uri)
                 //uri转为File
-                val path = FileUtil.getPathFromUri(uri)
+                val path = UriUtils.getImagePathByUri(this,uri)
                 val file = File(path)
                 avatarFile = File(file.parent, "avatarPhoto.jpg")
                 file.renameTo(avatarFile!!)
@@ -144,9 +144,8 @@ class ModifyInfoActivity : BaseActivity<BasePresenter, ActivityModifyInfoBinding
         }
     }
 
-
     private fun requestPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             if (!PermissionX.isGranted(this, Manifest.permission.CAMERA) &&
                 !PermissionX.isGranted(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
                 !PermissionX.isGranted(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -175,6 +174,38 @@ class ModifyInfoActivity : BaseActivity<BasePresenter, ActivityModifyInfoBinding
             } else {
                 showSelectPop()
             }
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!PermissionX.isGranted(this, Manifest.permission.CAMERA) &&
+                !PermissionX.isGranted(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
+                !PermissionX.isGranted(this, Manifest.permission.READ_EXTERNAL_STORAGE) &&
+                !PermissionX.isGranted(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+            ) {
+                PermissionX.init(this).permissions(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.MANAGE_EXTERNAL_STORAGE
+                )
+                    .explainReasonBeforeRequest()
+                    .onForwardToSettings { scope: ForwardScope, deniedList: List<String?>? ->
+                        scope.showForwardToSettingsDialog(
+                            deniedList,
+                            "为了更好的体验，您需要手动在设置中允许以下权限",
+                            "去打开",
+                            "取消"
+                        )
+                    }
+                    .request { allGranted: Boolean, grantedList: List<String?>?, deniedList: List<String?>? ->
+                        if (!allGranted) {
+                            ToastUtil.show("为了更好的体验，需要您允许应用所需的必要权限")
+                        } else {
+                            showSelectPop()
+                        }
+                    }
+            } else {
+                showSelectPop()
+            }
+
         }
     }
 

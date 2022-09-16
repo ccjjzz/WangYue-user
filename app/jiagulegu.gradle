@@ -1,0 +1,270 @@
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
+
+ext {
+    //加固插件路径
+    reinforce_plugin_path = '../jiagulegu'
+    //360加固账号密码
+    reinforce_plugin_name = 'AKIDaz81dy3rOedLmpfGdldLyVxJbjnrnVyC'  //腾讯乐固AppId
+    reinforce_plugin_passward = '1oMehU2MRGqAF4dwDKLH2XliOoxpPjnZ'  //腾讯乐固AppKey
+    //签名信息
+    key_store_path = './jiuyue_user.jks'
+    key_store_passward = 'jiuyue123321'
+    alias = 'jiuyue_user'
+    alias_passward = 'jiuyue123321'
+    //加固zipalign输入路径
+    reinforce_zipalign_apk_dir = 'build/outputs/apk/release/zipalign/'
+    //加固签名输入路径
+    reinforce_signer_apk_dir = 'build/outputs/apk/release/signer/'
+    //加固ApK输出路径
+    reinforce_apk_path = 'build/outputs/apk/release/jiagulegu/'
+    //加固包名称
+    reinforce_apk_name = 'jiuyue_user.apk'
+    //渠道配置文件
+    chanel_config_path = reinforce_plugin_path + '/channel.txt'
+    //渠道Apk输出路径
+    channel_apks_path = 'build/outputs/apk/release/channels/'
+}
+
+/**
+ * 注释：编译加固渠道包
+ * 时间：2019/1/2 0002 14:01
+ * 作者：郭翰林
+ */
+task buildLeguReinforceRelease() {
+    group 'leguReinforce'
+    dependsOn('assembleRelease')
+    doLast {
+        //第一步：清空缓存
+        cleanFilesPath(reinforce_plugin_path + "/.cache")
+        cleanFilesPath(reinforce_plugin_path + "/output")
+        cleanFilesPath(reinforce_plugin_path + "/jiagu.db")
+        cleanFilesPath(reinforce_zipalign_apk_dir)
+        cleanFilesPath(reinforce_signer_apk_dir)
+        cleanFilesPath(reinforce_apk_path)
+        cleanFilesPath(channel_apks_path)
+        //第二步：开始加固
+        reinforceApk()
+    }
+}
+
+/**
+ * 注释：打多渠道包
+ * 时间：2019/1/4 0004 13:26
+ * 作者：郭翰林
+ */
+def buildChannelApks() {
+    println('开始编译多渠道包')
+    File reinforceApk = new File(reinforce_signer_apk_dir + reinforce_apk_name)
+    if (!reinforceApk.exists()) {
+        throw new RuntimeException("渠道目标文件不存在")
+    }
+    //新建渠道包目录
+    File channelsPath = new File(channel_apks_path)
+    if (!channelsPath.exists()) {
+        channelsPath.mkdir()
+    }
+    exec {
+        commandLine "powershell", "java -jar", reinforce_plugin_path + "/walle-cli-all.jar batch -f ", chanel_config_path, reinforceApk, channel_apks_path
+    }
+    println('编译多渠道包成功，生成的渠道包路径:' + channelsPath.getAbsolutePath())
+}
+
+/**
+ * 注释：重命名已加固好的APK
+ * 时间：2019/1/4 0004 12:48
+ * 作者：郭翰林
+ */
+def renameReinforceApk() {
+    File files = new File(reinforce_signer_apk_dir)
+    if (!files.exists()) {
+        return
+    }
+    if (files.isDirectory()) {
+        String[] content = files.list()//取得当前目录下所有文件和文件夹
+        for (String name : content) {
+            //由于第一步清空缓存，reinforce文件夹内只会有一个已经加固并且签名的包
+            File signedApk = new File(reinforce_signer_apk_dir, name)
+            File renameApk = new File(reinforce_signer_apk_dir, reinforce_apk_name)
+            if (signedApk.exists() && signedApk.isFile()) {
+                signedApk.renameTo(renameApk)
+            }
+        }
+    }
+}
+
+/**
+ * 对齐签名apk
+ * @param output
+ */
+def zipalignApk() {
+    println "*************** zipalign优化开始 ***************"
+    File files = new File(reinforce_apk_path)
+    if (!files.exists()) {
+        files.mkdir()
+    }
+    File outFiles = new File(reinforce_zipalign_apk_dir)
+    if (!outFiles.exists()) {
+        outFiles.mkdir()
+    }
+    if (files.isDirectory()) {
+        String[] content = files.list()//取得当前目录下所有文件和文件夹
+        for (String name : content) {
+            //由于第一步清空缓存，reinforce文件夹内只会有一个已经加固并且签名的包
+            File leguApk = new File(reinforce_apk_path, name)
+            File zipalignApk = new File(outFiles, name)
+            if (leguApk.exists() && leguApk.isFile()) {
+
+                println leguApk.getAbsolutePath()
+
+                exec {
+//            java -jar apksigner.jar sign  --ks key.jks  --ks-key-alias releasekey  --ks-pass pass:pp123456  --key-pass pass:pp123456  --out output.apk  input.apk
+                    commandLine "powershell", reinforce_plugin_path + "/zipalign", "-v", "-p", "4", leguApk.getPath(), zipalignApk.getPath()
+                }
+                println "*************** zipalign优化结束 ***************"
+                signApk()
+            }
+        }
+    }
+
+}
+/**
+ * 签名apk
+ * @param output
+ */
+def signApk() {
+    println "*************** 开始签名 ***************"
+    File files = new File(reinforce_zipalign_apk_dir)
+    if (!files.exists()) {
+        files.mkdir()
+    }
+    File outFiles = new File(reinforce_signer_apk_dir)
+    if (!outFiles.exists()) {
+        outFiles.mkdir()
+    }
+    if (files.isDirectory()) {
+        String[] content = files.list()//取得当前目录下所有文件和文件夹
+        for (String name : content) {
+            //由于第一步清空缓存，reinforce文件夹内只会有一个已经加固并且签名的包
+            File zipalignApk = new File(reinforce_zipalign_apk_dir, name)
+            File signerApk = new File(outFiles, name)
+            if (zipalignApk.exists() && zipalignApk.isFile()) {
+
+                println zipalignApk.getAbsolutePath()
+
+                exec {
+//            java -jar apksigner.jar sign  --ks key.jks  --ks-key-alias releasekey  --ks-pass pass:pp123456  --key-pass pass:pp123456  --out output.apk  input.apk
+
+                    commandLine "powershell", "java", "-jar", reinforce_plugin_path + "/apksigner.jar", "sign", "--ks", key_store_path, "--ks-key-alias", alias, "--ks-pass", "pass:" + key_store_passward, "--key-pass", "pass:" + alias_passward, "--out", signerApk.getPath(), zipalignApk.getPath()
+
+                }
+                println "*************** 签名结束 ***************"
+                //第三部：重命名加固包
+                renameReinforceApk()
+                //第四步：打多渠道包
+                buildChannelApks()
+//                //第五步：压缩渠道包
+//                compressDir(new File(channel_apks_path))
+            }
+        }
+    }
+
+}
+
+/**
+ * zip压缩apk保存目录，生成 build/outputs/jy-channels.zip
+ * @param outputDir apk保存目录
+ */
+def compressDir(File outputDir) {
+    println "*************** start compress apk output dir ***************"
+
+    File zipFile = new File(outputDir.getParentFile().getParentFile().getParent() + "/" +"jy-channels.zip")
+    if (zipFile.exists()) {
+        zipFile.delete()
+    }
+
+    ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipFile))
+    File[] files = outputDir.listFiles()
+    if (files == null || files.length == 0) {
+        return
+    }
+    for (int i = 0; i < files.length; i++) {
+        File file = files[i]
+
+        byte[] bf = new byte[8192]
+        FileInputStream fis = new FileInputStream(file)
+        zos.putNextEntry(new ZipEntry(file.getName()))
+
+        int len
+        while ((len = fis.read(bf)) > 0) {
+            zos.write(bf, 0, len)
+        }
+        zos.flush()
+        fis.close()
+    }
+
+    zos.close()
+    println "*************** finish compress apk output dir   ***************"
+    return zipFile.getAbsolutePath()
+}
+
+
+/**
+ * 注释：使用360加固加固Release包
+ * 时间：2019/1/2 0002 14:32
+ * 作者：郭翰林
+ */
+def reinforceApk() {
+    println('开始进行加固操作')
+    File releaseApk = new File('build/outputs/apk/release/app-release.apk')
+    if (!releaseApk.exists()) {
+        throw new FileNotFoundException('Release包不存在，无法进行加固操作')
+    }
+    String releasePath = 'build/outputs/apk/release/app-release.apk'
+    //创建加固文件夹
+    File reinforcePath = new File(reinforce_apk_path)
+    if (!reinforcePath.exists()) {
+        reinforcePath.mkdir()
+    }
+
+    //jiagu.db中缓存了多渠道信息，如果不删除会合并到当前多渠道配置
+    def shield = new File(reinforce_plugin_path + "/ms-shield.jar")
+    if (!shield.exists()) {
+        throw new RuntimeException("jar not exists!")
+    }
+    println reinforce_plugin_name
+    println reinforce_plugin_passward
+
+    exec {
+        commandLine "powershell", "java -jar", reinforce_plugin_path + "/ms-shield.jar", "-sid", reinforce_plugin_name, "-skey", reinforce_plugin_passward, "-uploadPath", releasePath, "-downloadPath", reinforcePath
+    }
+    println('加固操作结束，加固包路径' + reinforcePath.getAbsolutePath())
+    zipalignApk()
+}
+
+/**
+ * 注释：清空文件夹
+ * 时间：2019/1/2 0002 14:15
+ * 作者：郭翰林
+ */
+def cleanFilesPath(String path) {
+    File files = new File(path)
+    if (!files.exists()) {
+        return
+    }
+    println('开始执行清除:' + files.getAbsolutePath())
+    if (files.isDirectory()) {
+        String[] content = files.list()//取得当前目录下所有文件和文件夹
+        for (String name : content) {
+            File temp = new File(path, name)
+            if (temp.isDirectory()) {//判断是否是目录
+                println('子目录:' + temp.getAbsolutePath())
+                cleanFilesPath(temp.getAbsolutePath())//递归调用，删除目录里的内容
+                temp.delete()
+            } else {
+                temp.delete()
+            }
+        }
+    }
+    files.delete()
+}

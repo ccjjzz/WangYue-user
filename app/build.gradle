@@ -3,7 +3,8 @@ apply plugin: "kotlin-android"
 apply plugin: "kotlin-kapt"
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'walle'
-apply from: 'reinforce.gradle'
+apply from: 'jiagu360.gradle'
+apply from: 'jiagulegu.gradle'
 
 static def releaseTime() {
     return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8"))

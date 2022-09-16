@@ -1,6 +1,6 @@
 ext {
     //加固插件路径
-    reinforce_plugin_path = '../reinforce'
+    reinforce_plugin_path = '../jiagu360'
     //360加固账号密码
     reinforce_plugin_name = 'a2433324766'
     reinforce_plugin_passward = 'qq996633'
@@ -9,10 +9,12 @@ ext {
     key_store_passward = 'jiuyue123321'
     alias = 'jiuyue_user'
     alias_passward = 'jiuyue123321'
+    //加固APK输出目录
+    reinforce_apk_dir = 'build/outputs/apk/release/jiagu360'
     //加固ApK输出路径
-    reinforce_apk_path = 'build/outputs/apk/release/reinforce/'
+    reinforce_apk_path = reinforce_apk_dir + '/'
     //加固包名称
-    reinforce_apk_name = 'build/outputs/apk/release/reinforce/release_encrypted_aligned_signed.apk'
+    reinforce_apk_name = reinforce_apk_path + 'jiuyue_user.apk'
     //渠道配置文件
     chanel_config_path = reinforce_plugin_path + '/channel.txt'
     //渠道Apk输出路径
@@ -24,7 +26,7 @@ ext {
  * 时间：2019/1/2 0002 14:01
  * 作者：郭翰林
  */
-task buildReinforceRelease() {
+task build360ReinforceRelease() {
     group '360reinforce'
     dependsOn('assembleRelease')
     doLast {
@@ -71,7 +73,7 @@ def buildChannelApks() {
  * 作者：郭翰林
  */
 def renameReinforceApk() {
-    File files = new File('build/outputs/apk/release/reinforce')
+    File files = new File(reinforce_apk_dir)
     if (!files.exists()) {
         return
     }
@@ -79,7 +81,7 @@ def renameReinforceApk() {
         String[] content = files.list()//取得当前目录下所有文件和文件夹
         for (String name : content) {
             //由于第一步清空缓存，reinforce文件夹内只会有一个已经加固并且签名的包
-            File signedApk = new File('build/outputs/apk/release/reinforce', name)
+            File signedApk = new File(reinforce_apk_dir, name)
             File renameApk = new File(reinforce_apk_name)
             if (signedApk.exists() && signedApk.isFile()) {
                 signedApk.renameTo(renameApk)
