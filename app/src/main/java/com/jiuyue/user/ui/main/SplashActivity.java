@@ -66,20 +66,8 @@ public class SplashActivity extends BaseActivity<BasePresenter, ActivitySplashBi
     private boolean loadPager() {
         //获取渠道信息
         initChannelData();
-        //获取隐私政策和用户协议内容
-        new CommonModel().getConfig(new ResultListener<ConfigEntity>() {
-            @Override
-            public void onSuccess(ConfigEntity data) {
-                App.getSharePre().putString(SpKey.PRIVACY_URL, data.getPrivacyUrl());
-                App.getSharePre().putString(SpKey.USER_PROXY_URL, data.getUserProxyUrl());
-                App.getSharePre().putObject(SpKey.CONFIG_INFO, data);
-            }
-
-            @Override
-            public void onError(String msg, int code) {
-                ToastUtil.show(msg);
-            }
-        });
+        //获取配置信息
+        initConfigInfo();
         //是否同意隐私协议
         if (!App.getSharePre().getBoolean(SpKey.PRIVACY, false)) {
             //显示隐私协议弹窗
@@ -92,9 +80,15 @@ public class SplashActivity extends BaseActivity<BasePresenter, ActivitySplashBi
                             return true;
                         }
                     })
-                    .asCustom(new PrivacyPactDialog(this))
+                    .asCustom(new PrivacyPactDialog(this, () -> {
+                        App.getInstance().initPrivacy(); //初始化隐私合规
+                        App.getSharePre().putBoolean(SpKey.PRIVACY, true);
+                        App.getSharePre().putString(SpKey.UUID, DeviceIdUtil.getDeviceId(this));
+                        startLogin();
+                    }))
                     .show();
         } else {
+            App.getInstance().initPrivacy(); //初始化隐私合规
             if (App.getSharePre().getString(SpKey.TOKEN).isEmpty()) {
                 startLogin();
             } else {
@@ -143,9 +137,6 @@ public class SplashActivity extends BaseActivity<BasePresenter, ActivitySplashBi
     }
 
     private void initChannelData() {
-        if (App.getSharePre().getString(SpKey.UUID).isEmpty()) {
-            App.getSharePre().putString(SpKey.UUID, DeviceIdUtil.getDeviceId(this));
-        }
         if (App.getSharePre().getString(SpKey.CHANNEL).isEmpty()) {
             String byWalle = WalleChannelReader.getChannel(getApplicationContext());
             if (byWalle == null) {
@@ -160,6 +151,23 @@ public class SplashActivity extends BaseActivity<BasePresenter, ActivitySplashBi
                 App.getSharePre().putString(SpKey.CHANNEL, byWalle);
             }
         }
+    }
+
+    private void initConfigInfo() {
+        //获取隐私政策和用户协议内容
+        new CommonModel().getConfig(new ResultListener<ConfigEntity>() {
+            @Override
+            public void onSuccess(ConfigEntity data) {
+                App.getSharePre().putString(SpKey.PRIVACY_URL, data.getPrivacyUrl());
+                App.getSharePre().putString(SpKey.USER_PROXY_URL, data.getUserProxyUrl());
+                App.getSharePre().putObject(SpKey.CONFIG_INFO, data);
+            }
+
+            @Override
+            public void onError(String msg, int code) {
+                ToastUtil.show(msg);
+            }
+        });
     }
 
     private void requestPermission() {

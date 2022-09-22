@@ -64,7 +64,6 @@ public class App extends MultiDexApplication {
         initLogger();
         initLiveEventBus();
         initPickDialogConfig();
-        initJPush();
     }
 
     private void init() {
@@ -110,13 +109,15 @@ public class App extends MultiDexApplication {
                 .okTextColor(0xFF00D5C4));
     }
 
-    private void initJPush() {
-        if (App.getSharePre().getBoolean(SpKey.PRIVACY)) {
-            if (BuildConfig.DEBUG) {
-                JPushInterface.setDebugMode(true);
-            }
-            JPushInterface.init(App.getAppContext());
+    public void initPrivacy() {
+        //高德地图隐私合规
+        MapsInitializer.updatePrivacyShow(App.getAppContext(), true, true);
+        MapsInitializer.updatePrivacyAgree(App.getAppContext(), true);
+        //极光隐私合规
+        JCollectionAuth.setAuth(App.getAppContext(), true);
+        if (BuildConfig.DEBUG) {
+            JPushInterface.setDebugMode(true);
         }
+        JPushInterface.init(App.getAppContext());
     }
-
 }

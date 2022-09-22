@@ -22,9 +22,20 @@ import com.lxj.xpopup.core.CenterPopupView;
 public class PrivacyPactDialog extends CenterPopupView {
     private Context context;
 
+    private OnButtonClickListener buttonClickListener;
+
+    public interface OnButtonClickListener {
+        void onConfirm();
+    }
+
     public PrivacyPactDialog(@NonNull Context context) {
         super(context);
         this.context = context;
+    }
+    public PrivacyPactDialog(@NonNull Context context, OnButtonClickListener buttonClickListener) {
+        super(context);
+        this.context = context;
+        this.buttonClickListener = buttonClickListener;
     }
 
     @Override
@@ -52,9 +63,7 @@ public class PrivacyPactDialog extends CenterPopupView {
         //同意
         tvAgreeBtn.setOnClickListener(v -> {
             dismiss();
-            App.getSharePre().putBoolean(SpKey.PRIVACY, true);
-            IntentUtils.startActivity(context, LoginActivity.class);
-            AppStockManage.getInstance().finishActivity(SplashActivity.class);
+            buttonClickListener.onConfirm();
         });
     }
 

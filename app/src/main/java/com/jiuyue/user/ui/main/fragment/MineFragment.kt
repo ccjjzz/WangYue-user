@@ -157,7 +157,7 @@ class MineFragment : BaseFragment<BasePresenter, FragmentMineBinding>(), View.On
                 //联系客服
                 val config =
                     App.getSharePre().getObject(SpKey.CONFIG_INFO, ConfigEntity::class.java)
-                TIMHelper.startC2CChat(mContext, config.customServiceImId, "久约客服")
+                TIMHelper.startC2CChat(mContext, config.customServiceImId, "久约到家客服")
             }
             binding.tvMineName,
             binding.ivMineAvatar -> {
