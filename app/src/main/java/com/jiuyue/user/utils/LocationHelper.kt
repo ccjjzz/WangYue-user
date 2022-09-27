@@ -109,6 +109,14 @@ class LocationHelper {
                         Manifest.permission.ACCESS_FINE_LOCATION
                     )
                     .explainReasonBeforeRequest()
+                    .onExplainRequestReason{ scope, deniedList ->
+                        scope.showRequestReasonDialog(
+                            deniedList,
+                            "应用需要获取您的位置权限，用于推荐附近技师，请予同意。",
+                            "同意",
+                            "拒绝"
+                        )
+                    }
                     .onForwardToSettings { scope, deniedList ->
                         scope.showForwardToSettingsDialog(
                             deniedList,

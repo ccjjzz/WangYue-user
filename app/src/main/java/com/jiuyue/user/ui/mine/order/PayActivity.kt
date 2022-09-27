@@ -186,7 +186,6 @@ class PayActivity : BaseActivity<PayPresenter, ActivityPayBinding>(), PayContrac
                 val payInfo: WxPayEntity? = Gson().fromJson(payJson, WxPayEntity::class.java)
                 if (payInfo != null) {
                     //微信支付
-                    PayHelper.isNativePay = true
                     PayHelper(this, this).doWxPay(payInfo)
                 } else {
                     ToastUtil.show("支付参数错误")
@@ -196,7 +195,6 @@ class PayActivity : BaseActivity<PayPresenter, ActivityPayBinding>(), PayContrac
                 val payJson = Gson().toJson(data.payInfo)
                 if (payJson != null) {
                     //微信支付
-                    PayHelper.isNativePay = true
                     PayHelper(this, this).doAliPay(payJson)
                 } else {
                     ToastUtil.show("支付参数错误")

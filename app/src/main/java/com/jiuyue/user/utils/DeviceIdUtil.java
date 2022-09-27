@@ -117,7 +117,7 @@ public class DeviceIdUtil {
             ex.printStackTrace();
         }
 
-        return null;
+        return "";
     }
 
     /**

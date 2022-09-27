@@ -29,7 +29,7 @@ import java.util.Map;
 public class PayHelper {
     private Activity mActivity;
     public static String wxAppId = "wx90f78a62f23eaa2c";
-    public static boolean isNativePay = false;
+    public static String wxSecret = "";
     private PayResult payResult;
 
     public PayHelper(Activity mActivity, PayResult payResult) {
