@@ -69,7 +69,7 @@ class TechnicianDetailActivity :
 
         showLoading()
         mPresenter.technicianInfo(techId)
-        mPresenter.technicianDynamicList(techId, 1)
+        mPresenter.technicianDdynamicList(techId, 1)
     }
 
     override fun onTechnicianListSuccess(data: ListBean<TechnicianEntity>?) {

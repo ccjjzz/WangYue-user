@@ -76,7 +76,18 @@ class LocationHelper {
                 }
             }
         }
-        requestPermission()
+        XPopupHelper.showConfirm(
+            getContext()!!,
+            "位置权限获取说明",
+            "应用需要获取您的位置权限，用于推荐附近技师，请予同意。",
+            "同意",
+            "拒绝",
+            {
+                getContext()?.finish()
+            }
+        ) {
+            requestPermission()
+        }
     }
 
     private fun onCreate() {
@@ -108,15 +119,6 @@ class LocationHelper {
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION
                     )
-                    .explainReasonBeforeRequest()
-                    .onExplainRequestReason{ scope, deniedList ->
-                        scope.showRequestReasonDialog(
-                            deniedList,
-                            "应用需要获取您的位置权限，用于推荐附近技师，请予同意。",
-                            "同意",
-                            "拒绝"
-                        )
-                    }
                     .onForwardToSettings { scope, deniedList ->
                         scope.showForwardToSettingsDialog(
                             deniedList,
@@ -149,7 +151,7 @@ class LocationHelper {
             XPopupHelper.showConfirm(
                 getContext()!!,
                 "提示",
-                "请打开位置服务开关，否则无法正常使用",
+                "请打开位置服务开关，用于计算订单路程距离信息，否则无法正常使用",
                 "去打开",
                 "取消",
                 {
